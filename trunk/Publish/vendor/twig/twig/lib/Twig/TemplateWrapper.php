@@ -42,7 +42,7 @@ final class Twig_TemplateWrapper
     {
         // using func_get_args() allows to not expose the blocks argument
         // as it should only be used by internal code
-        return $this->template->render($context, func_num_args() > 1 ? func_get_arg(1) : []);
+        return $this->template->render($context, func_get_args()[1] ?? []);
     }
 
     /**
@@ -54,7 +54,7 @@ final class Twig_TemplateWrapper
     {
         // using func_get_args() allows to not expose the blocks argument
         // as it should only be used by internal code
-        $this->template->display($context, func_num_args() >= 1 ? func_get_arg(1) : []);
+        $this->template->display($context, func_get_args()[1] ?? []);
     }
 
     /**
@@ -97,12 +97,6 @@ final class Twig_TemplateWrapper
         ob_start();
         try {
             $this->template->displayBlock($name, $context);
-        } catch (Exception $e) {
-            while (ob_get_level() > $level) {
-                ob_end_clean();
-            }
-
-            throw $e;
         } catch (Throwable $e) {
             while (ob_get_level() > $level) {
                 ob_end_clean();

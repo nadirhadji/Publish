@@ -16,7 +16,7 @@
  */
 class Twig_Node_Set extends Twig_Node implements Twig_NodeCaptureInterface
 {
-    public function __construct($capture, Twig_NodeInterface $names, Twig_NodeInterface $values, $lineno, $tag = null)
+    public function __construct($capture, Twig_Node $names, Twig_Node $values, $lineno, $tag = null)
     {
         parent::__construct(['names' => $names, 'values' => $values], ['capture' => $capture, 'safe' => false], $lineno, $tag);
 
