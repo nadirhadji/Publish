@@ -1,0 +1,11 @@
+f0ec27,::1,GET,http://localhost:8888/2018-l3ac1/branches/Publish/web/app_dev.php/register,1552054937,385d1c,200
+385d1c,::1,GET,http://localhost:8888/2018-l3ac1/branches/Publish/web/app_dev.php/register,1552054937,,404
+9c4bdf,::1,GET,http://localhost:8888/2018-l3ac1/branches/Publish/web/app_dev.php/register,1552055479,,301
+2b47e4,::1,GET,http://localhost:8888/2018-l3ac1/branches/Publish/web/app_dev.php/register/,1552055480,,200
+9801d5,::1,GET,http://localhost:8888/2018-l3ac1/branches/Publish/web/app_dev.php/register/,1552055510,bdd479,200
+bdd479,::1,POST,http://localhost:8888/2018-l3ac1/branches/Publish/web/app_dev.php/register/,1552055510,,500
+c1dfda,::1,GET,http://localhost:8888/2018-l3ac1/branches/Publish/web/app_dev.php/register,1552055578,,301
+ad4cba,::1,GET,http://localhost:8888/2018-l3ac1/branches/Publish/web/app_dev.php/register,1552055578,,301
+3bb6ac,::1,GET,http://localhost:8888/2018-l3ac1/branches/Publish/web/app_dev.php/register/,1552055579,,200
+238787,::1,POST,http://localhost:8888/2018-l3ac1/branches/Publish/web/app_dev.php/register/,1552055617,,302
+393624,::1,GET,http://localhost:8888/2018-l3ac1/branches/Publish/web/app_dev.php/register/check-email,1552055618,,200
