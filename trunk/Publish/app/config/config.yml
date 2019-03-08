@@ -75,7 +75,7 @@ sensio_framework_extra:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Sf3App\MainBundle\Entity\User
+    user_class: Publish\PlatformBundle\Entity\User
     service:
         mailer: fos_user.mailer.twig_swift
     registration:
