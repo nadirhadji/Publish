@@ -127,6 +127,6 @@ class __TwigTemplate_dde4b18c56f2463677762607512caa90033d9aa261026c5d0e10b8b2375
 {% endautoescape %}
 {% endblock %}
 {% block body_html %}{% endblock %}
-", "@FOSUser/Registration/email.txt.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/email.txt.twig");
+", "@FOSUser/Registration/email.txt.twig", "/Applications/MAMP/htdocs/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/email.txt.twig");
     }
 }

@@ -1,3 +1,9 @@
-connexion_homepage:
-    path:     /
-    defaults: { _controller: ConnexionBundle:Default:index }
+connexion_testUSer:
+  path: /user/test
+  defaults:
+    _controller: ConnexionBundle:Connexion:testRoleUser
+
+connexion_testAdmin:
+  path: /admin/test
+  defaults:
+    _controller: ConnexionBundle:Connexion:testRoleAdmin
