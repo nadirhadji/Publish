@@ -101,10 +101,10 @@
     <parameter key="container.autowiring.strict_mode">true</parameter>
     <parameter key="container.dumper.inline_class_loader">true</parameter>
     <parameter key="database_host">127.0.0.1</parameter>
-    <parameter key="database_port">8889</parameter>
-    <parameter key="database_name">Publish</parameter>
+    <parameter key="database_port">3306</parameter>
+    <parameter key="database_name">PublishDB</parameter>
     <parameter key="database_user">root</parameter>
-    <parameter key="database_password">root</parameter>
+    <parameter key="database_password">null</parameter>
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">127.0.0.1</parameter>
     <parameter key="mailer_user">null</parameter>
@@ -2380,14 +2380,6 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
-        <argument>console.command</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument type="service" id="router_listener"/>
@@ -3763,6 +3755,10 @@
         <argument>!Connexion</argument>
       </call>
       <call method="addPath">
+        <argument>C:\wamp\www\2018-l3ac1\branches\Publish\app/Resources/FOSUserBundle/views</argument>
+        <argument>FOSUser</argument>
+      </call>
+      <call method="addPath">
         <argument>C:\wamp\www\2018-l3ac1\branches\Publish\vendor\friendsofsymfony\user-bundle/Resources/views</argument>
         <argument>FOSUser</argument>
       </call>
@@ -4202,10 +4198,10 @@
       <argument type="collection">
         <argument key="driver">pdo_mysql</argument>
         <argument key="host">127.0.0.1</argument>
-        <argument key="port">8889</argument>
-        <argument key="dbname">Publish</argument>
+        <argument key="port">3306</argument>
+        <argument key="dbname">PublishDB</argument>
         <argument key="user">root</argument>
-        <argument key="password">root</argument>
+        <argument key="password">null</argument>
         <argument key="charset">UTF8</argument>
         <argument key="driverOptions" type="collection"/>
         <argument key="defaultTableOptions" type="collection"/>
