@@ -1,3 +1,0 @@
-publish_platform_homepage:
-    path:     /
-    defaults: { _controller: PublishPlatformBundle:Default:index }
