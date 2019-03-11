@@ -34,3 +34,8 @@ cfdfee,::1,GET,http://localhost/2018-l3ac1/branches/Publish/web/app_dev.php/regi
 a8d01a,::1,GET,http://localhost/2018-l3ac1/branches/Publish/web/app_dev.php/register/,1552318058,,500
 1be308,::1,GET,http://localhost/2018-l3ac1/branches/Publish/web/app_dev.php/register/,1552318133,,200
 30e540,::1,GET,http://localhost/2018-l3ac1/branches/Publish/web/app_dev.php/register/,1552318310,,200
+bc5bef,::1,GET,http://localhost/2018-l3ac1/branches/Publish/web/app_dev.php/register/,1552318409,,200
+9f441c,::1,POST,http://localhost/2018-l3ac1/branches/Publish/web/app_dev.php/register/,1552318448,,302
+902051,::1,GET,http://localhost/2018-l3ac1/branches/Publish/web/app_dev.php/register/check-email,1552318450,,200
+c70b9f,::1,GET,http://localhost/2018-l3ac1/branches/Publish/web/app_dev.php/register/check-email,1552318644,,302
+e82da7,::1,GET,http://localhost/2018-l3ac1/branches/Publish/web/app_dev.php/register/,1552318645,,200
