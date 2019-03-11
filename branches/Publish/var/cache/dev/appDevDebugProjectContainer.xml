@@ -61,7 +61,7 @@
         <parameter key="namespace">Sensio\Bundle\FrameworkExtraBundle</parameter>
       </parameter>
       <parameter key="ConnexionBundle" type="collection">
-        <parameter key="parent">null</parameter>
+        <parameter key="parent">FOSUserBundle</parameter>
         <parameter key="path">C:\wamp\www\2018-l3ac1\branches\Publish\src\ConnexionBundle</parameter>
         <parameter key="namespace">ConnexionBundle</parameter>
       </parameter>
@@ -360,7 +360,7 @@
       <parameter key="l3ac1@publish.fr">Publish</parameter>
     </parameter>
     <parameter key="fos_user.registration.confirmation.enabled">true</parameter>
-    <parameter key="fos_user.registration.form.type">FOS\UserBundle\Form\Type\RegistrationFormType</parameter>
+    <parameter key="fos_user.registration.form.type">ConnexionBundle\Form\RegistrationType</parameter>
     <parameter key="fos_user.registration.form.name">fos_user_registration_form</parameter>
     <parameter key="fos_user.registration.form.validation_groups" type="collection">
       <parameter>Registration</parameter>
@@ -3752,7 +3752,7 @@
       </call>
       <call method="addPath">
         <argument>C:\wamp\www\2018-l3ac1\branches\Publish\src\ConnexionBundle/Resources/views</argument>
-        <argument>!Connexion</argument>
+        <argument>FOSUser</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp\www\2018-l3ac1\branches\Publish\app/Resources/FOSUserBundle/views</argument>
@@ -4695,7 +4695,7 @@
     <service id="fos_user.registration.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
       <argument type="service" id="form.factory"/>
       <argument>fos_user_registration_form</argument>
-      <argument>FOS\UserBundle\Form\Type\RegistrationFormType</argument>
+      <argument>ConnexionBundle\Form\RegistrationType</argument>
       <argument>%fos_user.registration.form.validation_groups%</argument>
     </service>
     <service id="fos_user.registration.form.type" class="FOS\UserBundle\Form\Type\RegistrationFormType">

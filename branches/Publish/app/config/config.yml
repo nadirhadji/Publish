@@ -79,7 +79,7 @@ fos_user:
         mailer: fos_user.mailer.twig_swift
     registration:
         form:
-            type: FOS\UserBundle\Form\Type\RegistrationFormType
+            type: ConnexionBundle\Form\RegistrationType
             name: fos_user_registration_form
             validation_groups: [Registration, Default]
         confirmation:
