@@ -36,6 +36,6 @@ class __TwigTemplate_c5c5eab6e68a8659e19022cb4d5f84aadb9c5d0adf32d33e79212d39723
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@Framework/Form/search_widget.html.php", "/Applications/MAMP/htdocs/Publish/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views/Form/search_widget.html.php");
+        return new Twig_Source("", "@Framework/Form/search_widget.html.php", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views/Form/search_widget.html.php");
     }
 }

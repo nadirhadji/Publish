@@ -95,6 +95,6 @@ class __TwigTemplate_e91660d061be6eda5b4253602d4695795b9f1a25cf056c8079fe9ed40db
         </div>
     </body>
 </html>
-", "@Twig/Exception/error.html.twig", "/Applications/MAMP/htdocs/Publish/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/Exception/error.html.twig");
+", "@Twig/Exception/error.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/Exception/error.html.twig");
     }
 }

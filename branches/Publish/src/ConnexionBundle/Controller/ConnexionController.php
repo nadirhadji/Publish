@@ -6,9 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ConnexionController extends Controller
 {
-    public function indexAction()
+    public function redirectionAction()
     {
-        return $this->render('@Connexion/Default/index.html.twig');
+        return $this->render('home_page.html.twig');
     }
 
     public function testRoleUserAction()

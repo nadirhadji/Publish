@@ -36,6 +36,6 @@ class __TwigTemplate_41af29875436aa0fd41878613a248ef2496e52e1ab2e6cd5f51db546547
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@Twig/images/icon-plus-square-o.svg", "/Applications/MAMP/htdocs/Publish/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/images/icon-plus-square-o.svg");
+        return new Twig_Source("", "@Twig/images/icon-plus-square-o.svg", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/images/icon-plus-square-o.svg");
     }
 }

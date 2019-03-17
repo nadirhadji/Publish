@@ -163,6 +163,6 @@ header .container { display: flex; justify-content: space-between; }
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@Twig/exception.css.twig", "/Applications/MAMP/htdocs/Publish/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/exception.css.twig");
+        return new Twig_Source("", "@Twig/exception.css.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/exception.css.twig");
     }
 }

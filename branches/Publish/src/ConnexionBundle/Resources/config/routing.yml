@@ -1,3 +1,8 @@
+redirection:
+  path: /home
+  defaults:
+    _controller: ConnexionBundle:Connexion:redirection
+
 connexion_testUSer:
   path: /user/test
   defaults:

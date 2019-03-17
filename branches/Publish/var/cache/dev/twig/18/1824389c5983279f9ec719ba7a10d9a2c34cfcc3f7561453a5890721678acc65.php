@@ -80,6 +80,6 @@ class __TwigTemplate_c3c80d4c8b5dc8b5bda704ea5faf53bee64caa11ceb5e0158e6ce28f4af
     {% endfor %}
     </ul>
 </div>
-", "@FOSUser/Group/list_content.html.twig", "/Applications/MAMP/htdocs/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/Group/list_content.html.twig");
+", "@FOSUser/Group/list_content.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/Group/list_content.html.twig");
     }
 }

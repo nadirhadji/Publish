@@ -28,20 +28,20 @@ class appProdProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBundle\R
             $canonicalMethod = 'GET';
         }
 
-        // connexion_homepage
-        if ('' === $trimmedPathinfo) {
-            $ret = array (  '_controller' => 'ConnexionBundle\\Controller\\ConnexionController::indexAction',  '_route' => 'connexion_homepage',);
-            if ('/' === substr($pathinfo, -1)) {
-                // no-op
-            } elseif ('GET' !== $canonicalMethod) {
-                goto not_connexion_homepage;
-            } else {
-                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'connexion_homepage'));
-            }
-
-            return $ret;
+        // redirection
+        if ('/home' === $pathinfo) {
+            return array (  '_controller' => 'ConnexionBundle\\Controller\\ConnexionController::redirectionAction',  '_route' => 'redirection',);
         }
-        not_connexion_homepage:
+
+        // connexion_testUSer
+        if ('/user/test' === $pathinfo) {
+            return array (  '_controller' => 'ConnexionBundle\\Controller\\ConnexionController::testRoleUserAction',  '_route' => 'connexion_testUSer',);
+        }
+
+        // connexion_testAdmin
+        if ('/admin/test' === $pathinfo) {
+            return array (  '_controller' => 'ConnexionBundle\\Controller\\ConnexionController::testRoleAdminAction',  '_route' => 'connexion_testAdmin',);
+        }
 
         if (0 === strpos($pathinfo, '/login')) {
             // fos_user_security_login

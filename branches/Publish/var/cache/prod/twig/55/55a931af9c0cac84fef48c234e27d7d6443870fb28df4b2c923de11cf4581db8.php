@@ -39,6 +39,6 @@ class __TwigTemplate_0b72d6a7e9cc521e3a81a7f0eb77347b259ed20f1ae6bfe408d9cb8293a
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@Doctrine/Collector/icon.svg", "/Applications/MAMP/htdocs/Publish/vendor/doctrine/doctrine-bundle/Resources/views/Collector/icon.svg");
+        return new Twig_Source("", "@Doctrine/Collector/icon.svg", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/doctrine/doctrine-bundle/Resources/views/Collector/icon.svg");
     }
 }

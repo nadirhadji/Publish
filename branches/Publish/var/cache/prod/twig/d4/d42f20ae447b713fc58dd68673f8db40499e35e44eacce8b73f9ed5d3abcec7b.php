@@ -40,6 +40,6 @@ class __TwigTemplate_fad671cb0f9538c04431db598800e86662942a62d356dc465e6017e8090
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@Framework/Form/checkbox_widget.html.php", "/Applications/MAMP/htdocs/Publish/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views/Form/checkbox_widget.html.php");
+        return new Twig_Source("", "@Framework/Form/checkbox_widget.html.php", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views/Form/checkbox_widget.html.php");
     }
 }

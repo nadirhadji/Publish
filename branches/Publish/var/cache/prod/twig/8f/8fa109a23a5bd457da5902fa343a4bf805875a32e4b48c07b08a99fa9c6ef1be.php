@@ -52,6 +52,6 @@ class __TwigTemplate_7d655938f2e64a5da30ab2bd0d299185984bf2198590a83f7695e9d1b58
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@FOSUser/Profile/edit.html.twig", "/Applications/MAMP/htdocs/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/Profile/edit.html.twig");
+        return new Twig_Source("", "@FOSUser/Profile/edit.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/Profile/edit.html.twig");
     }
 }

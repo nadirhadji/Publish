@@ -58,6 +58,6 @@ class __TwigTemplate_8c9a1bd2b87172cfe0bdb3f4d2a3a0e397dbb745cfba74f7d46c472c3db
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@FOSUser/Resetting/check_email.html.twig", "/Applications/MAMP/htdocs/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/Resetting/check_email.html.twig");
+        return new Twig_Source("", "@FOSUser/Resetting/check_email.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/Resetting/check_email.html.twig");
     }
 }

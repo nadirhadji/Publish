@@ -64,10 +64,10 @@ class User extends \ConnexionBundle\Entity\User implements \Doctrine\ORM\Proxy\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'roles'];
+            return ['__isInitialized__', 'id', 'gender', 'firstname', 'lastname', 'city', 'country', 'phone', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'roles'];
         }
 
-        return ['__isInitialized__', 'id', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'roles'];
+        return ['__isInitialized__', 'id', 'gender', 'firstname', 'lastname', 'city', 'country', 'phone', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'roles'];
     }
 
     /**
@@ -176,6 +176,164 @@ class User extends \ConnexionBundle\Entity\User implements \Doctrine\ORM\Proxy\P
     /**
      * {@inheritDoc}
      */
+    public function setGender($gender)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setGender', [$gender]);
+
+        return parent::setGender($gender);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getGender()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getGender', []);
+
+        return parent::getGender();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFirstname($firstname)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFirstname', [$firstname]);
+
+        return parent::setFirstname($firstname);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFirstname()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFirstname', []);
+
+        return parent::getFirstname();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setLastname($lastname)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLastname', [$lastname]);
+
+        return parent::setLastname($lastname);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLastname()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLastname', []);
+
+        return parent::getLastname();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCity($city)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCity', [$city]);
+
+        return parent::setCity($city);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCity()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCity', []);
+
+        return parent::getCity();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCountry($country)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCountry', [$country]);
+
+        return parent::setCountry($country);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCountry()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCountry', []);
+
+        return parent::getCountry();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setId($id)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setId', [$id]);
+
+        return parent::setId($id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getId()
+    {
+        if ($this->__isInitialized__ === false) {
+            return (int)  parent::getId();
+        }
+
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', []);
+
+        return parent::getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPhone($phone)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhone', [$phone]);
+
+        return parent::setPhone($phone);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPhone()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhone', []);
+
+        return parent::getPhone();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function __toString()
     {
 
@@ -226,21 +384,6 @@ class User extends \ConnexionBundle\Entity\User implements \Doctrine\ORM\Proxy\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'eraseCredentials', []);
 
         return parent::eraseCredentials();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getId()
-    {
-        if ($this->__isInitialized__ === false) {
-            return (int)  parent::getId();
-        }
-
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', []);
-
-        return parent::getId();
     }
 
     /**

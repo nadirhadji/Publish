@@ -48,6 +48,6 @@ class __TwigTemplate_615ccdb90bd3ffb93216033e1d49fbce5cb7360f43a1f73bedbcdf4ada5
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@Framework/Form/choice_widget_options.html.php", "/Applications/MAMP/htdocs/Publish/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views/Form/choice_widget_options.html.php");
+        return new Twig_Source("", "@Framework/Form/choice_widget_options.html.php", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views/Form/choice_widget_options.html.php");
     }
 }

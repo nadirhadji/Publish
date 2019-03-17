@@ -52,6 +52,6 @@ class __TwigTemplate_75419d6e91026a08491c501d2a2df950ac32573dabc110112fbc70c7a34
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@FOSUser/ChangePassword/change_password.html.twig", "/Applications/MAMP/htdocs/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/ChangePassword/change_password.html.twig");
+        return new Twig_Source("", "@FOSUser/ChangePassword/change_password.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/ChangePassword/change_password.html.twig");
     }
 }

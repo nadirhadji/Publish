@@ -38,6 +38,6 @@ class __TwigTemplate_5336f0b38026ac6ebe6c8fcb8fe3bd597724566fb6e56518c890de7a381
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@Swiftmailer/Collector/icon.svg", "/Applications/MAMP/htdocs/Publish/vendor/symfony/swiftmailer-bundle/Resources/views/Collector/icon.svg");
+        return new Twig_Source("", "@Swiftmailer/Collector/icon.svg", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/symfony/swiftmailer-bundle/Resources/views/Collector/icon.svg");
     }
 }

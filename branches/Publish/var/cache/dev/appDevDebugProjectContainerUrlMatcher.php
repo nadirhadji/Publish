@@ -107,6 +107,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // redirection
+        if ('/home' === $pathinfo) {
+            return array (  '_controller' => 'ConnexionBundle\\Controller\\ConnexionController::redirectionAction',  '_route' => 'redirection',);
+        }
+
         // connexion_testUSer
         if ('/user/test' === $pathinfo) {
             return array (  '_controller' => 'ConnexionBundle\\Controller\\ConnexionController::testRoleUserAction',  '_route' => 'connexion_testUSer',);

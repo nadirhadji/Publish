@@ -36,6 +36,6 @@ class __TwigTemplate_3f0ec6341b337954650127e5bea8d920742e08f3c343108bb98c5b7cae7
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@Framework/Form/color_widget.html.php", "/Applications/MAMP/htdocs/Publish/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views/Form/color_widget.html.php");
+        return new Twig_Source("", "@Framework/Form/color_widget.html.php", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views/Form/color_widget.html.php");
     }
 }

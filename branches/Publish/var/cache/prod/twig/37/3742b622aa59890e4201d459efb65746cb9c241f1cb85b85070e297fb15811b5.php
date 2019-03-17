@@ -138,6 +138,6 @@ class __TwigTemplate_5ae7d75739976b446d46636d68661698ce9c8178d1ac04c2a720cc6aa3a
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "default/index.html.twig", "/Applications/MAMP/htdocs/Publish/app/Resources/views/default/index.html.twig");
+        return new Twig_Source("", "default/index.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/app/Resources/views/default/index.html.twig");
     }
 }

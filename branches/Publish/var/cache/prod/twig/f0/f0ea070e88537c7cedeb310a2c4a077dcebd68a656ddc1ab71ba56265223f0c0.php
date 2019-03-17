@@ -123,6 +123,6 @@ class __TwigTemplate_a22b4eb583ed0ac1b0fe948e4f69171d7c77f41c339d0c0b47e1f452d0a
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@Twig/layout.html.twig", "/Applications/MAMP/htdocs/Publish/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/layout.html.twig");
+        return new Twig_Source("", "@Twig/layout.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/layout.html.twig");
     }
 }

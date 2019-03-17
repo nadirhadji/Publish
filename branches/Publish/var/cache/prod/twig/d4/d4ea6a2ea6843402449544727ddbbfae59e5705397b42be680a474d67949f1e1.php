@@ -42,6 +42,6 @@ class __TwigTemplate_6884144a23cc010a32bbeb4dede4522433ae7722df01befe1550273fd2d
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@Twig/Exception/exception.rdf.twig", "/Applications/MAMP/htdocs/Publish/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/Exception/exception.rdf.twig");
+        return new Twig_Source("", "@Twig/Exception/exception.rdf.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/Exception/exception.rdf.twig");
     }
 }

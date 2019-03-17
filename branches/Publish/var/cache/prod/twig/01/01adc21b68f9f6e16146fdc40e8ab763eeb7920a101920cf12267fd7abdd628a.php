@@ -38,6 +38,6 @@ class __TwigTemplate_0b57ff6894df7c0699e81fe0334169298d345f83e988c0d440b765691e2
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@Security/Collector/icon.svg", "/Applications/MAMP/htdocs/Publish/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views/Collector/icon.svg");
+        return new Twig_Source("", "@Security/Collector/icon.svg", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views/Collector/icon.svg");
     }
 }

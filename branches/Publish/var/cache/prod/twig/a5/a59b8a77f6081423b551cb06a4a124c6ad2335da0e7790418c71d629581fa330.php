@@ -59,6 +59,6 @@ class __TwigTemplate_f848c3b8d8a2304f955e2b7389ad7732d621ec01bb10692b9d94e3dd5c4
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@FOSUser/ChangePassword/change_password_content.html.twig", "/Applications/MAMP/htdocs/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/ChangePassword/change_password_content.html.twig");
+        return new Twig_Source("", "@FOSUser/ChangePassword/change_password_content.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/ChangePassword/change_password_content.html.twig");
     }
 }
