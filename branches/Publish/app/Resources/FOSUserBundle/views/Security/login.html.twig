@@ -11,8 +11,7 @@
         <div class="login-box">
 
         <div class="login-logo">
-            <a href="{{ asset('templates/image/logo-publish.png') }}"></a>
-            <img src="{{ asset('templates/image/logo-publish.png') }}">
+            <a href=""><img src="{{ asset('templates/dist/img/logo.png') }}" alt="logo" /></a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -60,8 +59,8 @@
             </div>
             <!-- /.social-auth-links -->
 
-            <a href="#">I forgot my password</a><br>
-            <a href="register.html" class="text-center">Register a new membership</a>
+            <a href="{{ path('fos_user_resetting_request') }}">I forgot my password</a><br>
+            <a href="{{ path('fos_user_registration_register') }}" class="text-center">Register a new membership</a>
 
         </div>
             <!-- /.login-box-body -->
