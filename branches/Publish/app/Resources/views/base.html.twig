@@ -8,8 +8,48 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     {% block stylesheets %}{% endblock %}
 </head>
-<div class="container">
-    {% block content %}{% endblock %}
-</div>
-{% block javascripts %}{% endblock %}
+
+    <body class="hold-transition skin-blue sidebar-mini">
+
+        <div class="wrapper">
+
+            <header class="main-header">
+
+                {% block header %}
+
+                    {% block header_navigation_links %}{% endblock %}
+
+                 {% endblock %}
+
+            </header>
+
+            <aside class="main-sidebar">
+
+                {% block aside %} {% endblock %}
+
+            </aside>
+
+            <div class="content-wrapper">
+
+                {% block fos_user_content %}{% endblock %}
+
+            </div>
+
+            <footer class="main-footer">
+
+                {% block footer %} {% endblock %}
+
+            </footer>
+
+            <aside class="control-sidebar control-sidebar-dark">
+
+                {% block controlSidebar %} {% endblock %}
+
+            </aside>
+
+
+    {% block javascripts %}{% endblock %}
+
+        </div>
+    </body>
 </html>

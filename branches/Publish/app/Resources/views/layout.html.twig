@@ -8,9 +8,12 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('templates/bower_components/Ionicons/css/ionicons.min.css') }}" />
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('templates/dist/css/AdminLTE.css') }}" />
+    <link rel="stylesheet" href="{{ asset('templates/dist/css/AdminLTE.min.css') }}" />
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('templates/plugins/iCheck/square/blue.css') }}" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{{ asset('templates/dist/css/skins/_all-skins.min.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,33 +28,31 @@
 
 {% endblock %}
 
-    {% block content %}
-        <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            {% endif %}
-        </div>
 
-        {% if app.request.hasPreviousSession %}
-            {% for type, messages in app.session.flashbag.all() %}
-                {% for message in messages %}
-                    <div class="flash-{{ type }}">
-                        {{ message }}
+                {% block fos_user_content %}
+                    <div>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                            <a href="{{ path('fos_user_security_logout') }}">
+                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        {% endif %}
                     </div>
-                {% endfor %}
-            {% endfor %}
-        {% endif %}
 
-        <div>
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
-        </div>
-    {% endblock %}
+                    {% if app.request.hasPreviousSession %}
+                        {% for type, messages in app.session.flashbag.all() %}
+                            {% for message in messages %}
+                                <div class="flash-{{ type }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                {% endblock fos_user_content %}
+
+
 
 
 
@@ -72,6 +73,24 @@
                 increaseArea: '20%' /* optional */
             });
         });
+    </script>
+
+    <!-- jQuery 3 -->
+    <script src="{{ asset('templates/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('templates/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- SlimScroll -->
+    <script src="{{ asset('templates/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('templates/bower_components/fastclick/lib/fastclick.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('templates/dist/js/adminlte.min.js') }}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset('templates/dist/js/demo.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidebar-menu').tree()
+        })
     </script>
 
 {% endblock %}
