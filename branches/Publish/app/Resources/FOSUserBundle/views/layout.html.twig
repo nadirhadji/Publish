@@ -30,6 +30,8 @@
 
 {% block body %}
 
+    
+
                 {% block fos_user_content %}
                     <div>
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -52,6 +54,7 @@
                         {% endfor %}
                     {% endif %}
                 {% endblock fos_user_content %}
+
 
 
 
