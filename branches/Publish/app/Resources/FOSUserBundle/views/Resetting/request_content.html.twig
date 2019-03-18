@@ -1,6 +1,10 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% extends "base2.html.twig" %}
+
+{% block body %}
+
 <a href=""><img src="{{ asset('templates/dist/img/logo.png') }}" alt="logo" /></a>
 
 
@@ -23,3 +27,4 @@
         </div>
     </form>
 </div>
+{% endblock body %}
