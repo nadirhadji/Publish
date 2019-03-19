@@ -124,6 +124,6 @@ class __TwigTemplate_05f216b614eb759df0dbc1b6ce6443e8910f5c53e9511cde6e2abf8d521
 {{ 'registration.email.message'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}) }}
 {% endautoescape %}
 {% endblock %}
-{% block body_html %}{% endblock %}", "@FOSUser/Registration/email.txt.twig", "/Applications/MAMP/htdocs/Publish/app/Resources/FOSUserBundle/views/Registration/email.txt.twig");
+{% block body_html %}{% endblock %}", "@FOSUser/Registration/email.txt.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/app/Resources/FOSUserBundle/views/Registration/email.txt.twig");
     }
 }

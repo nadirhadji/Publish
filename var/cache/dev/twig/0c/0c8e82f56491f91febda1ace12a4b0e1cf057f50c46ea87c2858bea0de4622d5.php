@@ -60,6 +60,6 @@ class __TwigTemplate_3a52ba7f1943657ea664dff0b61313b256bc0662f434d72c7b694b7c781
     {
         return new Twig_Source("{% if app.user %}
     Hello {{ app.user.username }}, you are logged in as an user!
-{% endif %}", "test_roles/hello-world.html.twig", "/Applications/MAMP/htdocs/Publish/app/Resources/views/test_roles/hello-world.html.twig");
+{% endif %}", "test_roles/hello-world.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/app/Resources/views/test_roles/hello-world.html.twig");
     }
 }

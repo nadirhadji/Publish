@@ -33,14 +33,4 @@ class ConnexionController extends Controller
         return $this->render('home_page.html.twig',array('publication' => $publication));
 
     }
-
-    public function testRoleUserAction()
-    {
-        return $this->render('test_roles/hello-world.html.twig');
-    }
-
-    public function testRoleAdminAction()
-    {
-        return $this->render('test_roles/hello-world-admin.html.twig');
-    }
 }

@@ -236,6 +236,6 @@ class __TwigTemplate_bb1063dea5f0e445f2a7adde28d98faa450d472be4847d86a04e1a4a71a
         </div>
         <!-- /.login-box -->
 
-    {% endblock fos_user_content %}", "@FOSUser/Security/login.html.twig", "/Applications/MAMP/htdocs/Publish/app/Resources/FOSUserBundle/views/Security/login.html.twig");
+    {% endblock fos_user_content %}", "@FOSUser/Security/login.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/app/Resources/FOSUserBundle/views/Security/login.html.twig");
     }
 }

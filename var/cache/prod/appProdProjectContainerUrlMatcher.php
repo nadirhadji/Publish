@@ -28,11 +28,6 @@ class appProdProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBundle\R
             $canonicalMethod = 'GET';
         }
 
-        // redirection
-        if ('/home' === $pathinfo) {
-            return array (  '_controller' => 'ConnexionBundle\\Controller\\ConnexionController::redirectionAction',  '_route' => 'redirection',);
-        }
-
         // connexion_testUSer
         if ('/user/test' === $pathinfo) {
             return array (  '_controller' => 'ConnexionBundle\\Controller\\ConnexionController::testRoleUserAction',  '_route' => 'connexion_testUSer',);
@@ -240,6 +235,11 @@ class appProdProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBundle\R
             }
             not_fos_user_resetting_check_email:
 
+        }
+
+        // redirection
+        if ('/home' === $pathinfo) {
+            return array (  '_controller' => 'ConnexionBundle\\Controller\\ConnexionController::redirectionAction',  '_route' => 'redirection',);
         }
 
         if ('/' === $pathinfo && !$allow) {

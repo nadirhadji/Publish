@@ -91,6 +91,6 @@ class __TwigTemplate_8ed6195ab263cdf67014cec7b5637a39f164d72d07e2c2ff63785e19006
 {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
 </p>
 {% endblock %}
-", "@FOSUser/Resetting/check_email.html.twig", "/Applications/MAMP/htdocs/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/Resetting/check_email.html.twig");
+", "@FOSUser/Resetting/check_email.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/Resetting/check_email.html.twig");
     }
 }

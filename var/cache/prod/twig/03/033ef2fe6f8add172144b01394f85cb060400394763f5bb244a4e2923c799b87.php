@@ -16,6 +16,7 @@ class __TwigTemplate_88ec8d68e634f8e29b8329066289392e45c9093e22ffe491d9b6fcc10b8
         $this->blocks = [
             'title' => [$this, 'block_title'],
             'stylesheets' => [$this, 'block_stylesheets'],
+            'body' => [$this, 'block_body'],
             'header' => [$this, 'block_header'],
             'header_navigation_links' => [$this, 'block_header_navigation_links'],
             'aside' => [$this, 'block_aside'],
@@ -48,58 +49,16 @@ class __TwigTemplate_88ec8d68e634f8e29b8329066289392e45c9093e22ffe491d9b6fcc10b8
 
     <body class=\"hold-transition skin-blue sidebar-mini\">
 
-        <div class=\"wrapper\">
-
-            <header class=\"main-header\">
-
-                ";
-        // line 18
-        $this->displayBlock('header', $context, $blocks);
-        // line 23
+        ";
+        // line 14
+        $this->displayBlock('body', $context, $blocks);
+        // line 52
         echo "
-            </header>
-
-            <aside class=\"main-sidebar\">
-
-                ";
-        // line 28
-        $this->displayBlock('aside', $context, $blocks);
-        // line 29
-        echo "
-            </aside>
-
-            <div class=\"content-wrapper\">
-
-                ";
-        // line 34
-        $this->displayBlock('fos_user_content', $context, $blocks);
-        // line 35
-        echo "
-            </div>
-
-            <footer class=\"main-footer\">
-
-                ";
-        // line 40
-        $this->displayBlock('footer', $context, $blocks);
-        // line 41
-        echo "
-            </footer>
-
-            <aside class=\"control-sidebar control-sidebar-dark\">
-
-                ";
-        // line 46
-        $this->displayBlock('controlSidebar', $context, $blocks);
-        // line 47
-        echo "
-            </aside>
-
 
     ";
-        // line 51
+        // line 54
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 52
+        // line 55
         echo "
         </div>
     </body>
@@ -117,48 +76,102 @@ class __TwigTemplate_88ec8d68e634f8e29b8329066289392e45c9093e22ffe491d9b6fcc10b8
     {
     }
 
-    // line 18
+    // line 14
+    public function block_body($context, array $blocks = [])
+    {
+        // line 15
+        echo "        <div class=\"wrapper\">
+
+            <header class=\"main-header\">
+
+                ";
+        // line 19
+        $this->displayBlock('header', $context, $blocks);
+        // line 24
+        echo "
+            </header>
+
+            <aside class=\"main-sidebar\">
+
+                ";
+        // line 29
+        $this->displayBlock('aside', $context, $blocks);
+        // line 30
+        echo "
+            </aside>
+
+            <div class=\"content-wrapper\">
+
+                ";
+        // line 35
+        $this->displayBlock('fos_user_content', $context, $blocks);
+        // line 36
+        echo "
+            </div>
+
+            <footer class=\"main-footer\">
+
+                ";
+        // line 41
+        $this->displayBlock('footer', $context, $blocks);
+        // line 42
+        echo "
+            </footer>
+
+            <aside class=\"control-sidebar control-sidebar-dark\">
+
+                ";
+        // line 47
+        $this->displayBlock('controlSidebar', $context, $blocks);
+        // line 48
+        echo "
+            </aside>
+
+            ";
+    }
+
+    // line 19
     public function block_header($context, array $blocks = [])
     {
-        // line 19
+        // line 20
         echo "
                     ";
-        // line 20
-        $this->displayBlock('header_navigation_links', $context, $blocks);
         // line 21
+        $this->displayBlock('header_navigation_links', $context, $blocks);
+        // line 22
         echo "
                  ";
     }
 
-    // line 20
+    // line 21
     public function block_header_navigation_links($context, array $blocks = [])
     {
     }
 
-    // line 28
+    // line 29
     public function block_aside($context, array $blocks = [])
     {
         echo " ";
     }
 
-    // line 34
+    // line 35
     public function block_fos_user_content($context, array $blocks = [])
     {
     }
 
-    // line 40
+    // line 41
     public function block_footer($context, array $blocks = [])
     {
         echo " ";
     }
 
-    // line 46
+    // line 47
     public function block_controlSidebar($context, array $blocks = [])
     {
         echo " ";
     }
 
-    // line 51
+    // line 54
     public function block_javascripts($context, array $blocks = [])
     {
     }
@@ -170,7 +183,7 @@ class __TwigTemplate_88ec8d68e634f8e29b8329066289392e45c9093e22ffe491d9b6fcc10b8
 
     public function getDebugInfo()
     {
-        return array (  162 => 51,  156 => 46,  150 => 40,  145 => 34,  139 => 28,  134 => 20,  129 => 21,  127 => 20,  124 => 19,  121 => 18,  116 => 9,  110 => 6,  103 => 52,  101 => 51,  95 => 47,  93 => 46,  86 => 41,  84 => 40,  77 => 35,  75 => 34,  68 => 29,  66 => 28,  59 => 23,  57 => 18,  47 => 10,  45 => 9,  39 => 6,  32 => 1,);
+        return array (  175 => 54,  169 => 47,  163 => 41,  158 => 35,  152 => 29,  147 => 21,  142 => 22,  140 => 21,  137 => 20,  134 => 19,  127 => 48,  125 => 47,  118 => 42,  116 => 41,  109 => 36,  107 => 35,  100 => 30,  98 => 29,  91 => 24,  89 => 19,  83 => 15,  80 => 14,  75 => 9,  69 => 6,  62 => 55,  60 => 54,  56 => 52,  54 => 14,  48 => 10,  46 => 9,  40 => 6,  33 => 1,);
     }
 
     public function getSourceContext()

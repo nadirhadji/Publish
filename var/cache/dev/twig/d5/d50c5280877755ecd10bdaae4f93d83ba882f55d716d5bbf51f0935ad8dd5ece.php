@@ -896,6 +896,6 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. -->
 </body>
-</html>", "home_page.html.twig", "/Applications/MAMP/htdocs/Publish/app/Resources/views/home_page.html.twig");
+</html>", "home_page.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/app/Resources/views/home_page.html.twig");
     }
 }
