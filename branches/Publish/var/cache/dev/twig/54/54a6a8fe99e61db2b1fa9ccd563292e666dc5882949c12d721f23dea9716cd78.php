@@ -342,10 +342,12 @@ desired effect
         <!-- Main content -->
         <section class=\"content container-fluid\">
 
-            ";
+           ";
         // line 299
+        echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["publication"]) || array_key_exists("publication", $context) ? $context["publication"] : (function () { throw new Twig_Error_Runtime('Variable "publication" does not exist.', 299, $this->source); })()), "datePublication", []), "d-m-Y"), "html", null, true);
+        echo " : ";
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["publication"]) || array_key_exists("publication", $context) ? $context["publication"] : (function () { throw new Twig_Error_Runtime('Variable "publication" does not exist.', 299, $this->source); })()), "contenu", []), "html", null, true);
-        echo ",
+        echo "
         </section>
         <!-- /.content -->
     </div>
@@ -483,7 +485,7 @@ desired effect
 
     public function getDebugInfo()
     {
-        return array (  458 => 401,  453 => 399,  448 => 397,  347 => 299,  258 => 213,  66 => 24,  59 => 20,  54 => 18,  49 => 16,  44 => 14,  29 => 1,);
+        return array (  460 => 401,  455 => 399,  450 => 397,  347 => 299,  258 => 213,  66 => 24,  59 => 20,  54 => 18,  49 => 16,  44 => 14,  29 => 1,);
     }
 
     public function getSourceContext()
@@ -786,7 +788,7 @@ desired effect
         <!-- Main content -->
         <section class=\"content container-fluid\">
 
-            {{ publication.contenu }},
+           {{ publication.datePublication|date('d-m-Y') }} : {{ publication.contenu }}
         </section>
         <!-- /.content -->
     </div>
@@ -894,6 +896,6 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. -->
 </body>
-</html>", "home_page.html.twig", "/Applications/MAMP/htdocs/Publish/app/Resources/views/home_page.html.twig");
+</html>", "home_page.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/app/Resources/views/home_page.html.twig");
     }
 }

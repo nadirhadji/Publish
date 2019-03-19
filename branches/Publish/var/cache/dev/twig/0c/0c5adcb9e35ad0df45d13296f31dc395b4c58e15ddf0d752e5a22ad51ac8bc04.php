@@ -60,6 +60,6 @@ class __TwigTemplate_8eac21f2df5dd5f0d73bea7ecc18525206d375ddef77545e785916c78f0
     {
         return new Twig_Source("{% if app.user %}
     Hello {{ app.user.username }}, you are logged in as an admin!
-{% endif %}", "test_roles/hello-world-admin.html.twig", "/Applications/MAMP/htdocs/Publish/app/Resources/views/test_roles/hello-world-admin.html.twig");
+{% endif %}", "test_roles/hello-world-admin.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/app/Resources/views/test_roles/hello-world-admin.html.twig");
     }
 }

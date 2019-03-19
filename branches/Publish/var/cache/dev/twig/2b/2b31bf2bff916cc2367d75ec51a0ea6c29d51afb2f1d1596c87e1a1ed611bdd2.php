@@ -81,6 +81,6 @@ class __TwigTemplate_66ffcaaf4c8e5be7003c77105d9d3ec8b04c91fb5c5563668d70387e3c8
 {% block fos_user_content %}
 {% include \"@FOSUser/Registration/register_content.html.twig\" %}
 {% endblock fos_user_content %}
-", "@FOSUser/Registration/register.html.twig", "/Applications/MAMP/htdocs/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/register.html.twig");
+", "@FOSUser/Registration/register.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/register.html.twig");
     }
 }

@@ -1412,6 +1412,6 @@ class __TwigTemplate_2d42e80d50d1d11641721d91cd63686486b3c42e87dd1cdf18c075e0737
              immediately after the control sidebar -->
         <div class=\"control-sidebar-bg\"></div>
 
-    {% endblock %}", "@FOSUser/Profile/show.html.twig", "/Applications/MAMP/htdocs/Publish/app/Resources/FOSUserBundle/views/Profile/show.html.twig");
+    {% endblock %}", "@FOSUser/Profile/show.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/app/Resources/FOSUserBundle/views/Profile/show.html.twig");
     }
 }

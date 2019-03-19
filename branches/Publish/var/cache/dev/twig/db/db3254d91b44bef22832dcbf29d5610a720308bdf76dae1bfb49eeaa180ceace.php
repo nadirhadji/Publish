@@ -98,6 +98,6 @@ class __TwigTemplate_254e94099eae5a866427acaefe498a98b9859b4ef7eac6deb9d1369e518
         <p><a href=\"{{ targetUrl }}\">{{ 'registration.back'|trans }}</a></p>
     {% endif %}
 {% endblock fos_user_content %}
-", "@FOSUser/Registration/confirmed.html.twig", "/Applications/MAMP/htdocs/Publish/app/Resources/FOSUserBundle/views/Registration/confirmed.html.twig");
+", "@FOSUser/Registration/confirmed.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/app/Resources/FOSUserBundle/views/Registration/confirmed.html.twig");
     }
 }

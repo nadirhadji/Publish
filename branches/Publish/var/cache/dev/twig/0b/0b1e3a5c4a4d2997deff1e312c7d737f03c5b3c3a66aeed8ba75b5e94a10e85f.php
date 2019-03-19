@@ -415,6 +415,6 @@ class __TwigTemplate_cbae2ad5fa9ce852391abfa4c8f346c83cdb3c078c94d42d44fe8649914
 
 {% endblock %}
 
-", "layout.html.twig", "/Applications/MAMP/htdocs/Publish/app/Resources/views/layout.html.twig");
+", "layout.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/app/Resources/views/layout.html.twig");
     }
 }

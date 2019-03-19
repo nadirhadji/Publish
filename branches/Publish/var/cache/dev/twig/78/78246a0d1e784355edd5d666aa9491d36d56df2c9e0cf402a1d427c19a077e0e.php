@@ -242,6 +242,6 @@ class __TwigTemplate_a5def8535519b11a575f73c7194a9f2d13d540a1c2d06006b11154669c0
      </div>
      <!-- /.register-box -->
 
- {% endblock fos_user_content %}", "@FOSUser/Registration/register_content.html.twig", "/Applications/MAMP/htdocs/Publish/app/Resources/FOSUserBundle/views/Registration/register_content.html.twig");
+ {% endblock fos_user_content %}", "@FOSUser/Registration/register_content.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/app/Resources/FOSUserBundle/views/Registration/register_content.html.twig");
     }
 }

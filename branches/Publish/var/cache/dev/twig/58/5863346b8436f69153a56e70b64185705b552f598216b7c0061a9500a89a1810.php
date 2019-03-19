@@ -187,6 +187,6 @@ class __TwigTemplate_aa634f1d92cf9f6861eae0cdda324aaa01dafdd37bccc26ef3f7cdf9485
         </div>
     </body>
 </html>
-", "@FOSUser/layout.html.twig", "/Applications/MAMP/htdocs/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/layout.html.twig");
+", "@FOSUser/layout.html.twig", "/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/vendor/friendsofsymfony/user-bundle/Resources/views/layout.html.twig");
     }
 }
