@@ -1,0 +1,11 @@
+connexion:
+    resource: "@ConnexionBundle/Resources/config/routing.yml"
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+app:
+    resource: "@ConnexionBundle/Controller/"
+    type:     annotation
+
+
