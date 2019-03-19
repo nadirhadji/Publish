@@ -19,7 +19,7 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                default_target_path: /home
+                default_target_path: /user/home
                 csrf_token_generator: security.csrf.token_manager
 
             logout:       true

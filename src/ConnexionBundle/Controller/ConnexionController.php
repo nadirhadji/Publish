@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ConnexionController extends Controller
 {
     /**
-     * @Route("/home", name="redirection")
+     * @Route("/user/home", name="redirection")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function redirectionAction()
