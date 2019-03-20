@@ -61,10 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="index2.html" class="logo">
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>A</b>LT</span>
-                <!-- logo for regular state and mobile devices -->
+            <a href="{{ path('redirection') }}" class="logo">
                 <span class="logo-lg"> <img src="{{ asset('templates/dist/img/logo2.png') }}" alt="logo" /> </span>
             </a>
 
@@ -192,7 +189,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!-- The user image in the navbar-->
                                 <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <span class="hidden-xs">{{ app.user.firstname }} {{ app.user.lastname }}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
@@ -200,7 +197,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                     <p>
-                                        Alexander Pierce - Web Developer
+                                        {{ app.user.firstname }} {{ app.user.lastname }}
                                         <small>Member since Nov. 2012</small>
                                     </p>
                                 </li>
@@ -214,7 +211,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <a href="#">Sales</a>
                                         </div>
                                         <div class="col-xs-4 text-center">
-                                            <a href="#">Friends</a>
+                                            <a href="#">Amis</a>
                                         </div>
                                     </div>
                                     <!-- /.row -->
@@ -224,8 +221,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="pull-left">
                                         <a href="{{ path('fos_user_profile_show') }}" class="btn btn-default btn-flat">Profile</a>
                                     </div>
+                                    <div class="pull-left">
+                                        <a href="" class="btn btn-default btn-flat">Edit</a>
+                                    </div>
                                     <div class="pull-right">
-                                        <a  href="/2018-l3ac1/branches/Publish/web/app_dev.php/logout" class="btn btn-default btn-flat">Sign out</a>
+                                        <a  href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">Sign out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -250,7 +250,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Alexander Pierce</p>
+                        <p>{{ app.user.firstname }} {{ app.user.lastname }}</p>
                         <!-- Status -->
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
