@@ -18,7 +18,7 @@ framework:
         strict_requirements: ~
     form: ~
     csrf_protection: ~
-    validation: { enable_annotations: true }
+    validation: { enabled: true }
     #serializer: { enable_annotations: true }
     default_locale: '%locale%'
     trusted_hosts: ~
@@ -84,7 +84,7 @@ fos_user:
         form:
             type: ConnexionBundle\Form\RegistrationType
             name: fos_user_registration_form
-            validation_groups: [Registration, Default]
+            validation_groups: [registration]
         confirmation:
             from_email:
                 address: noreplypublish@gmail.com
@@ -94,7 +94,7 @@ fos_user:
     profile:
         form:
             type: FOS\UserBundle\Form\Type\ProfileFormType
-            #validation_groups: [Profile, Default]
+            validation_groups: [PubishProfile]
     resetting:
         email:
             template: '@FOSUser/Resetting/email.txt.twig'
