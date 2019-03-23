@@ -7,7 +7,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr
 
 framework:
     #esi: ~
@@ -18,7 +18,7 @@ framework:
         strict_requirements: ~
     form: ~
     csrf_protection: ~
-    validation: { enable_annotations: true }
+    validation: { enabled: true }
     #serializer: { enable_annotations: true }
     default_locale: '%locale%'
     trusted_hosts: ~
@@ -75,23 +75,27 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: ConnexionBundle\Entity\User
+    from_email:
+        address: noreplypublish@gmail.com
+        sender_name: "Publish"
     service:
         mailer: fos_user.mailer.twig_swift
     registration:
         form:
             type: ConnexionBundle\Form\RegistrationType
             name: fos_user_registration_form
-            validation_groups: [Registration, Default]
+            validation_groups: [registration]
         confirmation:
+            from_email:
+                address: noreplypublish@gmail.com
+                sender_name: "Publish"
             enabled: true
             template: '@FOSUser/Registration/email.txt.twig'
     profile:
         form:
             type: FOS\UserBundle\Form\Type\ProfileFormType
-            #validation_groups: [Profile, Default]
+            validation_groups: [PubishProfile]
     resetting:
         email:
             template: '@FOSUser/Resetting/email.txt.twig'
-    from_email:
-        address: l3ac1@publish.fr
-        sender_name: "Publish"
+

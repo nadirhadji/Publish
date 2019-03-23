@@ -1,0 +1,15 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<a href=""><img src="{{ asset('templates/dist/img/logo.png') }}" alt="logo" /></a>
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">Réinitialisation mot de passe</h3>
+    </div>
+
+    {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+        {{ form_widget(form) }}
+        <div>
+            <input type="submit" class="btn btn-info pull-left" value="{{ 'resetting.reset.submit'|trans }}" />
+        </div>
+    {{ form_end(form) }}
+</div>
