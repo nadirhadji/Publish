@@ -2,22 +2,34 @@
 
 namespace ConnexionBundle\Controller;
 
+use ConnexionBundle\Entity\Publication;
+use ConnexionBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Routing\Annotation\Route;
+use ConnexionBundle\Controller\RemplirBaseController;
 
 class ConnexionController extends Controller
 {
-    public function indexAction()
+    /**
+     * @Route("/user/home", name="redirection")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function redirectionAction()
     {
-        return $this->render('@Connexion/Default/index.html.twig');
-    }
+        $remplirBase = new RemplirBaseController();
+        $publication = $remplirBase->remplirBaseAction();
 
-    public function testRoleUserAction()
-    {
-        return $this->render('test_roles/hello-world.html.twig');
-    }
+        //Récupération gestionnaire d'entités
+        $em= $this->getDoctrine()->getManager();
 
-    public function testRoleAdminAction()
-    {
-        return $this->render('test_roles/hello-world-admin.html.twig');
+        //Persistance de $publication
+        $em->persist($publication);
+
+        //Enregistrement dans BDD
+        $em->flush();
+
+        return $this->render('home_page.html.twig',array('publication' => $publication));
+
     }
 }

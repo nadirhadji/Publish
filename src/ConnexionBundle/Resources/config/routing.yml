@@ -1,9 +1,0 @@
-connexion_testUSer:
-  path: /user/test
-  defaults:
-    _controller: ConnexionBundle:Connexion:testRoleUser
-
-connexion_testAdmin:
-  path: /admin/test
-  defaults:
-    _controller: ConnexionBundle:Connexion:testRoleAdmin
