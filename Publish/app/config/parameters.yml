@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: 8889
+    database_name: publishDB
+    database_user: root
+    database_password: root
+    mailer_transport: gmail
+    mailer_host: null
+    mailer_user: noreplypublish@gmail.com
+    mailer_password: publish19
+    secret: 565ed77cbb746d7d12e2cb8f774cb9317872fb75

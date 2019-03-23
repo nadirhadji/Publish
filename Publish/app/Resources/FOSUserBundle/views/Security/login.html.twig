@@ -1,0 +1,82 @@
+{% extends "baseOrConnexion.html.twig" %}
+
+{% block title %}<title>Publish | Connexion</title> {% endblock %}
+
+{% block content %}
+
+    <body class="hold-transition login-page">
+
+{% if app.request.hasPreviousSession %}
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+            <div class="flash-{{ type }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+
+
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <div class="login-box">
+
+    <div class="login-logo">
+        <a href=""><img src="{{ asset('templates/dist/img/logo.png') }}" alt="logo" /></a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+    <p class="login-box-msg">Connectez-vous pour commencer votre session</p>
+
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" id="username" name="_username" placeholder="Adresse Mail" value="{{ last_username }}" required="required" autocomplete="username" />
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+            <input type="password" class="form-control" id="password" name="_password" placeholder="Mot de passe" required="required" autocomplete="current-password" />
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="checkbox ">
+                    <label>
+                        <input type="checkbox"> Se souvenir
+                    </label>
+                </div>
+            </div>
+
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
+
+            <!-- /.col -->
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Connexion</button>
+            </div>
+            <!-- /.col -->
+        </div>
+    </form>
+
+        <div class="social-auth-links text-center">
+            <p>- OU -</p>
+            {#<a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using#}
+                {#Facebook</a>#}
+            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> S'enregistrer avec Google+</a>
+        </div>
+        <!-- /.social-auth-links -->
+
+        <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié?</a><br>
+        <a href="{{ path('fos_user_registration_register') }}" class="text-center">S'inscrire</a>
+
+    </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+
+{% endblock content %}
