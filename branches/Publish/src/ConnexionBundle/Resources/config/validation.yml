@@ -1,0 +1,13 @@
+FOS\UserBundle\Model\User:
+    properties:
+        username:
+            - NotBlank: { groups: [registration] }
+            - Length: { min: 5, max: 25, groups: [registration] }
+        email:
+            - Email: { groups: [registration] }
+        plainPassword:
+            - NotBlank: { groups: [registration] }
+            - Length: { min: 8, max: 25, groups: [registration] }
+            - Regex: { pattern: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,25}$/i', match: true, message: Un caractére special est necessaire, groups: [registration] }
+#https://www.regextester.com/97402 lien menant a la verification de l'expression réguliere du champ Regex :pattern
+
