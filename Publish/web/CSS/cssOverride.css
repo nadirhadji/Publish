@@ -1,0 +1,9 @@
+.input-group .form-control:first-child {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
