@@ -7,6 +7,7 @@ use ConnexionBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use ConnexionBundle\Controller\RemplirBaseController;
 
 class ConnexionController extends Controller
 {
@@ -16,13 +17,11 @@ class ConnexionController extends Controller
      */
     public function redirectionAction()
     {
-        //Création de l'entité Publication
-        $publication=new Publication();
-        $publication->setContenu("Ceci est une publication test pour l'affichage sur la page d'accueil");
-        $publication->setDatePublication(new \DateTime());
+        $remplirBase = new RemplirBaseController();
+        $publication = $remplirBase->remplirBaseAction();
 
         //Récupération gestionnaire d'entités
-        $em=$this->getDoctrine()->getManager();
+        $em= $this->getDoctrine()->getManager();
 
         //Persistance de $publication
         $em->persist($publication);

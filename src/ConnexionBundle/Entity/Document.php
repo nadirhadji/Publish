@@ -3,6 +3,8 @@
 namespace ConnexionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Document
@@ -28,6 +30,23 @@ class Document
      */
     private $url;
 
+    /**
+     * @ORM\Column(name="alt", type="string", length=255)
+     */
+    private $alt;
+
+    private $file;
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }
+
 
     /**
      * Get id.
@@ -46,11 +65,10 @@ class Document
      *
      * @return Document
      */
-    public function setUrl($url)
+    public function setUrl(File $file = null)
     {
-        $this->url = $url;
+        $this->url = $file;
 
-        return $this;
     }
 
     /**
@@ -61,5 +79,29 @@ class Document
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Set alt.
+     *
+     * @param string $alt
+     *
+     * @return Document
+     */
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
+
+        return $this;
+    }
+
+    /**
+     * Get alt.
+     *
+     * @return string
+     */
+    public function getAlt()
+    {
+        return $this->alt;
     }
 }

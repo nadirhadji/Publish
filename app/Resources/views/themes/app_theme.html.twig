@@ -164,7 +164,7 @@
 {%- block password_widget -%}
     {%- set type = type|default('password') -%}
     {{ block('form_widget_simple') }}
-    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+    {# <span class="glyphicon glyphicon-lock form-control-feedback"></span> #}
 {%- endblock password_widget -%}
 
 {%- block hidden_widget -%}
@@ -175,7 +175,6 @@
 {%- block email_widget -%}
     {%- set type = type|default('email') -%}
     {{ block('form_widget_simple') }}
-    <span class="glyphicon glyphicon-user form-control-feedback"></span>
 {%- endblock email_widget -%}
 
 {%- block button_widget -%}
@@ -223,7 +222,7 @@
             {%- endif -%}
         {%- endif -%}
 
-        <label class="{%- block form_label_class2 -%}control-label col-md-12 col-sm-12 col-xs-12{%- endblock form_label_class2 -%}" {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }} {% if required %} <span style="color:red;">*</span> {% endif %}
+        <label class="{%- block form_label_class2 -%}control-label col-md-12 col-sm-12 col-xs-12{%- endblock form_label_class2 -%}" {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }} {% if required %} <span style="color:red;"></span> {% endif %}
 
         {% if info is defined %}
             &nbsp;<a href="#" data-toggle="popover-info" title="{{ label }}" data-html="true" data-content="{{ info }}" data-trigger="hover"><i class="fa fa-info-circle"></i></a>

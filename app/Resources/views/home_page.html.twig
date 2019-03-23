@@ -2,8 +2,6 @@
 
 {% block content %}
 
-{#{{ publication.datePublication|date('d-m-Y') }} : {{ publication.contenu }}#}
-
     <div class="post">
         <div class="user-block">
             <img class="img-circle img-bordered-sm" src="{{ asset('templates/dist/img/user6-128x128.jpg') }}" alt="User Image">
@@ -61,7 +59,7 @@
                     <div class="user-block">
                         <img class="img-circle" src="{{ asset('templates/dist/img/user1-128x128.jpg') }}" alt="User Image">
                         <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                        <span class="description">Shared publicly - 7:30 PM Today</span>
+                        <span class="description">Shared publicly - {{ publication.datePublication|date('d-m-Y') }}</span>
                     </div>
                     <!-- /.user-block -->
                     <div class="box-tools">
@@ -77,7 +75,7 @@
                 <div class="box-body">
                     <img class="img-responsive pad" src="{{ asset('templates/dist/img/photo2.png') }}" alt="Photo">
 
-                    <p>I took this photo this morning. What do you guys think?</p>
+                    <p>{{ publication.contenu }}</p>
                     <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                     <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
                     <span class="pull-right text-muted">127 likes - 3 comments</span>
@@ -91,7 +89,7 @@
                         <div class="comment-text">
                       <span class="username">
                         Maria Gonzales
-                        <span class="text-muted pull-right">8:03 PM Today</span>
+                        <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}</span>
                       </span><!-- /.username -->
                             It is a long established fact that a reader will be distracted
                             by the readable content of a page when looking at its layout.
@@ -106,10 +104,9 @@
                         <div class="comment-text">
                       <span class="username">
                         Luna Stark
-                        <span class="text-muted pull-right">8:03 PM Today</span>
+                        <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}</span>
                       </span><!-- /.username -->
-                            It is a long established fact that a reader will be distracted
-                            by the readable content of a page when looking at its layout.
+                            {{ publication.contenu }}
                         </div>
                         <!-- /.comment-text -->
                     </div>
@@ -137,7 +134,7 @@
                     <div class="user-block">
                         <img class="img-circle" src="{{ asset('templates/dist/img/user1-128x128.jpg') }}" alt="User Image">
                         <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                        <span class="description">Shared publicly - 7:30 PM Today</span>
+                        <span class="description">Shared publicly - {{ publication.datePublication|date('d-m-Y') }}</span>
                     </div>
                     <!-- /.user-block -->
                     <div class="box-tools">
@@ -152,15 +149,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <!-- post text -->
-                    <p>Far far away, behind the word mountains, far from the
-                        countries Vokalia and Consonantia, there live the blind
-                        texts. Separated they live in Bookmarksgrove right at</p>
-
-                    <p>the coast of the Semantics, a large language ocean.
-                        A small river named Duden flows by their place and supplies
-                        it with the necessary regelialia. It is a paradisematic
-                        country, in which roasted parts of sentences fly into
-                        your mouth.</p>
+                    <p>{{ publication.contenu }}</p>
 
                     <!-- Attachment -->
                     <div class="attachment-block clearfix">
@@ -170,8 +159,7 @@
                             <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Lorem ipsum text generator</a></h4>
 
                             <div class="attachment-text">
-                                Description about the attachment can be placed here.
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry... <a href="#">more</a>
+                                {{ publication.contenu }} <a href="#">more</a>
                             </div>
                             <!-- /.attachment-text -->
                         </div>
@@ -193,10 +181,9 @@
                         <div class="comment-text">
                       <span class="username">
                         Maria Gonzales
-                        <span class="text-muted pull-right">8:03 PM Today</span>
+                        <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}</span>
                       </span><!-- /.username -->
-                            It is a long established fact that a reader will be distracted
-                            by the readable content of a page when looking at its layout.
+                            {{ publication.contenu }}.
                         </div>
                         <!-- /.comment-text -->
                     </div>
@@ -208,11 +195,9 @@
                         <div class="comment-text">
                       <span class="username">
                         Nora Havisham
-                        <span class="text-muted pull-right">8:03 PM Today</span>
+                        <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}</span>
                       </span><!-- /.username -->
-                            The point of using Lorem Ipsum is that it has a more-or-less
-                            normal distribution of letters, as opposed to using
-                            'Content here, content here', making it look like readable English.
+                            {{ publication.contenu }}
                         </div>
                         <!-- /.comment-text -->
                     </div>
