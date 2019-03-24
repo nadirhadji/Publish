@@ -206,9 +206,6 @@ class User extends FosUser
         return $this->phone;
     }
 
-
-
-
     /**
      * Set image.
      *

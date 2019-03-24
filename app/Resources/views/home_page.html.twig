@@ -58,8 +58,8 @@
                 <div class="box-header with-border">
                     <div class="user-block">
                         <img class="img-circle" src="{{ asset('templates/dist/img/user1-128x128.jpg') }}" alt="User Image">
-                        <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                        <span class="description">Shared publicly - {{ publication.datePublication|date('d-m-Y') }}</span>
+                        <span class="username"><a href="#">{{ user.username }}</a></span>
+                        <span class="description">Shared publicly - {{ publication1.datePublication|date('d-m-Y') }}</span>
                     </div>
                     <!-- /.user-block -->
                     <div class="box-tools">
@@ -75,7 +75,7 @@
                 <div class="box-body">
                     <img class="img-responsive pad" src="{{ asset('templates/dist/img/photo2.png') }}" alt="Photo">
 
-                    <p>{{ publication.contenu }}</p>
+                    <p>{{ publication1.contenu }} {{ user.username }}</p>
                     <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                     <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
                     <span class="pull-right text-muted">127 likes - 3 comments</span>
@@ -89,10 +89,9 @@
                         <div class="comment-text">
                       <span class="username">
                         Maria Gonzales
-                        <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}</span>
+                        <span class="text-muted pull-right">{{ publication1.datePublication|date('d-m-Y') }}</span>
                       </span><!-- /.username -->
-                            It is a long established fact that a reader will be distracted
-                            by the readable content of a page when looking at its layout.
+                            {{ publication1.contenu }} {{ user.username }}
                         </div>
                         <!-- /.comment-text -->
                     </div>
@@ -104,9 +103,9 @@
                         <div class="comment-text">
                       <span class="username">
                         Luna Stark
-                        <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}</span>
+                        <span class="text-muted pull-right">{{ publication1.datePublication|date('d-m-Y') }}</span>
                       </span><!-- /.username -->
-                            {{ publication.contenu }}
+                            {{ publication1.contenu }} {{ user.username }}
                         </div>
                         <!-- /.comment-text -->
                     </div>
@@ -133,8 +132,8 @@
                 <div class="box-header with-border">
                     <div class="user-block">
                         <img class="img-circle" src="{{ asset('templates/dist/img/user1-128x128.jpg') }}" alt="User Image">
-                        <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                        <span class="description">Shared publicly - {{ publication.datePublication|date('d-m-Y') }}</span>
+                        <span class="username"><a href="#">{{ user.username }}</a></span>
+                        <span class="description">Shared publicly - {{ publication2.datePublication|date('d-m-Y') }}</span>
                     </div>
                     <!-- /.user-block -->
                     <div class="box-tools">
@@ -149,17 +148,17 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <!-- post text -->
-                    <p>{{ publication.contenu }}</p>
+                    <p>{{ publication2.contenu }} {{ user.username }}</p>
 
                     <!-- Attachment -->
                     <div class="attachment-block clearfix">
                         <img class="attachment-img" src="{{ asset('templates/dist/img/photo1.png') }}" alt="Attachment Image">
 
                         <div class="attachment-pushed">
-                            <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Lorem ipsum text generator</a></h4>
+                            <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Test lien</a></h4>
 
                             <div class="attachment-text">
-                                {{ publication.contenu }} <a href="#">more</a>
+                                {{ publication2.contenu }} {{ user.username }}<a href="#">more</a>
                             </div>
                             <!-- /.attachment-text -->
                         </div>
@@ -181,9 +180,9 @@
                         <div class="comment-text">
                       <span class="username">
                         Maria Gonzales
-                        <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}</span>
+                        <span class="text-muted pull-right">{{ publication1.datePublication|date('d-m-Y') }}</span>
                       </span><!-- /.username -->
-                            {{ publication.contenu }}.
+                            {{ publication2.contenu }} {{ user.username }} .
                         </div>
                         <!-- /.comment-text -->
                     </div>
@@ -195,9 +194,9 @@
                         <div class="comment-text">
                       <span class="username">
                         Nora Havisham
-                        <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}</span>
+                        <span class="text-muted pull-right">{{ publication1.datePublication|date('d-m-Y') }}</span>
                       </span><!-- /.username -->
-                            {{ publication.contenu }}
+                            {{ publication2.contenu }} {{ user.username }}
                         </div>
                         <!-- /.comment-text -->
                     </div>
