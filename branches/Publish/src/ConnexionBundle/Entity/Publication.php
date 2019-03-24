@@ -3,6 +3,7 @@
 namespace ConnexionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ConnexionBundle\Entity\User;
 
 /**
  * Publication
@@ -36,9 +37,10 @@ class Publication
     private $datePublication;
 
     /**
-     * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=False)
      */
-    private $utilisateur;
+    private $user;
 
     /**
      * Get id.
@@ -99,35 +101,26 @@ class Publication
     }
 
     /**
-     * Set image.
+     * Set user.
      *
-     * @param \ConnexionBundle\Entity\User|null $image
-     *
-     * @return Publication
-     */
-
-
-    /**
-     * Set utilisateur.
-     *
-     * @param \ConnexionBundle\Entity\User|null $utilisateur
+     * @param \ConnexionBundle\Entity\User
      *
      * @return Publication
      */
-    public function setUtilisateur(\ConnexionBundle\Entity\User $utilisateur = null)
+    public function setUser(User $user)
     {
-        $this->utilisateur = $utilisateur;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get utilisateur.
+     * Get user.
      *
-     * @return \ConnexionBundle\Entity\User|null
+     * @return \ConnexionBundle\Entity\User
      */
-    public function getUtilisateur()
+    public function getUser()
     {
-        return $this->utilisateur;
+        return $this->user;
     }
 }

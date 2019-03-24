@@ -17,19 +17,31 @@ class ConnexionController extends Controller
      */
     public function redirectionAction()
     {
+        //Récuperation des attribut cree dan remplirBaseController
         $remplirBase = new RemplirBaseController();
-        $publication = $remplirBase->remplirBaseAction();
+        $array = $remplirBase->remplirBaseAction();
+        $publication1= $array["publication1"];
+        $publication2= $array["publication2"];
+
+        //Création de l'entité User
+        $repository= $this->getDoctrine()->getManager()->getRepository('ConnexionBundle:User');
+        $user = $repository->find(1);
+
+        //Mis en relation des publication avec l'utilisateur
+        $publication1->setUser($user);
+        $publication2->setUser($user);
 
         //Récupération gestionnaire d'entités
         $em= $this->getDoctrine()->getManager();
 
         //Persistance de $publication
-        $em->persist($publication);
+        $em->persist($publication1);
+        $em->persist($publication2);
 
         //Enregistrement dans BDD
         $em->flush();
 
-        return $this->render('home_page.html.twig',array('publication' => $publication));
+        return $this->render('home_page.html.twig',array('publication1' => $publication1,'publication2' => $publication2,'user' => $user));
 
     }
 }
