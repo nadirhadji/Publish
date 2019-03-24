@@ -37,6 +37,7 @@
                  <div class="form-group">
                      {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
                  </div>
+                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
              </div>
 
              {# Champs prénoms #}
@@ -46,6 +47,7 @@
                  <div class="form-group">
                      {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
                  </div>
+                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
              </div>
 
              {#Champs pseudo #}
@@ -77,11 +79,13 @@
 
              {# Champs ville #}
              <div class="form-group has-feedback">
+
                  {{ form_label(form.city, "Ville : ", {'attr' : {'class' : 'form-control '}}) }}
                  {{ form_errors(form.city) }}
                  <div class="form-group">
                      {{ form_widget(form.city, {'attr': {'class': 'form-control'}}) }}
                  </div>
+
              </div>
 
              {# Champs pays #}
@@ -102,7 +106,7 @@
                  </div>
              </div>
 
-             {# Champs Mot de passe #}
+             {# Champs Confirmation mot de passe #}
              <div class="form-group has-feedback">
                  {{ form_label(form.plainPassword.second, "Confirmation mot de passe : ", {'attr' : {'class' : 'form-control '}}) }}
                  {{ form_errors(form.plainPassword.second) }}
