@@ -1,0 +1,72 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<body class="hold-transition register-page">
+<div class="register-box">
+    <!-- Widget: user widget style 1 -->
+    <div class="box box-widget widget-user">
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="widget-user-header bg-aqua-active">
+            <h3 class="widget-user-username">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+        </div>
+        <div class="widget-user-image">
+            <img class="img-circle" src="{{ asset('templates/dist/img/user1-128x128.jpg') }}" alt="User Avatar">
+        </div>
+        <div class="register-box-body">
+            <div class="box-footer">
+                <div class="row">
+                    <div class="description-block">
+                        <h5 class="description-header">Modification profil</h5>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
+            </div>
+            {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+            <div class="form-group has-feedback">
+                {{ form_label(form.email,'EMAIL') }}
+                {{ form_widget(form.email,{'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.email) }}
+            </div>
+            <div class="form-group has-feedback">
+                {{ form_label(form.username,'Pseudo') }}
+                {{ form_widget(form.username,{'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.username) }}
+            </div>
+            <div class="form-group has-feedback">
+                {{ form_label(form.firstName,'Prénom') }}
+                {{ form_widget(form.firstName,{'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.firstName) }}
+            </div>
+            <div class="form-group has-feedback">
+                {{ form_label(form.lastName,'Nom') }}
+                {{ form_widget(form.lastName,{'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.lastName) }}
+            </div>
+            <div class="form-group has-feedback">
+                {{ form_label(form.city,'Ville') }}
+                {{ form_widget(form.city,{'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.city) }}
+            </div>
+            <div class="form-group has-feedback">
+                {{ form_label(form.country,'Pays') }}
+                {{ form_widget(form.country,{'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.country) }}
+            </div>
+
+            {{ form_widget(form) }}
+
+            <div>
+                <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+            </div>
+
+            {{ form_end(form) }}
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<!-- /.widget-user -->
+</div>
+</div>
+</body>
+

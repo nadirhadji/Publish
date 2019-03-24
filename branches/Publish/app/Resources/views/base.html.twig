@@ -8,6 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Publish</title>
+        <link rel="shortcut icon" type="image/x-icon" shape="circle" href="{{ asset('templates/dist/img/logo2.png') }}" />
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="stylesheet" href="{{ asset('templates/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -226,7 +227,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <a href="{{ path('fos_user_profile_show') }}" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-left">
-                                        <a href="" class="btn btn-default btn-flat">Edit</a>
+                                        <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-flat">Edit</a>
                                     </div>
                                     <div class="pull-right">
                                         <a  href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">Sign out</a>

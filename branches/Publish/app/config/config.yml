@@ -93,7 +93,7 @@ fos_user:
             template: '@FOSUser/Registration/email.txt.twig'
     profile:
         form:
-            type: FOS\UserBundle\Form\Type\ProfileFormType
+            type: ConnexionBundle\Form\ProfileType
             validation_groups: [PubishProfile]
     resetting:
         email:
