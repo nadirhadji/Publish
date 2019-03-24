@@ -1,0 +1,19 @@
+{% extends "baseOrConnexion.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+    <a href="{{ path('redirection') }}"><img src="{{ asset('templates/dist/img/logo.png') }}" alt="logo" /></a>
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h2 class="box-title">Inscription</h2>
+        </div>
+        <p>
+            Un email a été envoyé. Il contient un lien sur lequel vous devez cliquer pour activer votre compte.
+        </p>
+        <p>
+            Revenir à la page de login : <a href="{{ path('redirection') }}">login</a>
+        </p>
+    </div>
+
+{% endblock content %}
