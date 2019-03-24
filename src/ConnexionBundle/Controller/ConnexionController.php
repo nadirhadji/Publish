@@ -25,7 +25,7 @@ class ConnexionController extends Controller
 
         //Création de l'entité User
         $repository= $this->getDoctrine()->getManager()->getRepository('ConnexionBundle:User');
-        $user = $repository->find(1);
+        $user = $repository->find(8);
 
         //Mis en relation des publication avec l'utilisateur
         $publication1->setUser($user);
