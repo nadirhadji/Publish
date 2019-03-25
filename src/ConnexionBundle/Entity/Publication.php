@@ -43,6 +43,16 @@ class Publication
     private $user;
 
     /**
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\Contenu",cascade={"persist"})
+     */
+    private $contenu_doc;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\FluxRSS",cascade={"persist"})
+     */
+    private $fluxRSS;
+
+    /**
      * Get id.
      *
      * @return int
@@ -122,5 +132,53 @@ class Publication
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set fluxRSS.
+     *
+     * @param \ConnexionBundle\Entity\FluxRSS|null $fluxRSS
+     *
+     * @return Publication
+     */
+    public function setFluxRSS(\ConnexionBundle\Entity\FluxRSS $fluxRSS = null)
+    {
+        $this->fluxRSS = $fluxRSS;
+
+        return $this;
+    }
+
+    /**
+     * Get fluxRSS.
+     *
+     * @return \ConnexionBundle\Entity\FluxRSS|null
+     */
+    public function getFluxRSS()
+    {
+        return $this->fluxRSS;
+    }
+
+    /**
+     * Set contenuDoc.
+     *
+     * @param \ConnexionBundle\Entity\Contenu|null $contenuDoc
+     *
+     * @return Publication
+     */
+    public function setContenuDoc(\ConnexionBundle\Entity\Contenu $contenuDoc = null)
+    {
+        $this->contenu_doc = $contenuDoc;
+
+        return $this;
+    }
+
+    /**
+     * Get contenuDoc.
+     *
+     * @return \ConnexionBundle\Entity\Contenu|null
+     */
+    public function getContenuDoc()
+    {
+        return $this->contenu_doc;
     }
 }

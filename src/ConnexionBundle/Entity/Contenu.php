@@ -28,7 +28,6 @@ class Contenu
      */
     private $texteAlternatif;
 
-
     /**
      * Get id.
      *

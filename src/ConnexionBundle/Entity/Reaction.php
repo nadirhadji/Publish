@@ -28,6 +28,24 @@ class Reaction
      */
     private $type;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\Publication",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=False)
+     */
+    private $publication;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\Commentaire",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=False)
+     */
+    private $commentaire;
+
+    /**
+     * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=False)
+     */
+    private $user;
+
 
     /**
      * Get id.
@@ -61,5 +79,77 @@ class Reaction
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set publicationr.
+     *
+     * @param \ConnexionBundle\Entity\Publication $publicationr
+     *
+     * @return Reaction
+     */
+    public function setPublication(\ConnexionBundle\Entity\Publication $publication)
+    {
+        $this->publication = $publication;
+
+        return $this;
+    }
+
+    /**
+     * Get publicationr.
+     *
+     * @return \ConnexionBundle\Entity\Publication
+     */
+    public function getPublication()
+    {
+        return $this->publication;
+    }
+
+    /**
+     * Set commentaire.
+     *
+     * @param \ConnexionBundle\Entity\Commentaire $commentaire
+     *
+     * @return Reaction
+     */
+    public function setCommentaire(\ConnexionBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire.
+     *
+     * @return \ConnexionBundle\Entity\Commentaire
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * Set user.
+     *
+     * @param \ConnexionBundle\Entity\User $user
+     *
+     * @return Reaction
+     */
+    public function setUser(\ConnexionBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user.
+     *
+     * @return \ConnexionBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

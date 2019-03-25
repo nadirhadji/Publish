@@ -77,6 +77,12 @@ class User extends FosUser
      */
     protected $phone;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="ConnexionBundle\Entity\CentreInteret",cascade={"persist"})
+     */
+    private $centresInteret;
+
+    //Cette partie correspond à un test sur la fonctionnalité image: A NE PAS PRENDRE EN COMPTE
     protected $image;
 
     protected $url;
@@ -294,5 +300,29 @@ class User extends FosUser
     {
         // On retourne le chemin relatif vers l'image pour notre code PHP
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    /**
+     * Set centresInteret.
+     *
+     * @param \ConnexionBundle\Entity\CentreInteret|null $centresInteret
+     *
+     * @return User
+     */
+    public function setCentresInteret(\ConnexionBundle\Entity\CentreInteret $centresInteret = null)
+    {
+        $this->centresInteret = $centresInteret;
+
+        return $this;
+    }
+
+    /**
+     * Get centresInteret.
+     *
+     * @return \ConnexionBundle\Entity\CentreInteret|null
+     */
+    public function getCentresInteret()
+    {
+        return $this->centresInteret;
     }
 }

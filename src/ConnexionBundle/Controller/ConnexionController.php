@@ -15,21 +15,23 @@ class ConnexionController extends Controller
      * @Route("/user/home", name="redirection")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function redirectionAction()
+    public function viewAccueilAction()
     {
         //Récuperation des attribut cree dan remplirBaseController
         $remplirBase = new RemplirBaseController();
         $array = $remplirBase->remplirBaseAction();
         $publication1= $array["publication1"];
         $publication2= $array["publication2"];
+        $publication3= $array["publication3"];
 
         //Création de l'entité User
         $repository= $this->getDoctrine()->getManager()->getRepository('ConnexionBundle:User');
-        $user = $repository->find(8);
+        $user = $repository->find(16);
 
         //Mis en relation des publication avec l'utilisateur
         $publication1->setUser($user);
         $publication2->setUser($user);
+        $publication3->setUser($user);
 
         //Récupération gestionnaire d'entités
         $em= $this->getDoctrine()->getManager();
@@ -37,11 +39,14 @@ class ConnexionController extends Controller
         //Persistance de $publication
         $em->persist($publication1);
         $em->persist($publication2);
+        $em->persist($publication3);
 
         //Enregistrement dans BDD
         $em->flush();
 
-        return $this->render('home_page.html.twig',array('publication1' => $publication1,'publication2' => $publication2,'user' => $user));
+        $publications=array('publication1' => $publication1,'publication2' => $publication2,'publication3' => $publication3);
+
+        return $this->render('home_page.html.twig',array('publications' => $publications));
 
     }
 }

@@ -42,6 +42,12 @@ class FluxRSS
      */
     private $ville;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\CentreInteret",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=False)
+     */
+    private $centreInteret;
+
 
     /**
      * Get id.
@@ -123,5 +129,29 @@ class FluxRSS
     public function getVille()
     {
         return $this->ville;
+    }
+
+    /**
+     * Set centreInteret.
+     *
+     * @param \ConnexionBundle\Entity\CentreInteret $centreInteret
+     *
+     * @return FluxRSS
+     */
+    public function setCentreInteret(\ConnexionBundle\Entity\CentreInteret $centreInteret)
+    {
+        $this->centreInteret = $centreInteret;
+
+        return $this;
+    }
+
+    /**
+     * Get centreInteret.
+     *
+     * @return \ConnexionBundle\Entity\CentreInteret
+     */
+    public function getCentreInteret()
+    {
+        return $this->centreInteret;
     }
 }

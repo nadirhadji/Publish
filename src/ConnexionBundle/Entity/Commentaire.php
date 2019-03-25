@@ -28,6 +28,18 @@ class Commentaire
      */
     private $text;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\Publication",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=False)
+     */
+    private $publication;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=False)
+     */
+    private $user;
+
 
     /**
      * Get id.
@@ -61,5 +73,53 @@ class Commentaire
     public function getText()
     {
         return $this->text;
+    }
+
+    /**
+     * Set publication.
+     *
+     * @param \ConnexionBundle\Entity\Publication $publication
+     *
+     * @return Commentaire
+     */
+    public function setPublication(\ConnexionBundle\Entity\Publication $publication)
+    {
+        $this->publication = $publication;
+
+        return $this;
+    }
+
+    /**
+     * Get publication.
+     *
+     * @return \ConnexionBundle\Entity\Publication
+     */
+    public function getPublication()
+    {
+        return $this->publication;
+    }
+
+    /**
+     * Set user.
+     *
+     * @param \ConnexionBundle\Entity\User $user
+     *
+     * @return Commentaire
+     */
+    public function setUser(\ConnexionBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user.
+     *
+     * @return \ConnexionBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
