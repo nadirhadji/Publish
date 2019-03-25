@@ -20,9 +20,9 @@ class LoadPublication implements FixtureInterface
     {
         //Création de quelques utilisateurs
         $user=new User();
-        $user->setFirstname("titi");
-        $user->setLastname("toto");
-        $user->setEmail("titi@gmail.com");
+        $user->setFirstname("Alexis");
+        $user->setLastname("alexis");
+        $user->setEmail("alexis@gmail.com");
         $user->setUsername("titi");
         $user->setPlainPassword("AAAaaa3***");
         $user->setPassword("AAAaaa3***");

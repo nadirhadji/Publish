@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+{% include 'publication.html.twig' %}
 
     {% for publication in publications %}
 
@@ -24,9 +25,9 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <img class="img-responsive pad" src="{{ asset('templates/dist/img/photo2.png') }}" alt="Photo">
 
-                <p>{{ publication.contenu }} {{ publication.user.username }}</p>
+
+                <p>{{ publication.contenu }} </p>
                 <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                 <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
                 <span class="pull-right text-muted">127 likes - 3 comments</span>

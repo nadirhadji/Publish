@@ -42,23 +42,6 @@ class Publication
      */
     private $user;
 
-    /**
-     * @var string
-     * @ORM\Column(name="document", type="string", length=255, nullable=true)
-     */
-    private $document;
-
-    /**
-     * @var string
-     * @ORM\Column(name="image", type="string", length=255, nullable=true)
-     */
-    private $image;
-
-    /**
-     * Get id.
-     *
-     * @return int
-     */
     public function getId()
     {
         return $this->id;
@@ -136,51 +119,5 @@ class Publication
         return $this->user;
     }
 
-    /**
-     * Set document.
-     *
-     * @param string|null $document
-     *
-     * @return Publication
-     */
-    public function setDocument($document = null)
-    {
-        $this->document = $document;
 
-        return $this;
-    }
-
-    /**
-     * Get document.
-     *
-     * @return string|null
-     */
-    public function getDocument()
-    {
-        return $this->document;
-    }
-
-    /**
-     * Set image.
-     *
-     * @param string|null $image
-     *
-     * @return Publication
-     */
-    public function setImage($image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image.
-     *
-     * @return string|null
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
 }
