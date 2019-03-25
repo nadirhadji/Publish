@@ -1,21 +1,15 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: alexis
+ * Date: 2019-03-25
+ * Time: 15:21
+ */
 
 namespace ConnexionBundle\Controller;
 
-use ConnexionBundle\Entity\Publication;
-use ConnexionBundle\Entity\User;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Routing\Annotation\Route;
-use ConnexionBundle\Controller\RemplirBaseController;
 
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
-use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesser;
-use Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesser;
-
-
-class ConnexionController extends Controller
+class PublicationController
 {
     /**
      *
@@ -29,7 +23,11 @@ class ConnexionController extends Controller
         $user = $this->getUser();
 
         $publication = new Publication();
-        $form = $this->createForm(PublicationType::class, $publication);
+        $form = $this->createForm(PublicationType::class, $publication, [
+            'action' => $this->generateUrl('publication_form'),
+            'method' => 'GET',
+
+        ]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {

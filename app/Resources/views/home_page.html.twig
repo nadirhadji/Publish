@@ -3,6 +3,12 @@
 {% block content %}
 
     <div class="row">
+        {{ form_start(form, {'method':'post', 'action': path('publication_form')}) }}
+        {{ form_errors(form) }}
+        {{ form_end(form) }}
+    </div>
+
+    <div class="row">
         <div class="col-md-12">
             <!-- general form elements -->
             <div class="box box-primary">
