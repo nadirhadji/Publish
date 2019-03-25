@@ -172,6 +172,12 @@
     {{ block('form_widget_simple') }}
 {%- endblock hidden_widget -%}
 
+{%- block username_widget -%}
+    {%- set type = type|default('text') -%}
+    {{ block('form_widget_simple') }}
+    <span class="glyphicon-glyphicon-heart"></span>
+{%- endblock username_widget -%}
+
 {%- block email_widget -%}
     {%- set type = type|default('email') -%}
     {{ block('form_widget_simple') }}
