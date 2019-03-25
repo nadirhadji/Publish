@@ -7,3 +7,33 @@
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
+
+.logo-check-email {
+    position: center;
+}
+
+.register-page {
+    background-image: url("../templates/dist/img/wallpaper6.jpg");
+}
+
+.login-page {
+    background-image: url("../templates/dist/img/wallpaper5.jpg");
+}
+
+.login-logo {
+    background-color: #0E2231;
+}
+
+.login-box-body{
+    background-color: #0E2231;
+}
+
+.register-box-body {
+    background-color: #0E2231;
+}
+
+.span3, .well {
+    background-image: url("../templates/dist/img/span3.jpg");
+}
+
+
