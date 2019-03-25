@@ -15,7 +15,7 @@ class ConnexionController extends Controller
      * @Route("/user/home", name="redirection")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function viewAccueilAction()
+    public function redirectionAction()
     {
         //Récuperation des attribut cree dan remplirBaseController
         $remplirBase = new RemplirBaseController();
@@ -26,7 +26,7 @@ class ConnexionController extends Controller
 
         //Création de l'entité User
         $repository= $this->getDoctrine()->getManager()->getRepository('ConnexionBundle:User');
-        $user = $repository->find(16);
+        $user = $repository->find(4);
 
         //Mis en relation des publication avec l'utilisateur
         $publication1->setUser($user);
@@ -40,11 +40,10 @@ class ConnexionController extends Controller
         $em->persist($publication1);
         $em->persist($publication2);
         $em->persist($publication3);
-
         //Enregistrement dans BDD
         $em->flush();
 
-        $publications=array('publication1' => $publication1,'publication2' => $publication2,'publication3' => $publication3);
+        $publications = array('publication1' => $publication1,'publication2' => $publication2,'publication3' => $publication3);
 
         return $this->render('home_page.html.twig',array('publications' => $publications));
 
