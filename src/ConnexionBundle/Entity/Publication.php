@@ -43,14 +43,16 @@ class Publication
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\Contenu",cascade={"persist"})
+     * @var string
+     * @ORM\Column(name="document", type="string", length=255, nullable=true)
      */
-    private $contenu_doc;
+    private $document;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\FluxRSS",cascade={"persist"})
+     * @var string
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
-    private $fluxRSS;
+    private $image;
 
     /**
      * Get id.
@@ -135,50 +137,50 @@ class Publication
     }
 
     /**
-     * Set fluxRSS.
+     * Set document.
      *
-     * @param \ConnexionBundle\Entity\FluxRSS|null $fluxRSS
+     * @param string|null $document
      *
      * @return Publication
      */
-    public function setFluxRSS(\ConnexionBundle\Entity\FluxRSS $fluxRSS = null)
+    public function setDocument($document = null)
     {
-        $this->fluxRSS = $fluxRSS;
+        $this->document = $document;
 
         return $this;
     }
 
     /**
-     * Get fluxRSS.
+     * Get document.
      *
-     * @return \ConnexionBundle\Entity\FluxRSS|null
+     * @return string|null
      */
-    public function getFluxRSS()
+    public function getDocument()
     {
-        return $this->fluxRSS;
+        return $this->document;
     }
 
     /**
-     * Set contenuDoc.
+     * Set image.
      *
-     * @param \ConnexionBundle\Entity\Contenu|null $contenuDoc
+     * @param string|null $image
      *
      * @return Publication
      */
-    public function setContenuDoc(\ConnexionBundle\Entity\Contenu $contenuDoc = null)
+    public function setImage($image = null)
     {
-        $this->contenu_doc = $contenuDoc;
+        $this->image = $image;
 
         return $this;
     }
 
     /**
-     * Get contenuDoc.
+     * Get image.
      *
-     * @return \ConnexionBundle\Entity\Contenu|null
+     * @return string|null
      */
-    public function getContenuDoc()
+    public function getImage()
     {
-        return $this->contenu_doc;
+        return $this->image;
     }
 }
