@@ -21,7 +21,12 @@ class RemplirBaseController extends Controller
         $publication2->setContenu("Test: Publication n°2 de l'utilisateur ");
         $publication2->setDatePublication(new \DateTime());
 
-        return array("publication1"  => $publication1, "publication2" => $publication2);
+        //Création d'une deuxième publication
+        $publication3=new Publication();
+        $publication3->setContenu("Test: Publication n°3 de l'utilisateur ");
+        $publication3->setDatePublication(new \DateTime());
+
+        return array("publication1"  => $publication1, "publication2" => $publication2, "publication3" => $publication2);
 
     }
 
