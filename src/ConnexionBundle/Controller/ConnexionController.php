@@ -15,37 +15,21 @@ class ConnexionController extends Controller
      * @Route("/user/home", name="redirection")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function redirectionAction()
+    public function viewAccueilAction()
     {
-        //Récuperation des attribut cree dan remplirBaseController
-        $remplirBase = new RemplirBaseController();
-        $array = $remplirBase->remplirBaseAction();
-        $publication1= $array["publication1"];
-        $publication2= $array["publication2"];
-        $publication3= $array["publication3"];
+        $em = $this->getDoctrine()->getManager();
 
-        //Création de l'entité User
-        $repository= $this->getDoctrine()->getManager()->getRepository('ConnexionBundle:User');
-        $user = $repository->find(4);
+        // La méthode findAll retourne toutes les catégories de la base de données
+        $listPublications = $em->getRepository('ConnexionBundle:Publication')->findAll();
 
-        //Mis en relation des publication avec l'utilisateur
-        $publication1->setUser($user);
-        $publication2->setUser($user);
-        $publication3->setUser($user);
+        // On boucle sur les catégories pour les lier à l'annonce
+        foreach ($listPublications as $publication) {
+            $em->persist($publication);
 
-        //Récupération gestionnaire d'entités
-        $em= $this->getDoctrine()->getManager();
+        }
 
-        //Persistance de $publication
-        $em->persist($publication1);
-        $em->persist($publication2);
-        $em->persist($publication3);
-        //Enregistrement dans BDD
         $em->flush();
 
-        $publications = array('publication1' => $publication1,'publication2' => $publication2,'publication3' => $publication3);
-
-        return $this->render('home_page.html.twig',array('publications' => $publications));
-
+        return $this->render('home_page.html.twig',array('publications' => $listPublications));
     }
 }
