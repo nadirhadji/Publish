@@ -25,3 +25,7 @@ services:
         tags:
             - { name: form.type, alias: app_user_registration }
 
+    ConnexionBundle\DataFixtures\:
+        resource: '../../src/ConnexionBundle/DataFixtures'
+        tags: ['doctrine.fixture.orm']
+
