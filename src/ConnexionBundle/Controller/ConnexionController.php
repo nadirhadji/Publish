@@ -39,7 +39,7 @@ class ConnexionController extends Controller
 
         //Creation utilisateur
         $repository= $this->getDoctrine()->getManager()->getRepository('ConnexionBundle:User');
-        $user = $repository->find(20);
+        $user = $repository->find(4);
         $publication->setUser($user);
 
         $form = $this->get('form.factory')->create(PublicationType::class, $publication);
@@ -64,7 +64,6 @@ class ConnexionController extends Controller
 
         return $this->render('home_page.html.twig',array('publications' => $listPublications , 'form' => $form->createView()));
     }
-
 
 
 }

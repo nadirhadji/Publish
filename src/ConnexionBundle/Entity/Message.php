@@ -20,7 +20,32 @@ class Message
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+//
+    /**
+     * @ORM\ManyToOne(
+     *   targetEntity="ConnexionBundle\Entity\Thread",
+     *   inversedBy="messages"
+     * )
+     * @var \FOS\MessageBundle\Model\ThreadInterface
+     */
+    protected $thread;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\User")
+     * @var \FOS\MessageBundle\Model\ParticipantInterface
+     */
+    protected $sender;
+
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="ConnexionBundle\Entity\MessageMetadata",
+     *   mappedBy="message",
+     *   cascade={"all"}
+     * )
+     * @var MessageMetadata[]|Collection
+     */
+    protected $metadata;
+//
     /**
      * @var string
      *

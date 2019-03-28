@@ -99,3 +99,9 @@ fos_user:
         email:
             template: '@FOSUser/Resetting/email.txt.twig'
 
+fos_message:
+    db_driver: orm
+    thread_class: ConnexionBundle\Entity\Thread
+    message_class: ConnexionBundle\Entity\Message
+
+
