@@ -22,7 +22,9 @@ security:
                 default_target_path: /user/home
                 csrf_token_generator: security.csrf.token_manager
 
-            logout:       true
+            logout:
+                path:     /logout
+                target:   /login
             anonymous:    true
 
     access_control:
