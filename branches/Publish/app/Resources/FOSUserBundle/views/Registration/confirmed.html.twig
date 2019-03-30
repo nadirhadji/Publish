@@ -1,8 +1,17 @@
-{% extends "base.html.twig" %}
-
+{% extends "baseOrConnexion.html.twig" %}
 {% block content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-        <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
+    <a href="{{ path('redirection') }}"><img src="{{ asset('templates/dist/img/logo.png') }}" alt="logo" /></a>
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h2 class="box-title">Inscription</h2>
+        </div>
+        <p>
+            {{ 'registration.confirmed'|trans({'%username%': user.username},'FOSUserBundle') }}
+
+        </p>
+        <p>Il ne vous reste plus qu'à vous connecter</p>
+        <p>
+            Revenir à la page de login : <a href="{{ path('fos_user_security_login') }}">login</a>
+        </p>
+    </div>
 {% endblock %}
