@@ -3,7 +3,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block content %}
-<a href="{{ path('redirection') }}"><img src="{{ asset('templates/dist/img/logo.png') }}" alt="logo" /></a>
+<a href="{{ path('fos_user_security_login') }}"><img src="{{ asset('templates/dist/img/logo.png') }}" alt="logo" /></a>
 <div class="box box-info">
     <div class="box-header with-border">
         <h3 class="box-title">Réinitialisation mot de passe</h3>
@@ -12,7 +12,7 @@
         Un email a été envoyé. Il contient un lien sur lequel vous devez cliquer pour réinitialiser votre mot de passe.
     </p>
     <p>
-        Revenir à la page de login : <a href="{{ path('redirection') }}">login</a>
+        Revenir à la page de login : <a href="{{ path('fos_user_security_login') }}">login</a>
     </p>
 </div>
 {% endblock %}
