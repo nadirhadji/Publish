@@ -8,6 +8,4 @@ app:
     resource: "@ConnexionBundle/Controller/"
     type:     annotation
 
-fos_message:
-    resource: "@FOSMessageBundle/Resources/config/routing.xml"
-#    prefix: /optional_routing_prefix
+
