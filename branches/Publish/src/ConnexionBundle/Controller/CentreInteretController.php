@@ -65,7 +65,7 @@ class CentreInteretController extends Controller
                 $request->getSession()->getFlashBag()->add('notice', 'Publication bien enregistrée.');
 
                 // Redirection vers l'unique page de formulaire
-                return $this->redirectToRoute('home-publication');
+                return $this->redirectToRoute('redirection');
             }
         }
 
