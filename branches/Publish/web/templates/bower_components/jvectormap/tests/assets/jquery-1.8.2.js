@@ -5126,7 +5126,7 @@ function select( selector, context, results, seed, xml ) {
 					break;
 				}
 				if ( (find = Expr.find[ type ]) ) {
-					// Search, expanding context for leading sibling combinators
+					// search, expanding context for leading sibling combinators
 					if ( (seed = find(
 						token.matches[0].replace( rbackslash, "" ),
 						rsibling.test( tokens[0].type ) && context.parentNode || context,

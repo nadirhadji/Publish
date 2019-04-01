@@ -22,6 +22,8 @@
     "require": {
         "php": ">=5.5.9",
         "almasaeed2010/adminlte": "~2.4",
+        "debril/feed-io": "^4.3",
+        "debril/rss-atom-bundle": "^4.2",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "friendsofsymfony/message-bundle": "^1.3",
@@ -33,7 +35,8 @@
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^2.6.4",
         "symfony/symfony": "3.4.*",
-        "twig/twig": "^1.0||^2.0"
+        "twig/twig": "^1.0||^2.0",
+        "ext-simplexml": "*"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.1",

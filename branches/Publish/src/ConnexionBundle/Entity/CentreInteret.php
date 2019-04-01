@@ -22,38 +22,11 @@ class CentreInteret
     private $id;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="is_music", type="boolean")
+     * @ORM\Column(name="nom", type="string", length=255)
      */
-    private $IsMusic;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_sport", type="boolean")
-     */
-    private $IsSport;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_news", type="boolean")
-     */
-    private $IsNews;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_travel", type="boolean")
-     */
-    private $IsTravel;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
-     * @ORM\JoinColumn(nullable=False)
-     */
-    private $user;
+    private $nom;
 
 
     /**
@@ -67,124 +40,26 @@ class CentreInteret
     }
 
     /**
-     * Set user.
+     * Set nom.
      *
      * @param string $nom
      *
      * @return CentreInteret
      */
-    public function setUser($user)
+    public function setNom($nom)
     {
-        $this->user = $user;
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get user.
+     * Get nom.
      *
-     * @return User
+     * @return string
      */
-    public function getUser()
+    public function getNom()
     {
-        return $this->user;
+        return $this->nom;
     }
-
-    /**
-     * Set isMusic.
-     *
-     * @param boolean $nom
-     *
-     * @return CentreInteret
-     */
-    public function setIsMusic($IsMusic)
-    {
-        $this->IsMusic = $IsMusic;
-
-        return $this;
-    }
-
-    /**
-     * Get IsMusic.
-     *
-     * @return boolean
-     */
-    public function getIsMusic()
-    {
-        return $this->IsMusic;
-    }
-
-    /**
-     * Set IsSport.
-     *
-     * @param boolean $IsMusic
-     *
-     * @return CentreInteret
-     */
-    public function setIsSport($IsSport)
-    {
-        $this->IsSport = $IsSport;
-
-        return $this;
-    }
-
-    /**
-     * Get IsSport.
-     *
-     * @return boolean
-     */
-    public function getIsSport()
-    {
-        return $this->IsSport;
-    }
-
-    /**
-     * Set IsNews.
-     *
-     * @param boolean $IsSport
-     *
-     * @return CentreInteret
-     */
-    public function setIsNews($IsNews)
-    {
-        $this->IsNews = $IsNews;
-
-        return $this;
-    }
-
-    /**
-     * Get IsNews.
-     *
-     * @return boolean
-     */
-    public function getIsNews()
-    {
-        return $this->IsNews;
-    }
-
-    /**
-     * Set IsTravel.
-     *
-     * @param boolean $IsTravel
-     *
-     * @return CentreInteret
-     */
-    public function setIsTravel($IsTravel)
-    {
-        $this->IsTravel = $IsTravel;
-
-        return $this;
-    }
-
-    /**²
-     * Get IsTravel.
-     *
-     * @return boolean
-     */
-    public function getIsTravel()
-    {
-        return $this->IsTravel;
-    }
-
-
 }

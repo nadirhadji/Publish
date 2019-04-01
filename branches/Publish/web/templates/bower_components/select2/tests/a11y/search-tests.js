@@ -1,4 +1,4 @@
-module('Accessibility - Search');
+module('Accessibility - search');
 
 var MultipleSelection = require('select2/selection/multiple');
 var InlineSearch = require('select2/selection/search');
