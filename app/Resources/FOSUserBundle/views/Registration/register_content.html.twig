@@ -1,144 +1,117 @@
 {% form_theme form 'themes/app_theme.html.twig' %}
-
 {% extends "baseOrConnexion.html.twig" %}
-
  {% block content %}
-     <body class="hold-transition register-page">
-     <div class="register-box">
-         <div class="register-logo">
-             <a href="{{ path('fos_user_security_login') }}"><img src="{{ asset('templates/dist/img/logo.png') }}" alt="logo" /></a>
-         </div>
-
-         <div class="register-box-body">
-
-             <p class="login-box-msg"> Inscrivez-vous</p>
-
-             {# Début du formulaire #}
-
-             {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-
-             {# Gestion des affichages des labels, des erreurs, et des input pour chaque champs du formulaire#}
-
-             {# Champs Genre #}
-             <div class="form-group has-feedback">
-                 {{ form_label(form.gender, "Genre : ", {'attr' : {'class' : 'form-control'}}) }}
-                 {{ form_errors(form.gender) }}
-                 <div class="form-group">
-                     {{ form_widget(form.gender, {'attr': {'class': 'form-control'}}) }}
-                 </div>
-             </div>
-
-             {# Champs nom #}
-             <div class="form-group has-feedback">
-                 {{ form_label(form.firstName, "Nom : ", {'attr' : {'class' : 'form-control'}}) }}
-                 {{ form_errors(form.firstName) }}
-                 <div class="form-group">
-                     {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
-                 </div>
-                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-             </div>
-
-             {# Champs prénoms #}
-             <div class="form-group has-feedback">
-                 {{ form_label(form.lastName, "Prénom : ", {'attr' : {'class' : 'form-control'}}) }}
-                 {{ form_errors(form.lastName) }}
-                 <div class="form-group">
-                     {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
-                 </div>
-                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-             </div>
-
-             {#Champs pseudo #}
-             <div class="form-group has-feedback">
-                 {{ form_label(form.username, "Pseudo : ", {'attr' : {'class' : 'form-control'}}) }}
-                 {{ form_errors(form.username) }}
-                 <div class="form-group">
-                     {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
-                 </div>
-             </div>
-
-             {# Champs adresse mail#}
-             <div class="form-group has-feedback">
-                 {{ form_label(form.email, "Adresse mail : ", {'attr' : {'class' : 'form-control'}}) }}
-                 {{ form_errors(form.email) }}
-                 <div class="form-group">
-                     {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
-                 </div>
-             </div>
-
-             {#Champs numéro téléphone #}
-             <div class="form-group has-feedback">
-                 {{ form_label(form.phone, "Téléphone : ", {'attr' : {'class' : 'form-control'}}) }}
-                 {{ form_errors(form.phone) }}
-                 <div class="form-group">
-                     {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
-                 </div>
-             </div>
-
-             {# Champs ville #}
-             <div class="form-group has-feedback">
-
-                 {{ form_label(form.city, "Ville : ", {'attr' : {'class' : 'form-control '}}) }}
-                 {{ form_errors(form.city) }}
-                 <div class="form-group">
-                     {{ form_widget(form.city, {'attr': {'class': 'form-control'}}) }}
-                 </div>
-
-             </div>
-
-             {# Champs pays #}
-             <div class="form-group has-feedback">
-                 {{ form_label(form.country, "Pays : ", {'attr' : {'class' : 'form-control '}}) }}
-                 {{ form_errors(form.country) }}
-                 <div class="form-group">
-                     {{ form_widget(form.country, {'attr': {'class': 'form-control'}}) }}
-                 </div>
-             </div>
-
-             {# Champs Mot de passe #}
-             <div class="form-group has-feedback">
-                 {{ form_label(form.plainPassword.first, "Mot de passe : ", {'attr' : {'class' : 'form-control '}}) }}
-                 {{ form_errors(form.plainPassword.first) }}
-                 <div class="form-group">
-                     {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
-                 </div>
-             </div>
-
-             {# Champs Confirmation mot de passe #}
-             <div class="form-group has-feedback">
-                 {{ form_label(form.plainPassword.second, "Confirmation mot de passe : ", {'attr' : {'class' : 'form-control '}}) }}
-                 {{ form_errors(form.plainPassword.second) }}
-                 <div class="form-group">
-                     {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
-                 </div>
-             </div>
-
-             {# Champs Photo de profil #}
-             <div class="form-group has-feedback">
-                 {{ form_label(form.image, "Photo profil : ", {'attr' : {'class' : 'form-control'}}) }}
-                 {{ form_widget(form.image) }}
-             </div>
-
-             {# Bouton de validation #}
-             <div>
-                 <input class="btn btn-primary col-sm-12 " type="submit" value="Valider" />
-             </div>
-
-             {{ form_end(form) }}
-
-             <div class="social-auth-links text-center">
-
-                 <p>- OR -</p>
-
-                 {# Connexion Google #}
-                 <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Se connecter avec un compte
-                     Google+</a>
-             </div>
-
-             <a href="{{ path('fos_user_security_login') }}" class="text-center"> J'ai déjà un compte</a>
-         </div>
-         <!-- /.form-box -->
-     </div>
-     <!-- /.register-box -->
-
- {% endblock content %}
+<body class="hold-transition register-page">
+<div class="register-box">
+    <div class="register-logo">
+        <a href="{{ path('fos_user_security_login') }}"><img src="{{ asset('templates/dist/img/logo.png') }}" alt="logo" /></a>
+    </div>
+    <div class="register-box-body">
+        <p class="login-box-msg"> Inscrivez-vous</p>
+        {# Début du formulaire #}
+        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+        {# Gestion des affichages des labels, des erreurs, et des input pour chaque champs du formulaire#}
+        {# Champs Genre #}
+        <div class="form-group has-feedback">
+            {{ form_label(form.gender, "Genre : ", {'attr' : {'class' : 'form-control'}}) }}
+            {{ form_errors(form.gender) }}
+            <div class="form-group">
+                {{ form_widget(form.gender, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        {# Champs nom #}
+        <div class="form-group has-feedback">
+            {{ form_label(form.firstName, "Nom : ", {'attr' : {'class' : 'form-control'}}) }}
+            {{ form_errors(form.firstName) }}
+            <div class="form-group">
+                {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        {# Champs prénoms #}
+        <div class="form-group has-feedback">
+            {{ form_label(form.lastName, "Prénom : ", {'attr' : {'class' : 'form-control'}}) }}
+            {{ form_errors(form.lastName) }}
+            <div class="form-group">
+                {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        {#Champs pseudo #}
+        <div class="form-group has-feedback">
+            {{ form_label(form.username, "Pseudo : ", {'attr' : {'class' : 'form-control'}}) }}
+            {{ form_errors(form.username) }}
+            <div class="form-group">
+                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        {# Champs adresse mail#}
+        <div class="form-group has-feedback">
+            {{ form_label(form.email, "Adresse mail : ", {'attr' : {'class' : 'form-control'}}) }}
+            {{ form_errors(form.email) }}
+            <div class="form-group">
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        {#Champs numéro téléphone #}
+        <div class="form-group has-feedback">
+            {{ form_label(form.phone, "Téléphone : ", {'attr' : {'class' : 'form-control'}}) }}
+            {{ form_errors(form.phone) }}
+            <div class="form-group">
+                {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        {# Champs ville #}
+        <div class="form-group has-feedback">
+            {{ form_label(form.city, "Ville : ", {'attr' : {'class' : 'form-control '}}) }}
+            {{ form_errors(form.city) }}
+            <div class="form-group">
+                {{ form_widget(form.city, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        {# Champs pays #}
+        <div class="form-group has-feedback">
+            {{ form_label(form.country, "Pays : ", {'attr' : {'class' : 'form-control '}}) }}
+            {{ form_errors(form.country) }}
+            <div class="form-group">
+                {{ form_widget(form.country, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        {# Champs Mot de passe #}
+        <div class="form-group has-feedback">
+            {{ form_label(form.plainPassword.first, "Mot de passe : ", {'attr' : {'class' : 'form-control '}}) }}
+            {{ form_errors(form.plainPassword.first) }}
+            <div class="form-group">
+                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        {# Champs Confirmation mot de passe #}
+        <div class="form-group has-feedback">
+            {{ form_label(form.plainPassword.second, "Confirmation mot de passe : ", {'attr' : {'class' : 'form-control '}}) }}
+            {{ form_errors(form.plainPassword.second) }}
+            <div class="form-group">
+                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        {# Champs Photo de profil #}
+        <div class="form-group has-feedback">
+            {{ form_label(form.image, "Photo profil : ", {'attr' : {'class' : 'form-control'}}) }}
+            {{ form_widget(form.image) }}
+        </div>
+        {# Bouton de validation #}
+        <div>
+            <input class="btn btn-primary col-sm-12 " type="submit" value="Valider" />
+        </div>
+        {{ form_end(form) }}
+        <div class="social-auth-links text-center">
+            <p>- OR -</p>
+            {# Connexion Google #}
+            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Se connecter avec un compte
+                Google+</a>
+        </div>
+        <a href="{{ path('fos_user_security_login') }}" class="text-center"> J'ai déjà un compte</a>
+    </div>
+    <!-- /.form-box -->
+</div>
+<!-- /.register-box -->
+{% endblock content %}
