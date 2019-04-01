@@ -64,7 +64,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="{{ path('redirection') }}" class="logo">
+            <a href="" class="logo">
                 <span class="logo-mini"> <img src="{{ asset('templates/dist/img/logo2.png') }}" alt="logoMini" /> </span>
                 <span class="logo-lg">
                     <img src="{{ asset('templates/dist/img/logo.png') }}" height="60" width="200" alt="logo" /> </span>
@@ -77,17 +77,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <span class="sr-only">Toggle navigation</span>
                 </a>
 
-                <!-- search form (Optional) -->
-                <form action="#" method="get" class="btn btn-flat col-sm-3">
-                    <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-                    </div>
-                </form>
-                <!-- /.search form -->
+                {{ render(controller('ConnexionBundle:Search:search')) }}
+
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
@@ -265,7 +256,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MENU</li>
                     <!-- Optionally, you can add icons to the links -->
-                    <li class="active"><a href="{{ path('fos_message_inbox') }}"><i class="fa fa-link"></i> <span>Message</span></a></li>
+                    <li class="active"><a href=""><i class="fa fa-link"></i> <span>Message</span></a></li>
                     <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
                     <li class="treeview">
                         <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>

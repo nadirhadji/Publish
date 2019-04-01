@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block content%}
+
+
+    {{ form_start(form, {'method': 'post', 'action': path('home-publication')}) }}
+
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3> {{ form_label(form.isMusic) }}  </h3>
+                <p>Description :  New Music  </p>
+                <p>S'abonner : {{ form_widget(form.isMusic) }} </p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-music"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3> {{ form_label(form.isNews) }} </h3>
+
+                <p> Actualité de votre ville  </p>
+                <p>S'abonner : {{ form_widget(form.isNews) }} </p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-newspaper-o"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                plus d'info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3> {{ form_label(form.isTravel) }} </h3>
+
+                <p> Idée vacances ?  </p>
+                <p>S'abonner : {{ form_widget(form.isTravel) }} </p>
+            </div>
+            <div class="icon">
+                <i class="fa  fa-plane"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                plus d'info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3> {{ form_label(form.isSport) }} </h3>
+                <p> Actualité sportive </p>
+                <p>S'abonner : {{ form_widget(form.isSport) }} </p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-futbol-o"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                plus d'info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+
+    {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn btn-block btn-info btn-lg'}}) }}
+
+
+    {{ form(form) }}
+
+
+{% endblock %}
