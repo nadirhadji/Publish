@@ -1,0 +1,26 @@
+{#
+ <!-- search form (Optional) -->
+    <form action="#" method="get" class="btn btn-flat col-sm-3">
+        <div class="input-group">
+
+            <input type="text" name="q" class="form-control" placeholder="search...">
+
+            <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </form>
+    {{ form(formulaire) }}
+    <!-- /.search form -->
+#}
+<div>
+    {{ form_start(formulaire, { 'attr': {'class': 'navbar-form navbar-left'} }) }}
+    <div class="form-group">
+        {{ form_widget(formulaire.label, { 'attr': {'class': 'form-control'} }) }}
+        {{ form_widget(formulaire.Enregistrer, { 'attr': {'class': 'btn btn-default'} }) }}
+    </div>
+
+    {{ form_rest(formulaire) }}
+    {{ form_end(formulaire) }}
+</div>
+
