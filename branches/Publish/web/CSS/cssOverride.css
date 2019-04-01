@@ -13,27 +13,43 @@
 }
 
 .register-page {
-    background-image: url("../templates/dist/img/wallpaper6.jpg");
+    max-width: 100%;
+    height: auto;
+    background-image: url("../templates/dist/img/background-image.jpg");
+    background-size: cover;
 }
 
 .login-page {
-    background-image: url("../templates/dist/img/wallpaper5.jpg");
-}
-
-.login-logo {
-    background-color: #0E2231;
+    max-width: 100%;
+    height: auto;
+    background-image: url("../templates/dist/img/background-image.jpg");
+    background-size: cover;
 }
 
 .login-box-body{
-    background-color: #0E2231;
+    border-top:solid thin #41d1ff;
+    border-right:solid thin #41d1ff;
+    border-bottom:solid thin #41d1ff;
+    border-left:solid thin #41d1ff;
+    border-radius: 5px 5px 5px 5px ;
+    background-color: white;
 }
-
 .register-box-body {
-    background-color: #0E2231;
+    border-top:solid thin #41d1ff;
+    border-right:solid thin #41d1ff;
+    border-bottom:solid thin #41d1ff;
+    border-left:solid thin #41d1ff;
+    border-radius: 5px 5px 5px 5px ;
+    background-color: white;
 }
 
 .span3, .well {
     background-image: url("../templates/dist/img/span3.jpg");
 }
+
+.error-message{
+    color : red;
+}
+
 
 

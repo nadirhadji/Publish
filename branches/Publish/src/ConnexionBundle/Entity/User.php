@@ -41,13 +41,13 @@ class User extends FosUser implements ParticipantInterface
      * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
      * @Assert\NotBlank(message="Ajouter un nom")
      */
-    protected $firstname;
+    protected $firstName;
     /**
      * @var
      *
      * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
      */
-    protected $lastname;
+    protected $lastName;
     /**
      * @var
      *
@@ -98,30 +98,30 @@ class User extends FosUser implements ParticipantInterface
     /**
      * @param mixed $firstname
      */
-    public function setFirstname($firstname)
+    public function setFirstname($firstName)
     {
-        $this->firstname = $firstname;
+        $this->firstName = $firstName;
     }
     /**
      * @return mixed
      */
     public function getFirstname()
     {
-        return $this->firstname;
+        return $this->firstName;
     }
     /**
      * @param mixed $lastname
      */
-    public function setLastname($lastname)
+    public function setLastname($lastName)
     {
-        $this->lastname = $lastname;
+        $this->lastName = $lastName;
     }
     /**
      * @return mixed
      */
     public function getLastname()
     {
-        return $this->lastname;
+        return $this->lastName;
     }
     public function setCity($city)
     {
