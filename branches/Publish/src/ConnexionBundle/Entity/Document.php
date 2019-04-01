@@ -1,11 +1,8 @@
 <?php
-
 namespace ConnexionBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 /**
  * Document
  *
@@ -22,14 +19,12 @@ class Document
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="fichier", type="string", length=255)
      */
     private $fichier;
-
     /**
      * @var string
      *
@@ -37,14 +32,11 @@ class Document
      *
      */
     private $url;
-
     /**
      * @ORM\Column(name="alt", type="string", length=255,nullable=true)
      */
     private $alt;
-
     private $tempFilename;
-
     /**
      * Get id.
      *
@@ -54,7 +46,6 @@ class Document
     {
         return $this->id;
     }
-
     /**
      * Set url.
      *
@@ -65,9 +56,7 @@ class Document
     public function setUrl(File $file = null)
     {
         $this->url = $file;
-
     }
-
     /**
      * Get url.
      *
@@ -77,7 +66,6 @@ class Document
     {
         return $this->url;
     }
-
     /**
      * Set alt.
      *
@@ -88,10 +76,8 @@ class Document
     public function setAlt($alt)
     {
         $this->alt = $alt;
-
         return $this;
     }
-
     /**
      * Get alt.
      *
@@ -101,8 +87,6 @@ class Document
     {
         return $this->alt;
     }
-
-
     /**
      * Set fichier.
      *
@@ -110,23 +94,19 @@ class Document
      *
      * @return Document
      */
-
     public function setFichier(UploadedFile $fichier)
     {
         $this->fichier = $fichier;
-
         // On vérifie si on avait déjà un fichier pour cette entité
         if (null !== $this->url) {
             // On sauvegarde l'extension du fichier pour le supprimer plus tard
             $this->tempFilename = $this->url;
-
             // On réinitialise les valeurs des attributs url et alt
             $this->url = null;
             $this->alt = null;
         }
         $fichier->move('/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/web/uploads/photo');
     }
-
     /**
      * Get fichier.
      *

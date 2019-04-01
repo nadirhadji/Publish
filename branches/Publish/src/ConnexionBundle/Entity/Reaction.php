@@ -1,9 +1,6 @@
 <?php
-
 namespace ConnexionBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Reaction
  *
@@ -20,28 +17,22 @@ class Reaction
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
-
     /**
      * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\Publication",cascade={"persist"})
      * @ORM\JoinColumn(nullable=False)
      */
     private $publication;
-
-
     /**
      * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
      * @ORM\JoinColumn(nullable=True)
      */
     private $user;
-
-
     /**
      * Get id.
      *
@@ -51,7 +42,6 @@ class Reaction
     {
         return $this->id;
     }
-
     /**
      * Set type.
      *
@@ -62,10 +52,8 @@ class Reaction
     public function setType($type)
     {
         $this->type = $type;
-
         return $this;
     }
-
     /**
      * Get type.
      *
@@ -75,7 +63,6 @@ class Reaction
     {
         return $this->type;
     }
-
     /**
      * Set publicationr.
      *
@@ -86,10 +73,8 @@ class Reaction
     public function setPublication(\ConnexionBundle\Entity\Publication $publication)
     {
         $this->publication = $publication;
-
         return $this;
     }
-
     /**
      * Get publicationr.
      *
@@ -99,7 +84,6 @@ class Reaction
     {
         return $this->publication;
     }
-
     /**
      * Set commentaire.
      *
@@ -110,10 +94,8 @@ class Reaction
     public function setCommentaire(\ConnexionBundle\Entity\Commentaire $commentaire)
     {
         $this->commentaire = $commentaire;
-
         return $this;
     }
-
     /**
      * Get commentaire.
      *
@@ -123,7 +105,6 @@ class Reaction
     {
         return $this->commentaire;
     }
-
     /**
      * Set user.
      *
@@ -134,10 +115,8 @@ class Reaction
     public function setUser(\ConnexionBundle\Entity\User $user)
     {
         $this->user = $user;
-
         return $this;
     }
-
     /**
      * Get user.
      *

@@ -1,11 +1,8 @@
 <?php
-
 namespace ConnexionBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use ConnexionBundle\Entity\User;
 use ConnexionBundle\Entity\Document;
-
 /**
  * Publication
  *
@@ -22,38 +19,31 @@ class Publication
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="contenu", type="text")
      */
     private $contenu;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="datePublication", type="datetime")
      */
     private $datePublication;
-
     /**
      * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
      * @ORM\JoinColumn(nullable=False)
      */
     private $user;
-
     /**
      * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\Document",cascade={"persist"})
      */
     protected $image;
-
-
     public function getId()
     {
         return $this->id;
     }
-
     /**
      * Set contenu.
      *
@@ -64,10 +54,8 @@ class Publication
     public function setContenu($contenu)
     {
         $this->contenu = $contenu;
-
         return $this;
     }
-
     /**
      * Get contenu.
      *
@@ -77,7 +65,6 @@ class Publication
     {
         return $this->contenu;
     }
-
     /**
      * Set datePublication.
      *
@@ -88,10 +75,8 @@ class Publication
     public function setDatePublication($datePublication)
     {
         $this->datePublication = $datePublication;
-
         return $this;
     }
-
     /**
      * Get datePublication.
      *
@@ -101,7 +86,6 @@ class Publication
     {
         return $this->datePublication;
     }
-
     /**
      * Set user.
      *
@@ -112,10 +96,8 @@ class Publication
     public function setUser(User $user)
     {
         $this->user = $user;
-
         return $this;
     }
-
     /**
      * Get user.
      *
@@ -125,8 +107,6 @@ class Publication
     {
         return $this->user;
     }
-
-
     /**
      * Set image.
      *
@@ -137,10 +117,8 @@ class Publication
     public function setImage(Document $image )
     {
         $this->image = $image;
-
         return $this;
     }
-
     /**
      * Get image.
      *
@@ -150,5 +128,4 @@ class Publication
     {
         return $this->image;
     }
-
 }

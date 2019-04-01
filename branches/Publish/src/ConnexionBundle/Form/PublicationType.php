@@ -1,13 +1,10 @@
 <?php
-
 namespace ConnexionBundle\Form;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 class PublicationType extends AbstractType
 {
     /**
@@ -16,18 +13,17 @@ class PublicationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('contenu')
-                ->add('image',DocumentType::class)
-                ->add('Publier',SubmitType::class);
+            ->add('image',DocumentType::class)
+            ->add('Publier',SubmitType::class);
     }/**
-     * {@inheritdoc}
-     */
+ * {@inheritdoc}
+ */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'ConnexionBundle\Entity\Publication'
         ));
     }
-
     /**
      * {@inheritdoc}
      */
@@ -35,6 +31,4 @@ class PublicationType extends AbstractType
     {
         return 'connexionbundle_publication';
     }
-
-
 }
