@@ -1,3 +1,64 @@
-
-
-{{ form(form) }}
+{# Traitement correspondant à une nouvelle publication #}
+<div class="box box-info">
+    <div class="box-body">
+        {{ form_start(form, {'method': 'post', 'action': path('redirection'), 'attr': {'class': ''}}) }}
+        {{ form_widget(form.contenu, {'attr': {'class': 'form-control' , 'placeholder': 'Exprimez-vous'}  }) }}
+        <div class="pull-right">
+            <p> {{ form_end(form) }} </p>
+        </div>
+    </div>
+</div>
+{# Boucle d'affichage des publications selon le contenu de la BDD #}
+{% for publication in publications %}
+    <!-- Zone Publication-->
+    <div class="box box-widget">
+        <div class="box-header with-border">
+            <div class="user-block">
+                <!-- Zone Photo de profil-->
+                <img class="img-circle" src="{{ asset('uploads/photo/' ~ publication.user.image.fichier|slice(27,37) )  }}" alt="User Image">
+                <span class="username"><a href="#">{{ publication.user.username }}</a></span>
+                <span class="description">Shared publicly - {{ publication.datePublication|date('d/m/Y h:m') }}</span>
+            </div>
+            <!-- Bouton pour fermer ou reduire une publication -->
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <!-- Contenu de la publication -->
+        <div class="box-body">
+            <p>{{ publication.contenu }} </p>
+            {#Affichage image si elle existe#}
+            {% if publication.image is not null %}
+                <img class="img col-sm-12" src="{{ asset('uploads/photo/' ~ publication.image.fichier|slice(27,37) )  }}" alt=" Image">
+            {% endif %}
+            <!-- Bouton pour réagir
+            <button type="button" name="reaction" onclick="document.location.href='{#{ path('reaction') }#}'">J aime</button>-->
+            <!-- Nombre de like et de commentaires -->
+            <span class="pull-right text-muted">
+                  likes - comments
+            </span>
+        </div>
+        <!-- Zone commentaire -->
+        <div class="box-footer box-comments">
+            {% for commentaire in commentaires %}
+                {% if commentaire.publication == publication %}
+                    <div class="box-comment">
+                        <!-- Photo de profil de l'utilisateur -->
+                        <img class="img-circle img-sm" src="{{ asset('uploads/photo/' ~ commentaire.user.image.fichier|slice(27,37) )  }}" alt="User Image">
+                        <div class="comment-text">
+                              <span class="username">
+                                {{ commentaire.user.username }}
+                                <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}</span>
+                              </span><!-- /.username -->
+                            {{ commentaire.text }}
+                        </div>
+                        <!-- /.comment-text -->
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% include 'commentaire.html.twig' %}
+    </div>
+{% endfor %}
