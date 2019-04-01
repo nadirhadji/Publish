@@ -16,8 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 use ConnexionBundle\Form\CIType;
 use ConnexionBundle\Form\SearchType;
 
-
-
 class CentreInteretController extends Controller
 {
     /**
