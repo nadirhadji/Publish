@@ -38,9 +38,6 @@ class CentreInteretController extends Controller
 
         // On boucle sur les catégories pour les lier à l'annonce
 
-        foreach ($ci as $c) {
-            $em->persist($c);
-        }
 
         $em->flush();
 
