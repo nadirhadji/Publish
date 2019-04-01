@@ -10,7 +10,6 @@ namespace ConnexionBundle\Entity;
 
 use FOS\UserBundle\Model\User as FosUser;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use FOS\MessageBundle\Model\ParticipantInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use ConnexionBundle\Entity\Document;
@@ -20,7 +19,7 @@ use ConnexionBundle\Entity\Document;
  * @ORM\Table(name="fos_user")
  */
 
-class User extends FosUser implements ParticipantInterface
+class User extends FosUser
 {
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
     const ROLE_ADMIN = 'ROLE_ADMIN';
