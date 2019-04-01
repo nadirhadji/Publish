@@ -6,25 +6,22 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class PublicationType extends AbstractType
+class DocumentType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('contenu')
-                ->add('image',DocumentType::class)
-                ->add('Publier',SubmitType::class);
+        $builder->add('fichier',FileType::class);
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ConnexionBundle\Entity\Publication'
+            'data_class' => 'ConnexionBundle\Entity\Document'
         ));
     }
 
@@ -33,7 +30,7 @@ class PublicationType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'connexionbundle_publication';
+        return 'connexionbundle_document';
     }
 
 

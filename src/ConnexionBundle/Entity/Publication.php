@@ -4,6 +4,7 @@ namespace ConnexionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ConnexionBundle\Entity\User;
+use ConnexionBundle\Entity\Document;
 
 /**
  * Publication
@@ -41,6 +42,12 @@ class Publication
      * @ORM\JoinColumn(nullable=False)
      */
     private $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\Document",cascade={"persist"})
+     */
+    protected $image;
+
 
     public function getId()
     {
@@ -119,5 +126,29 @@ class Publication
         return $this->user;
     }
 
+
+    /**
+     * Set image.
+     *
+     * @param \ConnexionBundle\Entity\Document|null $image
+     *
+     * @return Publication
+     */
+    public function setImage(Document $image )
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image.
+     *
+     * @return \ConnexionBundle\Entity\Document|null
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 
 }

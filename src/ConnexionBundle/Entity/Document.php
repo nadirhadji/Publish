@@ -26,27 +26,24 @@ class Document
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="fichier", type="string", length=255)
+     */
+    private $fichier;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255,nullable=true)
+     *
      */
     private $url;
 
     /**
-     * @ORM\Column(name="alt", type="string", length=255)
+     * @ORM\Column(name="alt", type="string", length=255,nullable=true)
      */
     private $alt;
 
-    private $file;
-
-    public function getFile()
-    {
-        return $this->file;
-    }
-
-    public function setFile(UploadedFile $file = null)
-    {
-        $this->file = $file;
-    }
-
+    private $tempFilename;
 
     /**
      * Get id.
@@ -103,5 +100,40 @@ class Document
     public function getAlt()
     {
         return $this->alt;
+    }
+
+
+    /**
+     * Set fichier.
+     *
+     * @param string $fichier
+     *
+     * @return Document
+     */
+
+    public function setFichier(UploadedFile $fichier)
+    {
+        $this->fichier = $fichier;
+
+        // On vérifie si on avait déjà un fichier pour cette entité
+        if (null !== $this->url) {
+            // On sauvegarde l'extension du fichier pour le supprimer plus tard
+            $this->tempFilename = $this->url;
+
+            // On réinitialise les valeurs des attributs url et alt
+            $this->url = null;
+            $this->alt = null;
+        }
+        $fichier->move('/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/web/uploads/photo');
+    }
+
+    /**
+     * Get fichier.
+     *
+     * @return string
+     */
+    public function getFichier()
+    {
+        return $this->fichier;
     }
 }

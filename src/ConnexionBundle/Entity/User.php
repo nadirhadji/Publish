@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use FOS\MessageBundle\Model\ParticipantInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use ConnexionBundle\Entity\Document;
 
 /**
  * @ORM\Entity
@@ -83,14 +84,11 @@ class User extends FosUser implements ParticipantInterface
      */
     private $centresInteret;
 
-    //Cette partie correspond à un test sur la fonctionnalité image: A NE PAS PRENDRE EN COMPTE
+    /**
+     * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\Document",cascade={"persist"})
+     */
     protected $image;
 
-    protected $url;
-
-    protected $alt;
-
-    protected $tempsFilename;
 
     /**
      * Constructor
@@ -213,95 +211,6 @@ class User extends FosUser implements ParticipantInterface
         return $this->phone;
     }
 
-    /**
-     * Set image.
-     *
-     * @param string $image
-     *
-     * @return User
-     */
-    public function setImage(UploadedFile $image=null)
-    {
-        $this->image = $image;
-
-        // On vérifie si on avait déjà un fichier pour cette entité
-        if (null !== $this->url) {
-            // On sauvegarde l'extension du fichier pour le supprimer plus tard
-            $this->tempFilename = $this->url;
-
-            // On réinitialise les valeurs des attributs url et alt
-            $this->url = null;
-            $this->alt = null;
-        }
-    }
-
-    /**
-     * Get image.
-     *
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function preUpload()
-    {
-        // Si jamais il n'y a pas de fichier (champ facultatif), on ne fait rien
-        if (null === $this->image) {
-            return;
-        }
-
-        // Le nom du fichier est son id, on doit juste stocker également son extension
-        // Pour faire propre, on devrait renommer cet attribut en « extension », plutôt que « url »
-        $this->url = $this->image->guessExtension();
-
-        // Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
-        $this->alt = $this->image->getClientOriginalName();
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function upload()
-    {
-        // Si jamais il n'y a pas de fichier (champ facultatif), on ne fait rien
-        if (null === $this->image) {
-            return;
-        }
-
-        // Si on avait un ancien fichier, on le supprime
-        if (null !== $this->tempFilename) {
-            $oldFile = $this->getUploadRootDir().'/'.$this->id.'.'.$this->tempFilename;
-            if (file_exists($oldFile)) {
-                unlink($oldFile);
-            }
-        }
-
-        // On déplace le fichier envoyé dans le répertoire de notre choix
-        $this->image->move(
-            $this->getUploadRootDir(), // Le répertoire de destination
-            $this->id.'.'.$this->url   // Le nom du fichier à créer, ici « id.extension »
-        );
-    }
-
-
-    public function getUploadDir()
-    {
-        // On retourne le chemin relatif vers l'image pour un navigateur (relatif au répertoire /web donc)
-        return 'uploads/photo';
-    }
-
-    protected function getUploadRootDir()
-    {
-        // On retourne le chemin relatif vers l'image pour notre code PHP
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
-    }
 
     /**
      * Set centresInteret.
@@ -325,5 +234,55 @@ class User extends FosUser implements ParticipantInterface
     public function getCentresInteret()
     {
         return $this->centresInteret;
+    }
+
+    /**
+     * Add centresInteret.
+     *
+     * @param \ConnexionBundle\Entity\CentreInteret $centresInteret
+     *
+     * @return User
+     */
+    public function addCentresInteret(\ConnexionBundle\Entity\CentreInteret $centresInteret)
+    {
+        $this->centresInteret[] = $centresInteret;
+
+        return $this;
+    }
+
+    /**
+     * Remove centresInteret.
+     *
+     * @param \ConnexionBundle\Entity\CentreInteret $centresInteret
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCentresInteret(\ConnexionBundle\Entity\CentreInteret $centresInteret)
+    {
+        return $this->centresInteret->removeElement($centresInteret);
+    }
+
+    /**
+     * Set image.
+     *
+     * @param \ConnexionBundle\Entity\Document|null $image
+     *
+     * @return User
+     */
+    public function setImage(Document $image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image.
+     *
+     * @return \ConnexionBundle\Entity\Document|null
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

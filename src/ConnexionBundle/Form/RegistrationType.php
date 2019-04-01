@@ -31,7 +31,7 @@ class RegistrationType extends AbstractType
                 ])
                 ->add('city')
                 ->add('country')
-                ->add('image', FileType::class);
+                ->add('image', DocumentType::class);
     }
 
     public function getParent()

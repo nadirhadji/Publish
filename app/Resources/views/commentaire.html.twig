@@ -1,0 +1,9 @@
+{# Traitement d'un nouveau commentaire #}
+<td>
+    <form action=" {{ path('commenter') }} " method="get">
+        <input class="form-control input-sm" type="text" name="commentaire" placeholder="Type a comment">
+        <input class="form-control input-sm" type="hidden" name="publication" value="{{ publication.id }}">
+        <input type="submit" >
+    </form>
+
+</td>
