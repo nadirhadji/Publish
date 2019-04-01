@@ -9,6 +9,8 @@
 namespace ConnexionBundle\Controller;
 
 
+use ConnexionBundle\Entity\CentreInteret;
+use ConnexionBundle\Entity\FluxRSS;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,6 +19,7 @@ use ConnexionBundle\Form\SearchType;
 
 class RssController extends Controller
 {
+
     /**
      * @Route("/rss", name="home-rss")
      * @return \Symfony\Component\HttpFoundation\Response
@@ -37,6 +40,7 @@ class RssController extends Controller
             $itemObj[0] = $images[$i];
             $itemObj[1] = $item[$i];
             $RSSItems[$i] = $itemObj;
+            $flusRss = new FluxRSS();
         }
 
         return $this->render('rss.html.twig', array(

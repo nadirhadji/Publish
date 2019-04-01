@@ -18,6 +18,61 @@ use ConnexionBundle\Form\SearchType;
 
 class CentreInteretController extends Controller
 {
+
+    public function centreInteretAction()
+    {
+        //Traitement nouveau centre d'Interet
+        //Création de l'objet $ci soit centre d'interet pour l' enregistrer dans  la BDD
+        $ci = new CentreInteret();
+        //Creation utilisateur
+        $user = $this->getUser();
+        $ci->setUser($user);
+        return $ci;
+    }
+
+    public function viewCentreInteretActuelAction(EntityManager $em)
+    {
+        //Traitement centre d'Interet deja existants dans la base de données
+        //Requete pour récupérer le centre d'interet contenus dans la BDD
+
+        $user = $this->getUser();
+
+        $ci = $em->getRepository('ConnexionBundle:CentreInteret')->findBy(array([$user->getId()]));
+
+        // On persiste le centre d'interet
+
+        $em->persist($ci);
+
+        $em->flush();
+
+        return $ci;
+    }
+
+    public function supprimerCentreInteretActuelAction()
+    {
+        //Traitement centre d'Interet deja existants dans la base de données
+        //Requete pour supprimer le centre d'interet contenus dans la BDD
+
+        //Récupération de l'objet user connecté
+        $user = $this->getUser();
+
+        //Récupération du Manager de doctrine
+        $em = $this->getDoctrine()->getManager();
+
+        //Récupération de la liste de CentreInteret reliée a l'utilisateur connecté
+        $ci = $em->getRepository('ConnexionBundle:CentreInteret')->findBy(array('user' => $user));
+
+        // On supprime le centre d'interet si il existe. cette condition est faite pour prendre en compte la création du premier objet
+        if($ci != null) {
+
+            foreach ($ci as $c) {
+                $em->remove($c);
+            }
+
+            $em->flush();
+        }
+    }
+
     /**
      * @Route("/user/centreInteret", name="register-CI")
      * @return \Symfony\Component\HttpFoundation\Response
@@ -25,50 +80,38 @@ class CentreInteretController extends Controller
      */
     public function CIAction(Request $request){
 
-        $user = $this->getUser();
-        $userId = $user->getId();
         $em = $this->getDoctrine()->getManager();
 
-
-        // La méthode findAll retourne toutes les catégories de la base de données
-
-        $ci = $em->getRepository('ConnexionBundle:Publication')->find($userId);
-
-        // On boucle sur les catégories pour les lier à l'annonce
-
-
-        $em->flush();
-
-        //Création de l'objet $message pour l' enregistrer dans dans la BDD
-        $ci = new CentreInteret();
-
-        //Creation utilisateur
-        $repository= $this->getDoctrine()->getManager()->getRepository('ConnexionBundle:User');
-
-        $ci->setUser($user);
+        //Traitement nouvelle publication
+        $ci=$this->centreInteretAction();
 
         $formCI = $this->get('form.factory')->create(CIType::class, $ci);
 
         // Traitement du formulaire: Si la requête est en POST
 
         if ($request->isMethod('POST')) {
+
             // On fait le lien Requête <-> Formulaire
+
             $formCI->handleRequest($request);
 
             // On vérifie si les valeurs entrées sont correctes
-            if ($formCI->isValid()) {
-                // On enregistre notre objet $message dans la base de données
-                $em = $this->getDoctrine()->getManager();
+
+            if ( $formCI->isValid()) {
+
+                // On enregistre notre objet $publication dans la base de données
+                $this->supprimerCentreInteretActuelAction();
+
                 $em->persist($ci);
+
                 $em->flush();
 
-                $request->getSession()->getFlashBag()->add('notice', 'Publication bien enregistrée.');
+                $request->getSession()->getFlashBag()->add('notice', 'CentreInteret bien enregistrée.');
 
-                // Redirection vers l'unique page de formulaire
+                // Redirection vers la page d'accueil
                 return $this->redirectToRoute('redirection');
             }
         }
-
 
 
         return $this->render('CI.html.twig',array('ci' => $ci , 'form' => $formCI->createView() ) );
