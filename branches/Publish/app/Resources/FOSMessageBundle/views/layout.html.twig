@@ -1,21 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset={{ _charset }}" />
-        <title>{% trans from 'FOSMessageBundle' %}messenger{% endtrans %}</title>
-    </head>
 
-    <body>
+{% extends 'base.html.twig' %}
 
-        <h1>{% trans from 'FOSMessageBundle' %}messenger{% endtrans %}</h1>
+{% block stylesheets %}
 
-        <ul>
-            <li><a href="{{ url('fos_message_inbox') }}">{% trans from 'FOSMessageBundle' %}inbox{% endtrans %}</a></li>
-            <li><a href="{{ url('fos_message_sent') }}">{% trans from 'FOSMessageBundle' %}sent{% endtrans %}</a></li>
-            <li><a href="{{ url('fos_message_deleted') }}">{% trans from 'FOSMessageBundle' %}deleted{% endtrans %}</a></li>
-        </ul>
+{% endblock %}
 
-        {% block fos_message_content %}{% endblock %}
+{% block content %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset={{ _charset }}" />
+    <title>{% trans from 'FOSMessageBundle' %}messenger{% endtrans %}</title>
+</head>
 
-    </body>
-</html>
+<body>
+
+<h1>{% trans from 'FOSMessageBundle' %}messenger{% endtrans %}</h1>
+
+<ul>
+    <li><a href="{{ url('fos_message_inbox') }}">{% trans from 'FOSMessageBundle' %}inbox{% endtrans %}</a></li>
+    <li><a href="{{ url('fos_message_sent') }}">{% trans from 'FOSMessageBundle' %}sent{% endtrans %}</a></li>
+    <li><a href="{{ url('fos_message_deleted') }}">{% trans from 'FOSMessageBundle' %}deleted{% endtrans %}</a></li>
+</ul>
+
+    {% block fos_message_content %}
+
+    {% endblock fos_message_content %}
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+
+
+{% endblock %}
+
