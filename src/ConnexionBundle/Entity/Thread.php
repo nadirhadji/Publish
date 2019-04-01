@@ -1,11 +1,8 @@
 <?php
-
 namespace ConnexionBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use FOS\MessageBundle\Entity\Thread as BaseThread;
-
 /**
  * Thread
  *
@@ -22,13 +19,11 @@ class Thread extends BaseThread
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
     /**
      * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\User")
      * @var \FOS\MessageBundle\Model\ParticipantInterface
      */
     protected $createdBy;
-
     /**
      * @ORM\OneToMany(
      *   targetEntity="ConnexionBundle\Entity\Message",
@@ -37,7 +32,6 @@ class Thread extends BaseThread
      * @var Message[]|Collection
      */
     protected $messages;
-
     /**
      * @ORM\OneToMany(
      *   targetEntity="ConnexionBundle\Entity\ThreadMetadata",
@@ -47,8 +41,6 @@ class Thread extends BaseThread
      * @var ThreadMetadata[]|Collection
      */
     protected $metadata;
-
-
     /**
      * Get id.
      *
@@ -58,7 +50,6 @@ class Thread extends BaseThread
     {
         return $this->id;
     }
-
     /**
      * Remove message.
      *
@@ -70,7 +61,6 @@ class Thread extends BaseThread
     {
         return $this->messages->removeElement($message);
     }
-
     /**
      * Add metadata.
      *
@@ -81,10 +71,8 @@ class Thread extends BaseThread
     public function addMetadatum(\ConnexionBundle\Entity\ThreadMetadata $metadata)
     {
         $this->metadata[] = $metadata;
-
         return $this;
     }
-
     /**
      * Remove metadata.
      *
@@ -96,7 +84,6 @@ class Thread extends BaseThread
     {
         return $this->metadata->removeElement($metadata);
     }
-
     /**
      * Get metadata.
      *

@@ -5,27 +5,22 @@
  * Date: 2019-03-07
  * Time: 00:03
  */
-
 namespace ConnexionBundle\Entity;
-
 use FOS\UserBundle\Model\User as FosUser;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use FOS\MessageBundle\Model\ParticipantInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use ConnexionBundle\Entity\Document;
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
  */
-
 class User extends FosUser implements ParticipantInterface
 {
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
     const ROLE_ADMIN = 'ROLE_ADMIN';
     const ROLE_USER = 'ROLE_USER';
-
     /**
      * @var integer
      *
@@ -34,14 +29,12 @@ class User extends FosUser implements ParticipantInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
     /**
      * @var
      *
      * @ORM\Column(name="gender", type="string", length=255, nullable=true)
      */
     protected $gender;
-
     /**
      * @var
      *
@@ -49,47 +42,38 @@ class User extends FosUser implements ParticipantInterface
      * @Assert\NotBlank(message="Ajouter un nom")
      */
     protected $firstname;
-
     /**
      * @var
      *
      * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
      */
     protected $lastname;
-
     /**
      * @var
      *
      * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     protected $city;
-
     /**
      * @var
      *
      * @ORM\Column(name="zip_code", type="string", length=255, nullable=true)
      */
-
     protected $country;
-
     /**
      * @var
      *
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     protected $phone;
-
     /**
      * @ORM\ManyToMany(targetEntity="ConnexionBundle\Entity\CentreInteret",cascade={"persist"})
      */
     private $centresInteret;
-
     /**
      * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\Document",cascade={"persist"})
      */
     protected $image;
-
-
     /**
      * Constructor
      */
@@ -97,7 +81,6 @@ class User extends FosUser implements ParticipantInterface
     {
         parent::__construct();
     }
-
     /**
      * @param mixed $gender
      */
@@ -105,7 +88,6 @@ class User extends FosUser implements ParticipantInterface
     {
         $this->gender = $gender;
     }
-
     /**
      * @return mixed
      */
@@ -113,7 +95,6 @@ class User extends FosUser implements ParticipantInterface
     {
         return $this->gender;
     }
-
     /**
      * @param mixed $firstname
      */
@@ -121,7 +102,6 @@ class User extends FosUser implements ParticipantInterface
     {
         $this->firstname = $firstname;
     }
-
     /**
      * @return mixed
      */
@@ -129,7 +109,6 @@ class User extends FosUser implements ParticipantInterface
     {
         return $this->firstname;
     }
-
     /**
      * @param mixed $lastname
      */
@@ -137,7 +116,6 @@ class User extends FosUser implements ParticipantInterface
     {
         $this->lastname = $lastname;
     }
-
     /**
      * @return mixed
      */
@@ -145,12 +123,10 @@ class User extends FosUser implements ParticipantInterface
     {
         return $this->lastname;
     }
-
     public function setCity($city)
     {
         $this->city = $city;
     }
-
     /**
      * @return mixed
      */
@@ -158,7 +134,6 @@ class User extends FosUser implements ParticipantInterface
     {
         return $this->city;
     }
-
     /**
      * @param mixed $country
      */
@@ -166,7 +141,6 @@ class User extends FosUser implements ParticipantInterface
     {
         $this->country = $country;
     }
-
     /**
      * @return mixed
      */
@@ -174,7 +148,6 @@ class User extends FosUser implements ParticipantInterface
     {
         return $this->country;
     }
-
     /**
      * @param int $id
      */
@@ -182,7 +155,6 @@ class User extends FosUser implements ParticipantInterface
     {
         $this->id = $id;
     }
-
     /**
      * @return int
      */
@@ -190,11 +162,9 @@ class User extends FosUser implements ParticipantInterface
     {
         return $this->id;
     }
-
     /**
      * @param mixed $zipCode
      */
-
     /**
      * @param mixed $phone
      */
@@ -202,7 +172,6 @@ class User extends FosUser implements ParticipantInterface
     {
         $this->phone = $phone;
     }
-
     /**
      * @return mixed
      */
@@ -210,8 +179,6 @@ class User extends FosUser implements ParticipantInterface
     {
         return $this->phone;
     }
-
-
     /**
      * Set centresInteret.
      *
@@ -222,10 +189,8 @@ class User extends FosUser implements ParticipantInterface
     public function setCentresInteret(\ConnexionBundle\Entity\CentreInteret $centresInteret = null)
     {
         $this->centresInteret = $centresInteret;
-
         return $this;
     }
-
     /**
      * Get centresInteret.
      *
@@ -235,7 +200,6 @@ class User extends FosUser implements ParticipantInterface
     {
         return $this->centresInteret;
     }
-
     /**
      * Add centresInteret.
      *
@@ -246,10 +210,8 @@ class User extends FosUser implements ParticipantInterface
     public function addCentresInteret(\ConnexionBundle\Entity\CentreInteret $centresInteret)
     {
         $this->centresInteret[] = $centresInteret;
-
         return $this;
     }
-
     /**
      * Remove centresInteret.
      *
@@ -261,7 +223,6 @@ class User extends FosUser implements ParticipantInterface
     {
         return $this->centresInteret->removeElement($centresInteret);
     }
-
     /**
      * Set image.
      *
@@ -272,10 +233,8 @@ class User extends FosUser implements ParticipantInterface
     public function setImage(Document $image)
     {
         $this->image = $image;
-
         return $this;
     }
-
     /**
      * Get image.
      *
