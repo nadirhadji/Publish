@@ -34,15 +34,10 @@ class Reaction
      */
     private $publication;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\Commentaire",cascade={"persist"})
-     * @ORM\JoinColumn(nullable=False)
-     */
-    private $commentaire;
 
     /**
      * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
-     * @ORM\JoinColumn(nullable=False)
+     * @ORM\JoinColumn(nullable=True)
      */
     private $user;
 

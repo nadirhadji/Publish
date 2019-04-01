@@ -58,4 +58,52 @@ class Thread extends BaseThread
     {
         return $this->id;
     }
+
+    /**
+     * Remove message.
+     *
+     * @param \ConnexionBundle\Entity\Message $message
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeMessage(\ConnexionBundle\Entity\Message $message)
+    {
+        return $this->messages->removeElement($message);
+    }
+
+    /**
+     * Add metadata.
+     *
+     * @param \ConnexionBundle\Entity\ThreadMetadata $metadata
+     *
+     * @return Thread
+     */
+    public function addMetadatum(\ConnexionBundle\Entity\ThreadMetadata $metadata)
+    {
+        $this->metadata[] = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * Remove metadata.
+     *
+     * @param \ConnexionBundle\Entity\ThreadMetadata $metadata
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeMetadatum(\ConnexionBundle\Entity\ThreadMetadata $metadata)
+    {
+        return $this->metadata->removeElement($metadata);
+    }
+
+    /**
+     * Get metadata.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
 }
