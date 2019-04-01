@@ -28,6 +28,7 @@ class ConnexionController extends Controller
         $publication->setUser($user);
         return $publication;
     }
+
     public function viewPublicationAction(EntityManager $em)
     {
         //Traitement publications et commentaires deja existants dans la base de données
