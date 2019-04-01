@@ -105,7 +105,7 @@ class Document
             $this->url = null;
             $this->alt = null;
         }
-        $fichier->move('/Applications/MAMP/htdocs/2018-l3ac1/branches/Publish/web/uploads/photo');
+        $fichier->move('C:\wamp\www\2018-l3ac1\branches\Publish\web\uploads\photo');
     }
     /**
      * Get fichier.
