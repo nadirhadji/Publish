@@ -56,6 +56,7 @@ class Document
     public function setUrl(File $file = null)
     {
         $this->url = $file;
+        return $this;
     }
     /**
      * Get url.
@@ -105,7 +106,9 @@ class Document
             $this->url = null;
             $this->alt = null;
         }
-        $fichier->move('C:\wamp\www\2018-l3ac1\branches\Publish\web\uploads\photo');
+        //$fichier->move('C:\wamp\www\2018-l3ac1\branches\Publish\web\uploads\photo');
+        $fichier->move('/Applications/MAMP/htdocs/projet/2018-l3ac1/branches/Publish/web/uploads/photo');
+        return $this;
     }
     /**
      * Get fichier.

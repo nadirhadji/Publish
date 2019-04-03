@@ -8,8 +8,8 @@
             <center>
                 <div class="span3 well">
                     <center>
-                        <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" class="img-circle"></a>
-                        <h3>{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                        <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="{{ asset('uploads/photo/' ~ app.user.image.fichier|slice(27,37) ) }}" name="aboutme" width="140" height="140" class="img-circle"></a>
+                        <h3>{{ user.firstname }} {{ user.lastname }}</h3>
                         <em>click my face for more</em>
                     </center>
                 </div>
@@ -23,7 +23,7 @@
                             </div>
                             <div class="modal-body">
                                 <center>
-                                    <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
+                                    <img src="{{ asset('uploads/photo/' ~ app.user.image.fichier|slice(27,37) ) }}" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
                                     <h3 class="media-heading">{{ app.user.firstname }} {{ app.user.lastname }}<small> {{ app.user.city }}</small></h3>
                                     <span><strong>Skills: </strong></span>
                                     <span class="label label-warning">HTML5/CSS</span>
@@ -50,86 +50,70 @@
             </center>
         </div>
 
-    <!-- User container -->
 
-    <!-- User post -->
 
-    <div class="col-md-6">
-        <!-- Box Comment -->
-        <div class="box box-widget">
-            <div class="box-header with-border">
-                <div class="user-block">
-                    <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Image">
-                    <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                    <span class="description">Shared publicly - 7:30 PM Today</span>
-                </div>
-                <!-- /.user-block -->
-                <div class="box-tools">
-                    <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Mark as read">
-                        <i class="fa fa-circle-o"></i></button>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-                <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <img class="img-responsive pad" src="../dist/img/photo2.png" alt="Photo">
+    <!-- Publication de l utilisateur -->
 
-                <p>I took this photo this morning. What do you guys think?</p>
-                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                <span class="pull-right text-muted">127 likes - 3 comments</span>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer box-comments">
-                <div class="box-comment">
-                    <!-- User image -->
-                    <img class="img-circle img-sm" src="../dist/img/user3-128x128.jpg" alt="User Image">
-
-                    <div class="comment-text">
-                      <span class="username">
-                        Maria Gonzales
-                        <span class="text-muted pull-right">8:03 PM Today</span>
-                      </span><!-- /.username -->
-                        It is a long established fact that a reader will be distracted
-                        by the readable content of a page when looking at its layout.
+    {# Boucle d'affichage des publications selon le contenu de la BDD
+    {% for publication in publications %}
+        {% if (publication.user == app.user) %}
+            <!-- Zone Publication-->
+            <div class="box box-widget">
+                <div class="box-header with-border">
+                    <div class="user-block">
+                        <!-- Zone Photo de profil-->
+                        <img class="img-circle" src="{{ asset('uploads/photo/' ~ publication.user.image.fichier|slice(27,37) )  }}" alt="User Image">
+                        <span class="username"><a href="#">{{ publication.user.username }}</a></span>
+                        <span class="description">Shared publicly - {{ publication.datePublication|date('d/m/Y h:m') }}</span>
                     </div>
-                    <!-- /.comment-text -->
-                </div>
-                <!-- /.box-comment -->
-                <div class="box-comment">
-                    <!-- User image -->
-                    <img class="img-circle img-sm" src="../dist/img/user4-128x128.jpg" alt="User Image">
-
-                    <div class="comment-text">
-                      <span class="username">
-                        Luna Stark
-                        <span class="text-muted pull-right">8:03 PM Today</span>
-                      </span><!-- /.username -->
-                        It is a long established fact that a reader will be distracted
-                        by the readable content of a page when looking at its layout.
+                    <!-- Bouton pour fermer ou reduire une publication -->
+                    <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                     </div>
-                    <!-- /.comment-text -->
                 </div>
-                <!-- /.box-comment -->
-            </div>
-            <!-- /.box-footer -->
-            <div class="box-footer">
-                <form action="#" method="post">
-                    <img class="img-responsive img-circle img-sm" src="../dist/img/user4-128x128.jpg" alt="Alt Text">
-                    <!-- .img-push is used to add margin to elements next to floating images -->
-                    <div class="img-push">
-                        <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
-                    </div>
-                </form>
-            </div>
-            <!-- /.box-footer -->
-        </div>
-        <!-- /.box -->
-    </div>
+                <!-- Contenu de la publication -->
+                <div class="box-body">
+                    <p>{{ publication.contenu }} </p>
 
+                    {#Affichage image si elle existe#}
+                  {#  {% if publication.image is not null %}
+
+                        {# {{ publication.image.fichier|slice(12,23) }} Difference entre Mac et windows faire attention#}
+                   {#<img class="img-responsive" src="{{ asset('uploads/photo/' ~ publication.image.fichier|slice(27,37) )  }}" alt=" Image" height="100" width="200">
+                    {% endif %}
+                    <!-- Bouton pour réagir -->
+
+                    <!-- Nombre de like et de commentaires -->
+                    <span class="pull-right text-muted">
+                          likes - comments
+                    </span>
+                </div>
+                <!-- Zone commentaire -->
+                <div class="box-footer box-comments">
+                    {% for commentaire in commentaires %}
+                        {% if commentaire.publication == publication %}
+                            <div class="box-comment">
+                                <!-- Photo de profil de l'utilisateur -->
+                                <img class="img-circle img-sm" src="{{ asset('uploads/photo/' ~ commentaire.user.image.fichier|slice(27,37) )  }}" alt="User Image" ">
+                                <div class="comment-text">
+                                      <span class="username">
+                                        {{ commentaire.user.username }}
+                                        <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}</span>
+                                      </span><!-- /.username -->
+                                    {{ commentaire.text }}
+                                </div>
+                                <!-- /.comment-text -->
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% include 'commentaire.html.twig' %}
+            </div>
+        {% endif %}
+    {% endfor %}
+#}
     <!-- User post -->
 </div>
 {% endblock %}
