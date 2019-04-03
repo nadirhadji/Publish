@@ -1,8 +1,11 @@
 <?php
-
+//src/ConnexionBundle/Entity/Message.php
 namespace ConnexionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use FOS\MessageBundle\Entity\Message as BaseMessage;
+
 
 /**
  * Message
@@ -10,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="message")
  * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\MessageRepository")
  */
-class Message
+class Message extends BaseMessage
 {
     /**
      * @var int
@@ -19,7 +22,7 @@ class Message
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 //
     /**
      * @ORM\ManyToOne(
@@ -46,133 +49,75 @@ class Message
      */
     protected $metadata;
 //
+//    /**
+//     * Add metadata.
+//     *
+//     * @param \ConnexionBundle\Entity\MessageMetadata $metadata
+//     *
+//     * @return Message
+//     */
+//    public function addMetadatum(\ConnexionBundle\Entity\MessageMetadata $metadata)
+//    {
+//        $this->metadata[] = $metadata;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Remove metadata.
+//     *
+//     * @param \ConnexionBundle\Entity\MessageMetadata $metadata
+//     *
+//     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+//     */
+//    public function removeMetadatum(\ConnexionBundle\Entity\MessageMetadata $metadata)
+//    {
+//        return $this->metadata->removeElement($metadata);
+//    }
+//
+//    /**
+//     * Get metadata.
+//     *
+//     * @return \Doctrine\Common\Collections\Collection
+//     */
+//    public function getMetadata()
+//    {
+//        return $this->metadata;
+//    }
+
     /**
-     * @var string
+     * Add metadata.
      *
-     * @ORM\Column(name="text", type="text")
-     */
-    private $text;
-
-    /**
-     * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\Contenu",cascade={"persist"})
-     */
-    private $contenu;
-
-    /**
-     * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
-     * @ORM\JoinColumn(nullable=False)
-     */
-    private $expediteur;
-
-    /**
-     * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
-     * @ORM\JoinColumn(nullable=False)
-     */
-    private $destinataire;
-
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set text.
-     *
-     * @param string $text
+     * @param \ConnexionBundle\Entity\MessageMetadata $metadata
      *
      * @return Message
      */
-    public function setText($text)
+    public function addMetadatum(\ConnexionBundle\Entity\MessageMetadata $metadata)
     {
-        $this->text = $text;
+        $this->metadata[] = $metadata;
 
         return $this;
     }
 
     /**
-     * Get text.
+     * Remove metadata.
      *
-     * @return string
+     * @param \ConnexionBundle\Entity\MessageMetadata $metadata
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function getText()
+    public function removeMetadatum(\ConnexionBundle\Entity\MessageMetadata $metadata)
     {
-        return $this->text;
+        return $this->metadata->removeElement($metadata);
     }
 
     /**
-     * Set expéditeur.
+     * Get metadata.
      *
-     * @param \ConnexionBundle\Entity\User $expéditeur
-     *
-     * @return Message
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setExpediteur(\ConnexionBundle\Entity\User $expediteur)
+    public function getMetadata()
     {
-        $this->expediteur = $expediteur;
-
-        return $this;
-    }
-
-    /**
-     * Get expéditeur.
-     *
-     * @return \ConnexionBundle\Entity\User
-     */
-    public function getExpediteur()
-    {
-        return $this->expediteur;
-    }
-
-    /**
-     * Set destinataire.
-     *
-     * @param \ConnexionBundle\Entity\User $destinataire
-     *
-     * @return Message
-     */
-    public function setDestinataire(\ConnexionBundle\Entity\User $destinataire)
-    {
-        $this->destinataire = $destinataire;
-
-        return $this;
-    }
-
-    /**
-     * Get destinataire.
-     *
-     * @return \ConnexionBundle\Entity\User
-     */
-    public function getDestinataire()
-    {
-        return $this->destinataire;
-    }
-
-    /**
-     * Set contenu.
-     *
-     * @param \ConnexionBundle\Entity\Contenu|null $contenu
-     *
-     * @return Message
-     */
-    public function setContenu(\ConnexionBundle\Entity\Contenu $contenu = null)
-    {
-        $this->contenu = $contenu;
-
-        return $this;
-    }
-
-    /**
-     * Get contenu.
-     *
-     * @return \ConnexionBundle\Entity\Contenu|null
-     */
-    public function getContenu()
-    {
-        return $this->contenu;
+        return $this->metadata;
     }
 }
