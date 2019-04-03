@@ -1,12 +1,23 @@
 {# Traitement correspondant à une nouvelle publication #}
 <div class="box box-info">
     <div class="box-body">
-        {{ form_start(form, {'method': 'post', 'action': path('redirection'), 'attr': {'class': ''}}) }}
-        {{ form_widget(form.contenu, {'attr': {'class': 'form-control' , 'placeholder': 'Exprimez-vous'}  }) }}
-        <div class="pull-right">
-            <p> {{ form_end(form) }} </p>
+
+        {{ form_start(form, {'method': 'post', 'action': path('homepage'), 'attr': {'class': ''}}) }}
+
+        <div class="form-group has-feedback">
+            {{ form_widget(form.contenu, {'attr': {'class': 'form-control' , 'placeholder': 'Exprimez-vous'}  }) }}
         </div>
+
+        <div class="form-group has-feedback">
+            {{ form_label(form.image,"Ajouter une photo : ", {'attr' : {'class' : 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_widget(form.image) }}
+        </div>
+        {{ form_end(form) }}
     </div>
+
 </div>
 {# Boucle d'affichage des publications selon le contenu de la BDD #}
 {% for publication in publications %}
@@ -32,12 +43,11 @@
             {#Affichage image si elle existe#}
             {% if publication.image is not null %}
 
-
                 {# {{ publication.image.fichier|slice(12,23) }} Difference entre Mac et windows faire attention#}
-                <img class="img col-sm-12" src="{{ asset('uploads/photo/' ~ publication.image.fichier|slice(12,23) )  }}" alt=" Image">
+                <img class="img-responsive" src="{{ asset('uploads/photo/' ~ publication.image.fichier|slice(27,37) )  }}" alt=" Image" height="100" width="200">
             {% endif %}
-            <!-- Bouton pour réagir
-            <button type="button" name="reaction" onclick="document.location.href='{#{ path('reaction') }#}'">J aime</button>-->
+            <!-- Bouton pour réagir -->
+
             <!-- Nombre de like et de commentaires -->
             <span class="pull-right text-muted">
                   likes - comments
@@ -49,7 +59,7 @@
                 {% if commentaire.publication == publication %}
                     <div class="box-comment">
                         <!-- Photo de profil de l'utilisateur -->
-                        <img class="img-circle img-sm" src="{{ asset('uploads/photo/' ~ commentaire.user.image.fichier|slice(27,37) )  }}" alt="User Image">
+                        <img class="img-circle img-sm" src="{{ asset('uploads/photo/' ~ commentaire.user.image.fichier|slice(27,37) )  }}" alt="User Image" >
                         <div class="comment-text">
                               <span class="username">
                                 {{ commentaire.user.username }}
