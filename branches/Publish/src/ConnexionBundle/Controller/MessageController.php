@@ -16,8 +16,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use FOS\MessageBundle\Provider\ProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request; // N'oubliez pas ce use !
 
-class MessageController implements ContainerAwareInterface
+
+class MessageController extends Controller implements ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
