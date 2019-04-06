@@ -20,16 +20,18 @@ class Reaction
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
+
     /**
-     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\Publication",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\Publication",inversedBy="reactions",cascade={"persist"})
      * @ORM\JoinColumn(nullable=False)
      */
     private $publication;
+
     /**
-     * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\User",inversedBy="reactions", cascade={"persist"})
      * @ORM\JoinColumn(nullable=True)
      */
     private $user;

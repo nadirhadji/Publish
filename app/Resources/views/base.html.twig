@@ -19,6 +19,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('templates/dist/css/AdminLTE.min.css') }}">
     <link rel="stylesheet" href="{{ asset('CSS/cssOverride.css') }}">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
@@ -53,15 +55,15 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="sidebar-mini skin-black-light sidebar-collapse">
+<body class="sidebar-mini skin-blue sidebar-collapse">
 <div class="wrapper">
     <!-- Main Header -->
-    <header class="main-header">
+    <header class="main-header skin-blue">
         <!-- Logo -->
         <a href="{{ path('homepage') }}" class="logo">
             <span class="logo-mini"> <img src="{{ asset('templates/dist/img/logo2.png') }}" alt="logoMini" /> </span>
             <span class="logo-lg">
-                    <img src="{{ asset('templates/dist/img/logo.png') }}" height="60" width="200" alt="logo" /> </span>
+                    <img src="{{ asset('templates/dist/img/logoBlanc.png') }}" height="45" width="175" alt="logo" /> </span>
         </a>
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -363,13 +365,17 @@ desired effect
 <!-- ./wrapper -->
 <!-- REQUIRED JS SCRIPTS -->
 <!-- jQuery 3 -->
-<script src="{{ asset('templates/bower_components/jquery/dist/jquery.min.js') }}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{ asset('templates/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('templates/dist/js/adminlte.min.js') }}"></script>
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+{% block javascripts %}
+    <script src="{{ asset('templates/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('templates/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('templates/dist/js/adminlte.min.js') }}"></script>
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+         Both of these plugins are recommended to enhance the
+         user experience. -->
+{% endblock %}
+
+
 </body>
 </html>

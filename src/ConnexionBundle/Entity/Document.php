@@ -36,6 +36,7 @@ class Document
      * @ORM\Column(name="alt", type="string", length=255,nullable=true)
      */
     private $alt;
+
     private $tempFilename;
     /**
      * Get id.
@@ -88,13 +89,14 @@ class Document
     {
         return $this->alt;
     }
-    /**
+
+    /*
      * Set fichier.
      *
      * @param string $fichier
      *
      * @return Document
-     */
+
     public function setFichier(UploadedFile $fichier)
     {
         $this->fichier = $fichier;
@@ -109,7 +111,18 @@ class Document
         //$fichier->move('C:\wamp\www\2018-l3ac1\branches\Publish\web\uploads\photo');
         $fichier->move('/Applications/MAMP/htdocs/projet/2018-l3ac1/branches/Publish/web/uploads/photo');
         return $this;
+    }*/
+
+
+     public function setFichier($fichier)
+    {
+        $this->fichier = $fichier;
+        return $this;
     }
+
+
+
+
     /**
      * Get fichier.
      *

@@ -3,6 +3,8 @@ namespace ConnexionBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use ConnexionBundle\Entity\User;
 use ConnexionBundle\Entity\Document;
+use ConnexionBundle\Entity\Reaction;
+
 /**
  * Publication
  *
@@ -19,27 +21,37 @@ class Publication
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @var string
      *
      * @ORM\Column(name="contenu", type="text")
      */
     private $contenu;
+
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="datePublication", type="datetime")
      */
     private $datePublication;
+
     /**
      * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
      * @ORM\JoinColumn(nullable=False)
      */
     private $user;
+
     /**
      * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\Document",cascade={"persist"})
      */
     protected $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ConnexionBundle\Entity\Reaction", mappedBy="publication")
+     */
+    private $reactions;
+
     public function getId()
     {
         return $this->id;
@@ -127,5 +139,59 @@ class Publication
     public function getImage()
     {
         return $this->image;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reactions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add reaction.
+     *
+     * @param \ConnexionBundle\Entity\Reaction $reaction
+     *
+     * @return Publication
+     */
+    public function addReaction(Reaction $reaction)
+    {
+        $this->reactions[] = $reaction;
+
+        return $this;
+    }
+
+    /**
+     * Remove reaction.
+     *
+     * @param \ConnexionBundle\Entity\Reaction $reaction
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeReaction(Reaction $reaction)
+    {
+        return $this->reactions->removeElement($reaction);
+    }
+
+    /**
+     * Get reactions.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReactions()
+    {
+        return $this->reactions;
+    }
+
+    public function isLikedByUser(User $user)
+    {
+        foreach ($this->reactions as $reaction)
+        {
+            if ($reaction->getUser() == $user)
+                return true;
+        }
+
+        return false;
     }
 }

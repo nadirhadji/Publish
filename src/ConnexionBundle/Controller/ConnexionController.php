@@ -27,6 +27,7 @@ class ConnexionController extends Controller
         $objet_publication = new PublicationController();
         $publication=$objet_publication->addAction($this->getUser());
         $form = $this->get('form.factory')->create(PublicationType::class, $publication);
+
         // Traitement du formulaire: Si la requête est en POST
         if ($request->isMethod('POST')) {
             // On fait le lien Requête <-> Formulaire
@@ -45,10 +46,14 @@ class ConnexionController extends Controller
         $res = $objet_publication->indexAction(($em));
         $listPublications=$res[1];
         $listCommentaires=$res[0];
+
         //Nombre j aime et commentaire
+        $nbJAime = count ($em->getRepository('ConnexionBundle:Reaction')->findByPublication(226));
+
         return $this->render('pageAccueil/home_page.html.twig',array('commentaires' => $listCommentaires ,
             'publications' => $listPublications,
             'form' => $form->createView(),
+            'nbJAime' => $nbJAime
         ));
     }
 }
