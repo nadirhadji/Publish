@@ -29,3 +29,5 @@ services:
         resource: '../../src/ConnexionBundle/DataFixtures'
         tags: ['doctrine.fixture.orm']
 
+
+

@@ -74,6 +74,12 @@ class User extends FosUser implements ParticipantInterface
      * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\Document",cascade={"persist"})
      */
     protected $image;
+
+    /**
+    * @ORM\OneToMany(targetEntity="ConnexionBundle\Entity\Reaction", mappedBy="publication")
+    */
+        private $reactions;
+
     /**
      * Constructor
      */
@@ -243,5 +249,41 @@ class User extends FosUser implements ParticipantInterface
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Add reaction.
+     *
+     * @param \ConnexionBundle\Entity\Reaction $reaction
+     *
+     * @return User
+     */
+    public function addReaction(\ConnexionBundle\Entity\Reaction $reaction)
+    {
+        $this->reactions[] = $reaction;
+
+        return $this;
+    }
+
+    /**
+     * Remove reaction.
+     *
+     * @param \ConnexionBundle\Entity\Reaction $reaction
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeReaction(\ConnexionBundle\Entity\Reaction $reaction)
+    {
+        return $this->reactions->removeElement($reaction);
+    }
+
+    /**
+     * Get reactions.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReactions()
+    {
+        return $this->reactions;
     }
 }

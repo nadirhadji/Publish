@@ -1,26 +1,63 @@
 <?php
 namespace ConnexionBundle\Controller;
+
+use ConnexionBundle\Entity\Reaction;
+use ConnexionBundle\Repository\ReactionRepository;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use ConnexionBundle\Entity\Publication;
+
 class ReactionController extends Controller
 {
+
     /**
-     * @Route(name="reaction")
-     * @return \Symfony\Component\HttpFoundation\Response
+     * Permet de réagir ou annuler la reaction par rapport à une publication
+     *
+     * @Route("/homepage/{id}/likes",name="post_like")
+     *
+     * @param Publication $publication
+     * @param EntityManager $em
+     * @param ReactionRepository $reactionRepository
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function reactionAction()
+    public function addAction(Publication $publication )
     {
-        //Traitement des réactions après clic sur bouton
         $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('ConnexionBundle:Publication');
-        //Création Réaction
-        $reaction= new Reaction();
+        $reactionRepository= $em->getRepository('ConnexionBundle:Reaction');
+
         $user= $this->getUser();
-        $reaction->setType("aime");
-        $reaction->setUser($user);
-        $reaction->setPublication($repository->find(143));
+
+        if ($publication->isLikedByUser($user))
+        {
+            $reaction = $reactionRepository->findOneBy(
+                [
+                    'publication' => $publication,
+                    'user' => $user
+                ]);
+
+            $em->remove($reaction);
+            $em->flush();
+
+            return $this->json([
+                'code' => 200,
+                'message' => 'Like bien supprimé',
+                'reactions' => $reactionRepository->count(['publication' => $publication])
+                ], 200);
+        }
+
+        $reaction = new Reaction();
+        $reaction->setPublication($publication)
+                ->setUser($user);
+
         $em->persist($reaction);
         $em->flush();
-        return $this->redirectToRoute('redirection');
+
+        return $this->json([
+            'code' => 200 ,
+            'message' => 'Like bien ajouté',
+            'reactions'=> $reactionRepository->count(['publication'=>$publication])
+        ],200);
     }
 }
