@@ -18,8 +18,7 @@ class ReactionController extends Controller
      * @Route("/homepage/{id}/likes",name="post_like")
      *
      * @param Publication $publication
-     * @param EntityManager $em
-     * @param ReactionRepository $reactionRepository
+     *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function addAction(Publication $publication )

@@ -1,38 +1,19 @@
-{# Traitement correspondant à une nouvelle publication #}
-<div class="box box-info">
-    <div class="box-body">
-
-        {{ form_start(form, {'method': 'post', 'action': path('homepage'), 'attr': {'class': ''}}) }}
-
-        <div class="form-group has-feedback">
-            {{ form_widget(form.contenu, {'attr': {'class': 'form-control' , 'placeholder': 'Exprimez-vous'}  }) }}
-        </div>
-
-        <div class="form-group has-feedback">
-            {{ form_label(form.image,"Ajouter une photo : ", {'attr' : {'class' : 'form-control '}}) }}
-        </div>
-
-        <div class="form-group">
-            {{ form_widget(form.image) }}
-        </div>
-        {{ form_end(form) }}
-    </div>
-
-</div>
-
-
+{% include 'nouvelle_publication.html.twig' %}
 
 {# Boucle d'affichage des publications selon le contenu de la BDD #}
 {% for publication in publications %}
+
     <!-- Zone Publication-->
     <div class="box box-widget ">
         <div class="box-header with-border">
             <div class="user-block">
+
                 <!-- Zone Photo de profil-->
                 <img class="img-circle" src="{{ asset('uploads/photo/' ~ publication.user.image.fichier|slice(27,37) )  }}" alt="User Image">
                 <span class="username"><a href="#">{{ publication.user.username }}</a></span>
                 <span class="description">Shared publicly - {{ publication.datePublication|date('d/m/Y h:m') }}</span>
-            </div>
+            </div>`
+
             <!-- Bouton pour fermer ou reduire une publication -->
             <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -42,53 +23,7 @@
 
                 {# Champs pour modifier ou supprimer un élément #}
 
-                {% if (publication.user == app.user) %}
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"> </span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Modifier</a></li>
-                        <li><a href="#">Supprimer</a></li>
-                    </ul>
-
-                {#
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="box box-default">
-                                <div class="box-body">
-                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-                                        Launch Default Modal
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal fade" id="modal-default">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Default Modal</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <p>One fine body&hellip;</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-                 #}
-
-                {% endif %}
-
-
+                {% include 'modif_publication.html.twig' %}
 
             </div>
         </div>
@@ -100,92 +35,88 @@
 
                 {# {{ publication.image.fichier|slice(12,23) }} Difference entre Mac et windows faire attention#}
                 <img class="img-responsive" src="{{ asset('uploads/photo/' ~ publication.image.fichier|slice(27,37) )  }}" alt=" Image" height="400" width="400">
-        </div>
-        {% endif %}
+
+            {% endif %}
 
             <!-- Bouton pour réagir -->
+            <div class="col-3 mb-3">
+                <div class="border border-dark rounder p-2">
+                    <a href="{{ path('post_like' , {'id' : publication.id}) }}" class="btn btn-link js-like">
 
-
-        <div class="col-3 mb-3">
-            <div class="border border-dark rounder p-2">
-                <a href="{{ path('post_like' , {'id' : publication.id}) }}" class="btn btn-link js-like">
-
-                    {# Test si la personne a aimé #}
-                    {% if publication.isLikedByUser(app.user) and app.user %}
-                        <i class="fas fa-thumbs-up"></i>
-                        <span class="js-likes">{{ publication.reactions | length }}</span>
-                        <span class="js-label ">J'aime </span>
-
-                    {% else %}
                         {# Test si la personne a aimé #}
-                        <i class="far fa-thumbs-up"></i>
-                        <span class="js-likes">{{ publication.reactions | length }}</span>
-                        <span class="js-label ">J'aime </span>
+                        {% if publication.isLikedByUser(app.user) and app.user %}
+                            <i class="fas fa-thumbs-up"></i>
+                            <span class="js-likes">{{ publication.reactions | length }}</span>
+                            <span class="js-label ">Je n'aime plus</span>
 
-                    {% endif %}
-                </a>
+                        {% else %}
+                            {# Test si la personne a aimé #}
+                            <i class="far fa-thumbs-up"></i>
+                            <span class="js-likes">{{ publication.reactions | length }}</span>
+                            <span class="js-label ">J'aime </span>
+                        {% endif %}
+                    </a>
+                    <span class="pull-right text-muted">{{ publication.commentaires | length }} commentaires</span>
+
+                </div>
             </div>
         </div>
-
         <!-- Zone commentaire -->
-        <div class="box-footer box-comments">
-            {% for commentaire in commentaires %}
-                {% if commentaire.publication == publication %}
-                    <div class="box-comment">
-                        <!-- Photo de profil de l'utilisateur -->
-                        <img class="img-circle img-sm" src="{{ asset('uploads/photo/' ~ commentaire.user.image.fichier|slice(27,37) )  }}" alt="User Image" >
-                        <div class="comment-text">
-                              <span class="username">
-                                {{ commentaire.user.username }}
-                                <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}</span>
-                              </span><!-- /.username -->
-                            {{ commentaire.text }}
-                        </div>
-                        <!-- /.comment-text -->
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
         {% include 'commentaire.html.twig' %}
     </div>
+
 {% endfor %}
 
 {% block javascripts %}
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="http://code.jquery.com/jquery.js"></script>
 
+    {# Mis a jour ajax avec axios après un clic sur j aime #}
     <script>
 
+        //Reaction publication
         function onClickBtnReaction(event) {
             event.preventDefault();
-
             const url = this.href;
-
-            const spanCount = this.querySelector('span.js-likes');
+            const nbLike = this.querySelector('span.js-likes');
+            const spanLike =this.querySelector('span.js-label');
             const icone = this.querySelector('i');
 
+            //Adaptation affichage pouce et j'aime, je n aime pas
             axios.get(url).then(function(response) {
-                spanCount.textContent = response.data.reactions;
+                nbLike.textContent = response.data.reactions;
 
                 if (icone.classList.contains('fas'))
                 {
                     icone.classList.replace('fas','far');
+                    spanLike.textContent = "J'aime "
                 }
 
                 else
                 {
                     icone.classList.replace('far' , 'fas');
+                    spanLike.textContent = "Je n'aime plus"
 
                 }
-                }
-            )
+            })
         }
-
+        //Selection bouton j aime et association avec fonction
         document.querySelectorAll('a.js-like').forEach(function(link){
             link.addEventListener('click', onClickBtnReaction);
         })
 
+        //Ajout commentaire
+        function onClickBtnCommentaire(event) {
+            //event.preventDefault();
+            const url = document.getElementById('js-form').action;
+
+            axios.post(url).then(function(response) {
+                console.log(response);
+            })
+        }
+
     </script>
+
+
 
 {% endblock %}

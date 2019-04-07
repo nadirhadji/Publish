@@ -1,0 +1,64 @@
+{# Champs pour modifier ou supprimer un élément #}
+{% if (publication.user == app.user) %}
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"> </span>
+    </button>
+
+    <ul class="dropdown-menu">
+
+        {# Modification publication #}
+        <li> <a href="#" data-toggle="modal" data-target="#modal-modifier">Modifier </a> </li>
+
+        {# Suppresion publication #}
+        <li> <a href="#" data-toggle="modal" data-target="#modal-supprimer"> Supprimer </a> </li>
+
+    </ul>
+
+    {# Fenêtre modification publication #}
+    <div class="modal fade" id="modal-modifier">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modifier la publication</h4>
+                </div>
+                <form action=" {{ path('edit_publication' , {'id' : publication.id}) }} " method="post">
+                    <div class="modal-body">
+                        <input class="form-control" type="text" name="nouvelle_publication" value="{{ publication.getContenu }}">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                        <button class="js-button btn btn-primary btn-flat" type="submit" name="envoiNouvellePublication" >Enregistrer</button>
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    {# Fenêtre suppression publication #}
+    <div class="modal fade" id="modal-supprimer">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Supprimer la publication</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Êtes-vous sûr de supprimer cette publication?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                    <a href="{{ path('suppression_publication' , {'id' : publication.id}) }}"> <button type="button" class="btn btn-primary"> Confirmer </button> </a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+{% endif %}

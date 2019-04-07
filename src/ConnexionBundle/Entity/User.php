@@ -12,6 +12,10 @@ use FOS\MessageBundle\Model\ParticipantInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use ConnexionBundle\Entity\Document;
+use ConnexionBundle\Entity\Reaction;
+use ConnexionBundle\Entity\Commentaire;
+use ConnexionBundle\Entity\CentreInteret;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
@@ -76,7 +80,12 @@ class User extends FosUser implements ParticipantInterface
     protected $image;
 
     /**
-    * @ORM\OneToMany(targetEntity="ConnexionBundle\Entity\Reaction", mappedBy="publication")
+     * @ORM\OneToMany(targetEntity="ConnexionBundle\Entity\Commentaire", mappedBy="user")
+     */
+    private $commentaires;
+
+    /**
+    * @ORM\OneToMany(targetEntity="ConnexionBundle\Entity\Reaction", mappedBy="user")
     */
         private $reactions;
 
@@ -192,7 +201,7 @@ class User extends FosUser implements ParticipantInterface
      *
      * @return User
      */
-    public function setCentresInteret(\ConnexionBundle\Entity\CentreInteret $centresInteret = null)
+    public function setCentresInteret(CentreInteret $centresInteret = null)
     {
         $this->centresInteret = $centresInteret;
         return $this;
@@ -213,7 +222,7 @@ class User extends FosUser implements ParticipantInterface
      *
      * @return User
      */
-    public function addCentresInteret(\ConnexionBundle\Entity\CentreInteret $centresInteret)
+    public function addCentresInteret(CentreInteret $centresInteret)
     {
         $this->centresInteret[] = $centresInteret;
         return $this;
@@ -225,7 +234,7 @@ class User extends FosUser implements ParticipantInterface
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeCentresInteret(\ConnexionBundle\Entity\CentreInteret $centresInteret)
+    public function removeCentresInteret(CentreInteret $centresInteret)
     {
         return $this->centresInteret->removeElement($centresInteret);
     }
@@ -258,7 +267,7 @@ class User extends FosUser implements ParticipantInterface
      *
      * @return User
      */
-    public function addReaction(\ConnexionBundle\Entity\Reaction $reaction)
+    public function addReaction(Reaction $reaction)
     {
         $this->reactions[] = $reaction;
 
@@ -272,7 +281,7 @@ class User extends FosUser implements ParticipantInterface
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeReaction(\ConnexionBundle\Entity\Reaction $reaction)
+    public function removeReaction(Reaction $reaction)
     {
         return $this->reactions->removeElement($reaction);
     }
@@ -285,5 +294,41 @@ class User extends FosUser implements ParticipantInterface
     public function getReactions()
     {
         return $this->reactions;
+    }
+
+    /**
+     * Add commentaire.
+     *
+     * @param \ConnexionBundle\Entity\Commentaire $commentaire
+     *
+     * @return User
+     */
+    public function addCommentaire(Commentaire $commentaire)
+    {
+        $this->commentaires[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire.
+     *
+     * @param \ConnexionBundle\Entity\Commentaire $commentaire
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCommentaire(Commentaire $commentaire)
+    {
+        return $this->commentaires->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaires.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
     }
 }

@@ -40,4 +40,42 @@ class PublicationController extends Controller
         return $publication;
     }
 
+    /**
+     * Permet de modifier une publication
+     *
+     * @Route("/homepage/{id}/edit_publication",name="edit_publication")
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function editAction($id)
+    {
+        if(isset($_POST['envoiNouveauPublication'])) {
+            $em = $this->getDoctrine()->getManager();
+            $publicationRepository = $em->getRepository('ConnexionBundle:Publication');
+            $publication = $publicationRepository->find($id);
+            $publication->setContenu($_POST['nouvelle_publication']);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('homepage');
+    }
+
+    /**
+     * Permet de supprimer une publication
+     *
+     * @Route("/homepage/{id}/suppresion_publication",name="suppression_publication")
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $publicationRepository = $em->getRepository('ConnexionBundle:Publication');
+        $publication = $publicationRepository->find($id);
+        $em->remove($publication);
+        $em->flush();
+
+        return $this->redirectToRoute('homepage');
+    }
+
 }
