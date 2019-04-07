@@ -4,6 +4,7 @@ use Doctrine\ORM\Mapping as ORM;
 use ConnexionBundle\Entity\User;
 use ConnexionBundle\Entity\Document;
 use ConnexionBundle\Entity\Reaction;
+use ConnexionBundle\Entity\Commentaire;
 
 /**
  * Publication
@@ -48,7 +49,12 @@ class Publication
     protected $image;
 
     /**
-     * @ORM\OneToMany(targetEntity="ConnexionBundle\Entity\Reaction", mappedBy="publication")
+     * @ORM\OneToMany(targetEntity="ConnexionBundle\Entity\Commentaire", mappedBy="publication",cascade={"remove"})
+     */
+    private $commentaires;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ConnexionBundle\Entity\Reaction", mappedBy="publication",cascade={"remove"})
      */
     private $reactions;
 
@@ -193,5 +199,41 @@ class Publication
         }
 
         return false;
+    }
+
+    /**
+     * Add commentaire.
+     *
+     * @param \ConnexionBundle\Entity\Commentaire $commentaire
+     *
+     * @return Publication
+     */
+    public function addCommentaire(Commentaire $commentaire)
+    {
+        $this->commentaires[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire.
+     *
+     * @param \ConnexionBundle\Entity\Commentaire $commentaire
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCommentaire(Commentaire $commentaire)
+    {
+        return $this->commentaires->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaires.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
     }
 }

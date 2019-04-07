@@ -29,13 +29,13 @@ class Commentaire
     private $text;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\Publication",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\Publication",cascade={"persist"},inversedBy="commentaires")
      * @ORM\JoinColumn(nullable=False)
      */
     private $publication;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"},inversedBy="commentaires")
      * @ORM\JoinColumn(nullable=False)
      */
     private $user;

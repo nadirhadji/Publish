@@ -1,9 +1,34 @@
+<div class="box-footer box-comments">
+    {% for commentaire in commentaires %}
+        {% if commentaire.publication == publication %}
+            <div class="box-comment">
+
+                <!-- Photo de profil de l'utilisateur -->
+                <img class="img-circle img-sm" src="{{ asset('uploads/photo/' ~ commentaire.user.image.fichier|slice(27,37) )  }}" alt="User Image" >
+                <div class="comment-text">
+                              <span class="username">
+                                {{ commentaire.user.username }}
+                                <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}
+                                    {% include 'modif_commentaire.html.twig' %}
+                                </span>
+
+                              </span>
+                    <!-- /.username -->
+                    {{ commentaire.text }}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
 
 {# Traitement d'un nouveau commentaire #}
-<td>
-    <form action=" {{ path('commenter') }} " method="post">
-        <input class="form-control" type="text" name="commentaire" placeholder="Type a comment">
-        <input class="form-control input-sm" type="hidden" name="publication" value="{{ publication.id }}">
-        <input class="btn btn-primary btn-flat" type="submit" value="Commenter" name="envoiCommentaire" >
-    </form>
-</td>
+<form id="js-form" class="js-form" action=" {{ path('commentaire' , {'id' : publication.id}) }} " method="post">
+    <input class="form-control" type="text" name="commentaire" placeholder="Type a comment">
+    <input onclick="onClickBtnCommentaire(event)" class="js-button btn btn-primary btn-flat" type="submit" value="Commenter" name="envoiCommentaire" >
+</form>
+
+
+
+
+
+

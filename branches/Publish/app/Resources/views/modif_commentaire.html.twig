@@ -1,0 +1,64 @@
+{# Champs pour modifier ou supprimer un élément #}
+{% if (commentaire.user == app.user) or (publication.user == app.user) %}
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"> </span>
+    </button>
+
+    <ul class="dropdown-menu">
+
+        {# Modification commentaire #}
+        <li> <a href="#" data-toggle="modal" data-target="#modal-modifier">Modifier </a> </li>
+
+        {# Suppresion commentaire #}
+        <li> <a href="#" data-toggle="modal" data-target="#modal-supprimer"> Supprimer </a> </li>
+
+    </ul>
+
+    {# Fenêtre modification commentaire #}
+    <div class="modal fade" id="modal-modifier">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modifier le commentaire</h4>
+                </div>
+                <form action=" {{ path('edit_commentaire' , {'id' : commentaire.id}) }} " method="post">
+                    <div class="modal-body">
+                        <input class="form-control" type="text" name="nouveau_commentaire" value="{{ commentaire.getText }}">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                        <button class="js-button btn btn-primary btn-flat" type="submit" name="envoiNouveauCommentaire" >Enregistrer</button>
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    {# Fenêtre suppression commentaire #}
+    <div class="modal fade" id="modal-supprimer">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Supprimer le commentaire</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Êtes-vous sûr de supprimer ce commentaire?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                    <a href="{{ path('suppression_commentaire' , {'id' : commentaire.id}) }}"> <button type="button" class="btn btn-primary"> Confirmer </button> </a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+{% endif %}

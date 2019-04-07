@@ -1,17 +1,9 @@
 <?php
 namespace ConnexionBundle\Controller;
-use ConnexionBundle\Entity\Publication;
-use ConnexionBundle\Form\DocumentType;
 use ConnexionBundle\Form\PublicationType;
-use ConnexionBundle\Entity\User;
-use ConnexionBundle\Repository\UserRepository;
-use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\Extension\Core\DataMapper\RadioListMapper;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use ConnexionBundle\Controller\PublicationController;
 
 class ConnexionController extends Controller
 {
@@ -43,9 +35,9 @@ class ConnexionController extends Controller
             }
         }
         //Affichage publication et commentaire
-        $res = $objet_publication->indexAction(($em));
-        $listPublications=$res[1];
-        $listCommentaires=$res[0];
+        $données_BDD = $objet_publication->indexAction(($em));
+        $listPublications=$données_BDD[1];
+        $listCommentaires=$données_BDD[0];
 
         //Nombre j aime et commentaire
         $nbJAime = count ($em->getRepository('ConnexionBundle:Reaction')->findByPublication(226));

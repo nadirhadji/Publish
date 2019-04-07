@@ -3,6 +3,9 @@ namespace ConnexionBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 /**
  * Document
  *
@@ -23,8 +26,12 @@ class Document
      * @var string
      *
      * @ORM\Column(name="fichier", type="string", length=255)
+     * @Assert\File(
+     *     mimeTypes={"image/png" ,"image/jpg","image/jpeg"},
+     *     mimeTypesMessage = "Veuillez insérer un format valide (png,jpg,jpeg)")
      */
     private $fichier;
+
     /**
      * @var string
      *
@@ -90,12 +97,13 @@ class Document
         return $this->alt;
     }
 
-    /*
+    /**
      * Set fichier.
      *
      * @param string $fichier
      *
      * @return Document
+     */
 
     public function setFichier(UploadedFile $fichier)
     {
@@ -111,14 +119,15 @@ class Document
         //$fichier->move('C:\wamp\www\2018-l3ac1\branches\Publish\web\uploads\photo');
         $fichier->move('/Applications/MAMP/htdocs/projet/2018-l3ac1/branches/Publish/web/uploads/photo');
         return $this;
-    }*/
+    }
 
-
+    /*
      public function setFichier($fichier)
     {
         $this->fichier = $fichier;
         return $this;
     }
+    */
 
 
 
