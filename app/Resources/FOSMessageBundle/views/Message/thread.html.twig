@@ -1,27 +1,66 @@
 {% extends 'FOSMessageBundle::layout.html.twig' %}
 
 {% block fos_message_content %}
-
+<div class="col-md-8 col-sm-push-2">
 <h2>{{ thread.subject }}</h2>
 
 {% for message in thread.messages %}
-    <div class="messenger_thread_message">
-        <div class="messenger_thread_message_info">
-            {% trans with {'%sender%': message.sender|e, '%date%': message.createdAt|date} from 'FOSMessageBundle' %}message_info{% endtrans %}
-        </div>
 
-        <div class="messenger_thread_message_body" id="message_{{ message.id }}">
-            {{ message.body }}
-        </div>
-    </div>
+            <!-- Conversations are loaded here -->
+            {#<div class="direct-chat-messages">#}
+                {% if message.sender == app.user %}
+                <!-- Message. Default to the left -->
+                <div class="direct-chat-msg right">
+                    <!-- /.direct-chat-info -->
+                    <img class="direct-chat-img" src="{{ asset('uploads/photo/' ~ message.sender.image.fichier|slice(27,37) ) }}" alt="Message User Image"><!-- /.direct-chat-img -->
+                    <div class="direct-chat-text ">
+                        {{ message.body }}
+                    </div>
+                    <div class="direct-chat-info clearfix">
+                        {% trans with {'%sender%': message.sender|e, '%date%': message.createdAt|date} from 'FOSMessageBundle' %}message_info{% endtrans %}
+                    </div>
+                    <!-- /.direct-chat-text -->
+                </div>
+                <!-- /.direct-chat-msg -->
+
+
+                {% else %}
+                    <!-- Message. Default to the left -->
+                    <div class="direct-chat-msg">
+                        <!-- /.direct-chat-info -->
+                        <img class="direct-chat-img" src="{{ asset('uploads/photo/' ~ message.sender.image.fichier|slice(27,37) ) }}" alt="Message User Image">
+                        <div class="direct-chat-text">
+                            {{ message.body }}
+                        </div>
+                        <div class="direct-chat-info clearfix">
+                            {% trans with {'%sender%': message.sender|e, '%date%': message.createdAt|date} from 'FOSMessageBundle' %}message_info{% endtrans %}
+                        </div>
+                        <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+                {% endif %}
+                <!-- /.direct-chat-msg -->
+            {#</div>#}
 {% endfor %}
 
-<h3>{% trans from 'FOSMessageBundle' %}reply{% endtrans %}</h3>
+<div class="box-footer">
+    <h3>{% trans from 'FOSMessageBundle' %}Envoyer{% endtrans %}</h3>
 
-<form action="{{ url('fos_message_thread_view', {'threadId': thread.id}) }}" method="post">
-    {{ form_widget(form) }}
 
-    <input type="submit" />
-</form>
+    {{ form_start(form, {'method': 'post', 'action': path('fos_message_thread_view', {'threadId': thread.id} ), 'attr': {'class': 'fos_user_registration_register','novalidate':'novalidate'}}) }}
+    <div class="input-group">
+    {{ form_widget(form.body, {'attr': {'class': 'form-control '}} ) }}
+        <span class="input-group-btn">
+             <button type="submit" class="btn btn-primary btn-flat">Valider</button>
+        </span>
+    </div>
+        {{ form_end(form) }}
+
+
+</div>
+
+    </div>
+
 
 {% endblock %}
+
