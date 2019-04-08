@@ -137,7 +137,7 @@ class RssController extends Controller
 
         if ($ci[0]->getIsMusic()) {
 
-            $RSSSport = $this->rssLoader('https://www.nouvelobs.com/mode/rss.xml');
+            $RSSSport = $this->rssLoader('https://www.nouvelobs.com/teleobs/rss.xml');
 
         }
 
