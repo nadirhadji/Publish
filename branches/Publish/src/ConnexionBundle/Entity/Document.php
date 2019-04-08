@@ -96,7 +96,7 @@ class Document
     {
         return $this->alt;
     }
-
+    /**
     /**
      * Set fichier.
      *
@@ -105,6 +105,7 @@ class Document
      * @return Document
      */
 
+    /*
     public function setFichier(UploadedFile $fichier)
     {
         $this->fichier = $fichier;
@@ -128,6 +129,7 @@ class Document
         return $this;
     }
     */
+
 
 
 

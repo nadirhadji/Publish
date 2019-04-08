@@ -9,6 +9,7 @@ namespace ConnexionBundle\Entity;
 use FOS\UserBundle\Model\User as FosUser;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use FOS\MessageBundle\Model\ParticipantInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use ConnexionBundle\Entity\Document;
@@ -260,40 +261,16 @@ class User extends FosUser implements ParticipantInterface
         return $this->image;
     }
 
-    /**
-     * Add reaction.
-     *
-     * @param \ConnexionBundle\Entity\Reaction $reaction
-     *
-     * @return User
-     */
-    public function addReaction(Reaction $reaction)
+    public function __toString()
     {
-        $this->reactions[] = $reaction;
 
-        return $this;
+        return $this->getFirstname();
     }
 
-    /**
-     * Remove reaction.
-     *
-     * @param \ConnexionBundle\Entity\Reaction $reaction
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeReaction(Reaction $reaction)
+    public function getJSON()
     {
-        return $this->reactions->removeElement($reaction);
-    }
-
-    /**
-     * Get reactions.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getReactions()
-    {
-        return $this->reactions;
+        $data = ['text' => $this->getUsername() , 'gender' => $this->getGender()];
+        return new JsonResponse($data,200);
     }
 
     /**

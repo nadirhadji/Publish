@@ -29,24 +29,41 @@ class FluxRSS
     private $nom;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="text")
+     */
+    private $url;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateFluxRss", type="datetime")
      */
     private $dateFluxRss;
 
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="urlimage", type="string", length=255)
+     */
+        private $URLImage;
+
+
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255)
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="text")
      */
     private $ville;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\CentreInteret",cascade={"persist"})
-     * @ORM\JoinColumn(nullable=False)
-     */
-    private $centreInteret;
 
 
     /**
@@ -132,26 +149,74 @@ class FluxRSS
     }
 
     /**
-     * Set centreInteret.
+     * Set uRLImage.
      *
-     * @param \ConnexionBundle\Entity\CentreInteret $centreInteret
+     * @param string $uRLImage
      *
      * @return FluxRSS
      */
-    public function setCentreInteret(\ConnexionBundle\Entity\CentreInteret $centreInteret)
+    public function setURLImage($uRLImage)
     {
-        $this->centreInteret = $centreInteret;
+        $this->URLImage = $uRLImage;
 
         return $this;
     }
 
     /**
-     * Get centreInteret.
+     * Get uRLImage.
      *
-     * @return \ConnexionBundle\Entity\CentreInteret
+     * @return string
      */
-    public function getCentreInteret()
+    public function getURLImage()
     {
-        return $this->centreInteret;
+        return $this->URLImage;
+    }
+
+    /**
+     * Set description.
+     *
+     * @param string $description
+     *
+     * @return FluxRSS
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description.
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set url.
+     *
+     * @param string $url
+     *
+     * @return FluxRSS
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url.
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }
