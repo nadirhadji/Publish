@@ -15,111 +15,106 @@ class Invitation
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="myFriends")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $user;
+
+    /**
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="friendsWithMe")
+     * @ORM\Id
+     */
+    private $friend;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="statut", type="boolean")
+     * @ORM\Column(name="is_accepted", type="boolean")
      */
-    private $statut;
-
-    /**
-     * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
-     * @ORM\JoinColumn(nullable=False)
-     */
-    private $expediteur;
-
-    /**
-     * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\User",cascade={"persist"})
-     * @ORM\JoinColumn(nullable=False)
-     */
-    private $destinataire;
+    private $isAccepted;
 
 
     /**
-     * Get id.
+     * Set user.
+     *
+     * @param int $user
+     *
+     * @return Friendship
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user.
      *
      * @return int
      */
-    public function getId()
+    public function getUser()
     {
-        return $this->id;
+        return $this->user;
     }
 
     /**
-     * Set statut.
+     * Set friend.
      *
-     * @param bool $statut
+     * @param int $friend
      *
-     * @return Invitation
+     * @return Friendship
      */
-    public function setStatut($statut)
+    public function setFriend($friend)
     {
-        $this->statut = $statut;
+        $this->friend = $friend;
 
         return $this;
     }
 
     /**
-     * Get statut.
+     * Get friend.
+     *
+     * @return int
+     */
+    public function getFriends()
+    {
+        return $this->friend;
+    }
+
+    /**
+     * Set isAccepted.
+     *
+     * @param bool $isAccepted
+     *
+     * @return Friendship
+     */
+    public function setIsAccepted($isAccepted)
+    {
+        $this->isAccepted = $isAccepted;
+
+        return $this;
+    }
+
+    /**
+     * Get isAccepted.
      *
      * @return bool
      */
-    public function getStatut()
+    public function getIsAccepted()
     {
-        return $this->statut;
+        return $this->isAccepted;
     }
 
     /**
-     * Set expéditeur.
-     *
-     * @param \ConnexionBundle\Entity\User $expéditeur
-     *
-     * @return Invitation
-     */
-    public function setExpediteur(\ConnexionBundle\Entity\User $expediteur)
-    {
-        $this->expediteur = $expediteur;
-
-        return $this;
-    }
-
-    /**
-     * Get expéditeur.
+     * Get friend.
      *
      * @return \ConnexionBundle\Entity\User
      */
-    public function getExpediteur()
+    public function getFriend()
     {
-        return $this->expediteur;
-    }
-
-    /**
-     * Set destinataire.
-     *
-     * @param \ConnexionBundle\Entity\User $destinataire
-     *
-     * @return Invitation
-     */
-    public function setDestinataire(\ConnexionBundle\Entity\User $destinataire)
-    {
-        $this->destinataire = $destinataire;
-
-        return $this;
-    }
-
-    /**
-     * Get destinataire.
-     *
-     * @return \ConnexionBundle\Entity\User
-     */
-    public function getDestinataire()
-    {
-        return $this->destinataire;
+        return $this->friend;
     }
 }

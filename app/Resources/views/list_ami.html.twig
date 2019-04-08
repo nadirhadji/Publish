@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1>Liste d'ami</h1>
+
+        <table class="table table-striped">
+            <thead>
+            <tbody>
+            {% if friends is empty %}
+                <p>Pas d'ami</p>
+            {% else %}
+                {% for user in friends %}
+                    {{ user.username}}
+                {% endfor %}
+            {% endif %}
+           {# {{dump(users)}}
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.id }}</td>
+
+                </tr>
+            {% endfor %}#}
+            </tbody>
+
+            </thead>
+
+        </table>
+    </div>
+
+{% endblock %}
