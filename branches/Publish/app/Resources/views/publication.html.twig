@@ -1,30 +1,22 @@
 {% include 'nouvelle_publication.html.twig' %}
-
 {# Boucle d'affichage des publications selon le contenu de la BDD #}
 {% for publication in publications %}
-
     <!-- Zone Publication-->
     <div class="box box-widget ">
         <div class="box-header with-border">
             <div class="user-block">
-
                 <!-- Zone Photo de profil-->
                 <img class="img-circle" src="{{ asset('uploads/photo/' ~ publication.user.image.fichier|slice(27,37) )  }}" alt="User Image">
                 <span class="username"><a href="{{ path('profil', {'id' : publication.user.id}) }}">{{ publication.user.username }}</a></span>
                 <span class="description">Shared publicly - {{ publication.datePublication|date('d/m/Y h:m') }}</span>
             </div>`
-
             <!-- Bouton pour fermer ou reduire une publication -->
             <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-
                 {# Champs pour modifier ou supprimer un élément #}
-
                 {% include 'modif_publication.html.twig' %}
-
             </div>
         </div>
         <!-- Contenu de la publication -->
@@ -32,23 +24,18 @@
             <p>{{ publication.contenu }} </p>
             {#Affichage image si elle existe#}
             {% if publication.image is not null %}
-
                 {# {{ publication.image.fichier|slice(12,23) }} Difference entre Mac et windows faire attention#}
                 <img class="img-responsive" src="{{ asset('uploads/photo/' ~ publication.image.fichier|slice(27,37) )  }}" alt=" Image" height="400" width="400">
-
             {% endif %}
-
             <!-- Bouton pour réagir -->
             <div class="col-3 mb-3">
                 <div class="border border-dark rounder p-2">
                     <a href="{{ path('post_like' , {'id' : publication.id}) }}" class="btn btn-link js-like">
-
                         {# Test si la personne a aimé #}
                         {% if publication.isLikedByUser(app.user) and app.user %}
                             <i class="fas fa-thumbs-up"></i>
                             <span class="js-likes">{{ publication.reactions | length }}</span>
                             <span class="js-label ">Je n'aime plus</span>
-
                         {% else %}
                             {# Test si la personne a aimé #}
                             <i class="far fa-thumbs-up"></i>
@@ -57,23 +44,17 @@
                         {% endif %}
                     </a>
                     <span class="pull-right text-muted">{{ publication.commentaires | length }} commentaires</span>
-
                 </div>
             </div>
         </div>
         <!-- Zone commentaire -->
         {% include 'commentaire.html.twig' %}
     </div>
-
 {% endfor %}
-
 {% block javascripts %}
-
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
     {# Mis a jour ajax avec axios après un clic sur j aime #}
     <script>
-
         //Reaction publication
         function onClickBtnReaction(event) {
             event.preventDefault();
@@ -81,22 +62,18 @@
             const nbLike = this.querySelector('span.js-likes');
             const spanLike =this.querySelector('span.js-label');
             const icone = this.querySelector('i');
-
             //Adaptation affichage pouce et j'aime, je n aime pas
             axios.get(url).then(function(response) {
                 nbLike.textContent = response.data.reactions;
-
                 if (icone.classList.contains('fas'))
                 {
                     icone.classList.replace('fas','far');
                     spanLike.textContent = "J'aime "
                 }
-
                 else
                 {
                     icone.classList.replace('far' , 'fas');
                     spanLike.textContent = "Je n'aime plus"
-
                 }
             })
         }
@@ -104,19 +81,13 @@
         document.querySelectorAll('a.js-like').forEach(function(link){
             link.addEventListener('click', onClickBtnReaction);
         })
-
         //Ajout commentaire
         function onClickBtnCommentaire(event) {
             //event.preventDefault();
             const url = document.getElementById('js-form').action;
-
             axios.post(url).then(function(response) {
                 console.log(response);
             })
         }
-
     </script>
-
-
-
 {% endblock %}
