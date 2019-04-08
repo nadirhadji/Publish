@@ -45,7 +45,8 @@ class CommentaireController extends Controller
 
         return $this->json([
             'code' => 304,
-            'message' => "commentaire non recu"
+            'message' => "commentaire non recu",
+
         ], 200);
     }
 

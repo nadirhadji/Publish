@@ -10,7 +10,7 @@
 
                 <!-- Zone Photo de profil-->
                 <img class="img-circle" src="{{ asset('uploads/photo/' ~ publication.user.image.fichier|slice(27,37) )  }}" alt="User Image">
-                <span class="username"><a href="#">{{ publication.user.username }}</a></span>
+                <span class="username"><a href="{{ path('profil', {'id' : publication.user.id}) }}">{{ publication.user.username }}</a></span>
                 <span class="description">Shared publicly - {{ publication.datePublication|date('d/m/Y h:m') }}</span>
             </div>`
 
