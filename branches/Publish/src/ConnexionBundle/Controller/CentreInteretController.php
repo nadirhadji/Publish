@@ -109,13 +109,11 @@ class CentreInteretController extends Controller
                 $request->getSession()->getFlashBag()->add('notice', 'CentreInteret bien enregistrée.');
 
                 // Redirection vers la page d'accueil
-                return $this->redirectToRoute('redirection');
+                return $this->redirectToRoute('home-rss');
             }
         }
 
-
         return $this->render('CI.html.twig',array('ci' => $ci , 'form' => $formCI->createView() ) );
-
 
     }
 
