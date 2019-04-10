@@ -190,16 +190,6 @@ class Publication
         return $this->reactions;
     }
 
-    public function isLikedByUser(User $user)
-    {
-        foreach ($this->reactions as $reaction)
-        {
-            if ($reaction->getUser() == $user)
-                return true;
-        }
-
-        return false;
-    }
 
     /**
      * Add commentaire.
@@ -236,4 +226,17 @@ class Publication
     {
         return $this->commentaires;
     }
+
+
+    public function isLikedByUser(User $user)
+    {
+        foreach ($this->reactions as $reaction)
+        {
+            if ($reaction->getUser() == $user)
+                return true;
+        }
+
+        return false;
+    }
+
 }

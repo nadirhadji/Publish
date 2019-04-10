@@ -7,15 +7,15 @@
     <ul class="dropdown-menu">
 
         {# Modification commentaire #}
-        <li> <a href="#" data-toggle="modal" data-target="#modal-modifier">Modifier </a> </li>
+        <li> <a href="#" data-toggle="modal" data-target="#modal-modifier_commentaire">Modifier </a> </li>
 
         {# Suppresion commentaire #}
-        <li> <a href="#" data-toggle="modal" data-target="#modal-supprimer"> Supprimer </a> </li>
+        <li> <a href="#" data-toggle="modal" data-target="#modal-supprimer_commentaire"> Supprimer </a> </li>
 
     </ul>
 
     {# Fenêtre modification commentaire #}
-    <div class="modal fade" id="modal-modifier">
+    <div class="modal fade" id="modal-modifier_commentaire">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -25,7 +25,7 @@
                 </div>
                 <form action=" {{ path('edit_commentaire' , {'id' : commentaire.id}) }} " method="post">
                     <div class="modal-body">
-                        <input class="form-control" type="text" name="nouveau_commentaire" value="{{ commentaire.getText }}">
+                        <input class="form-control" type="text" name="nouveau_commentaire" value="{{ commentaire.text }}">
                     </div>
 
                     <div class="modal-footer">
@@ -41,7 +41,7 @@
     </div>
 
     {# Fenêtre suppression commentaire #}
-    <div class="modal fade" id="modal-supprimer">
+    <div class="modal fade" id="modal-supprimer_commentaire">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

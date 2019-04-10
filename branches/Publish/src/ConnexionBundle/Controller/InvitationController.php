@@ -15,114 +15,144 @@ class InvitationController extends Controller
 {
 
     /**
-     * @Route("/amis",name="amis")
+     * Affichage de ma liste d'ami
+     *
+     * @Route("/mes_amis",name="mes_amis")
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Exception
      */
     public function indexAction()
 
     {
         $em = $this->getDoctrine()->getManager();
-        $addFriend = $em->getRepository('ConnexionBundle:Invitation');
+        $user = $this->getUser();
+        $invitationRepo = $em->getRepository('ConnexionBundle:Invitation');
+        $listInvitation = $invitationRepo->findAll();
+        $mesAmis = array();
 
+        foreach ($listInvitation as $invitation)
+        {
+            if ($invitation->getExpediteur()==$user  && $invitation->getIsAccepted())
+                array_push($mesAmis,$invitation->getDestinataire());
 
-        $users = $this->get('fos_user.user_manager');
-        $allUsers = $users->findUsers();
+            if ($invitation->getDestinataire()==$user   && $invitation->getIsAccepted())
+                array_push($mesAmis,$invitation->getExpediteur());
+        }
 
         return $this->render('list_ami.html.twig',array(
-            'users' =>$allUsers
+            'mesAmis' =>$mesAmis
         ));
 
     }
+
     /**
-     * @Route("/amis/{id}", name="add")
+     * Permet d'ajouter un ami
+     *
+     * @Route("/ajout_ami/{id}", name="ajout_ami")
      * @param User $user
+     * @return \Symfony\Component\HttpFoundation\Response
      */
 
-    public function addFriend($id)
+    public function addFriendAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $users = $this->getUser();
-        $user2 = $em->getRepository('ConnexionBundle:User')->find($id);
+        $user = $this->getUser();
+        $ami = $em->getRepository('ConnexionBundle:User')->find($id);
 
-
-        $adduser = new Invitation();
-        $adduser->setFriend($user2)
-            ->setUser($users)
+        //On crée l'invitation
+        $invitation = new Invitation();
+        $invitation->setExpediteur($user)
+            ->setDestinataire($ami)
             ->setIsAccepted(false);
 
-        $em->persist($adduser);
+        $em->persist($invitation);
         $em->flush();
 
+        return $this->redirectToRoute('profil', array('id' => $id));
+
     }
 
     /**
-     * @Route("/list/", name="list")
+     * Permet d'afficher les demandes en attente
+     *
+     * @Route("/Attente", name="attente")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-
-    public function amiListAction()
-    {
-        $friends = [];
-
-        $repository = $this->getDoctrine()->getRepository('ConnexionBundle:Invitation');
-
-        $friendship = $repository->findby(['user' => $this->getUser(),'isAccepted' => true]);
-
-        foreach ($friendship as $friend) {
-            array_push($friends, $friend->getFriend());
-        }
-
-        return $this->render('list_ami.html.twig', [
-            'friends' => $friends
-        ]);
-    }
-
-    /**
-     * @Route("/Attente/", name="attente")
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-
     public function attenteAction()
     {
-        $friends = [];
-
-        $repository = $this->getDoctrine()->getRepository('ConnexionBundle:Invitation');
-
-        $friendship = $repository->findby(['user' => $this->getUser(),'isAccepted' => false]);
-
-        foreach ($friendship as $friend) {
-            array_push($friends, $friend->getFriend());
-        }
+        $mesInvitations = $this->mesInvitationsEnAttente();
+        $leurInvitations = $this->leurInvitationsEnAttente();
 
         return $this->render('list_attente.html.twig', [
-            'friends' => $friends
+            'mesInvitations' => $mesInvitations,
+            'leurInvitations' => $leurInvitations
         ]);
     }
 
     /**
-     * @Route("/accepter", name="accepter")
+     * Retourne un tableau avec la liste de mes invitations en attente de confirmation par les autres
+     * @return array
+     */
+    public function mesInvitationsEnAttente()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $invitationRepo = $em->getRepository('ConnexionBundle:Invitation');
+        $listInvitation = $invitationRepo->findAll();
+        $mesInvitation = array();
+
+        foreach ($listInvitation as $invitation)
+        {
+            if ($invitation->getExpediteur()==$user && !($invitation->getIsAccepted()))
+                array_push($mesInvitation,$invitation->getDestinataire());
+        }
+        return $mesInvitation;
+    }
+
+    /**
+     * Retourne un tableau avec la liste des invitations qu'on m'a envoyé
+     * @return array
+     */
+    public function leurInvitationsEnAttente()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $invitationRepo = $em->getRepository('ConnexionBundle:Invitation');
+        $listInvitation = $invitationRepo->findAll();
+        $leurInvitation = array();
+
+        foreach ($listInvitation as $invitation)
+        {
+            if ($invitation->getDestinataire()==$user && !($invitation->getIsAccepted()))
+                array_push($leurInvitation,$invitation->getExpediteur());
+        }
+        return $leurInvitation;
+    }
+
+    /**
+     * Permet d'accepter une invitation
+     * @Route("/accepter_ami/{id}", name="accepter_ami")
      * @return \Symfony\Component\HttpFoundation\Response
      */
 
-    public function accepterAction()
+    public function accepterAction($id)
     {
-        $friends = [];
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $invitationRepo = $em->getRepository('ConnexionBundle:Invitation');
+        $ami = $em->getRepository('ConnexionBundle:User')->find($id);
+        $listInvitation = $invitationRepo->findAll();
 
-        $repository = $this->getDoctrine()->getRepository('ConnexionBundle:Invitation');
 
-        $friendship = $repository->findby(['friend' => $this->getUser(),'isAccepted' => false]);
-
-        foreach ($friendship as $friend) {
-            array_push($friends, $friend->getFriend());
+        foreach ($listInvitation as $invitation)
+        {
+            if ($invitation->getExpediteur()==$ami && $invitation->getDestinataire()==$user)
+            {
+                $invitation->setIsAccepted(true);
+                $em->persist($invitation);
+                $em->flush();
+            }
         }
-
-        return $this->render('list_attente.html.twig', [
-            'friends' => $friends
-        ]);
-
-
+        return $this->redirectToRoute('profil', array('id' => $id));
     }
-
 
 }

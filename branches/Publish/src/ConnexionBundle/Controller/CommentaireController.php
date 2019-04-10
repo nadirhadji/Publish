@@ -15,7 +15,6 @@ class CommentaireController extends Controller
      *
      * @Route("/homepage/{id}/commentaires",name="commentaire")
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function addAction($id)
     {
@@ -34,20 +33,9 @@ class CommentaireController extends Controller
             $commentaire->setPublication($publication);
             $em->persist($commentaire);
             $em->flush();
-
-
-            return $this->json([
-                'code' => 200,
-                'message' => 'commentaire bien ajouté',
-                'commentaires' => $commentaireRepository->count(['publication' => $publication])
-            ], 200);
         }
 
-        return $this->json([
-            'code' => 304,
-            'message' => "commentaire non recu",
-
-        ], 200);
+        return $this->redirect('homepage');
     }
 
     /**

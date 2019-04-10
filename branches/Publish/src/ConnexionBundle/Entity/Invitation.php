@@ -13,20 +13,27 @@ use Doctrine\ORM\Mapping as ORM;
 class Invitation
 {
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="myFriends")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $user;
+    protected $id;
 
     /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="friendsWithMe")
-     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\User", inversedBy="mesInvitationsEnvoyees")
      */
-    private $friend;
+    private $expediteur;
+
+    /**
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\User", inversedBy="mesInvitationsRecues")
+     */
+    private $destinataire;
 
     /**
      * @var bool
@@ -34,55 +41,6 @@ class Invitation
      * @ORM\Column(name="is_accepted", type="boolean")
      */
     private $isAccepted;
-
-
-    /**
-     * Set user.
-     *
-     * @param int $user
-     *
-     * @return Friendship
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user.
-     *
-     * @return int
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set friend.
-     *
-     * @param int $friend
-     *
-     * @return Friendship
-     */
-    public function setFriend($friend)
-    {
-        $this->friend = $friend;
-
-        return $this;
-    }
-
-    /**
-     * Get friend.
-     *
-     * @return int
-     */
-    public function getFriends()
-    {
-        return $this->friend;
-    }
 
     /**
      * Set isAccepted.
@@ -108,13 +66,52 @@ class Invitation
         return $this->isAccepted;
     }
 
+
     /**
-     * Get friend.
+     * Set expediteur.
+     *
+     * @param \ConnexionBundle\Entity\User $expediteur
+     *
+     * @return Invitation
+     */
+    public function setExpediteur(\ConnexionBundle\Entity\User $expediteur)
+    {
+        $this->expediteur = $expediteur;
+
+        return $this;
+    }
+
+    /**
+     * Get expediteur.
      *
      * @return \ConnexionBundle\Entity\User
      */
-    public function getFriend()
+    public function getExpediteur()
     {
-        return $this->friend;
+        return $this->expediteur;
+    }
+
+    /**
+     * Set destinataire.
+     *
+     * @param \ConnexionBundle\Entity\User $destinataire
+     *
+     * @return Invitation
+     */
+    public function setDestinataire(\ConnexionBundle\Entity\User $destinataire)
+    {
+        $this->destinataire = $destinataire;
+
+        return $this;
+    }
+
+    /**
+     * Get destinataire.
+     *
+     * @return \ConnexionBundle\Entity\User
+     */
+    public function getDestinataire()
+    {
+        return $this->destinataire;
     }
 }

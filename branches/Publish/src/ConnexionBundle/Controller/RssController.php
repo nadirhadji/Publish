@@ -125,7 +125,7 @@ class RssController extends Controller
 
         if ($ci[0]->getIsSport()) {
 
-            $RSSSport = $this->rssLoader('https://www.lequipe.fr/rss/actu_rss.xml');
+            $RSSSport = $this->rssLoader('http://o.nouvelobs.com/voyage/rss.xml');
 
         }
 

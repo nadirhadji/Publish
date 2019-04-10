@@ -227,16 +227,16 @@ desired effect
                 <li class="header">MENU</li>
                 <!-- Optionally, you can add icons to the links -->
                 <li class="active"><a href="{{ path('fos_message_inbox') }}"><i class="fa fa-fw fa-envelope"></i> <span>Message</span></a></li>
-                <li><a href="#"><i class="fa fa-fw fa-newspaper-o"></i> <span>Actualité</span></a></li>
+                <li><a href="{{ path('register-CI') }}"><i class="fa fa-fw fa-newspaper-o"></i> <span>Actualité</span></a></li>
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-fw fa-users"></i> <span>Multilevel</span>
+                    <a href="#"><i class="fa fa-fw fa-users"></i> <span>Amis</span>
                             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="{{ path('attente') }}">En attente</a></li>
-                            <li><a href="{{ path('list') }}">Liste</a></li>
+                            <li><a href="{{ path('mes_amis') }}">Liste</a></li>
                         </ul>
                 </li>
             </ul>

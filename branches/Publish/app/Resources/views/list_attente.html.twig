@@ -4,16 +4,38 @@
 
     <div class="row">
         <div class="col-lg-6">
-            <h3>Liste d'attente d'acceptation</h3>
-            {% if friends is empty %}
+            <h3>Mes invitations en attente</h3>
+            {% for invitation in mesInvitations %}
+                {{ invitation.username }}
+            {% endfor %}
+
+
+          {#  {% if friends is empty %}
                 <p>Pas d'ami</p>
             {% else %}
                 {% for user in friends %}
                     {{ user.username}}
                 {% endfor %}
-            {% endif %}
+            {% endif %}#}
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-lg-6">
+            <h3>Leur invitations en attente</h3>
+
+            {% for invitation in leurInvitations %}
+            {{ invitation.username }}
+            {% endfor %}
+
+            {#  {% if friends is empty %}
+                  <p>Pas d'ami</p>
+              {% else %}
+                  {% for user in friends %}
+                      {{ user.username}}
+                  {% endfor %}
+              {% endif %}#}
+        </div>
+    </div>
 
 {% endblock %}

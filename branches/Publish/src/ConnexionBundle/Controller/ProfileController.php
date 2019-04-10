@@ -61,33 +61,5 @@ class ProfileController extends Controller
         ));
     }
 
-    /**
-     * @Route("/add/{id}", name="add_friend")
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function addFriend($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $users = $this->getUser();
-        $user2 = $em->getRepository('ConnexionBundle:User')->find($id);
 
-
-        $adduser = new Invitation();
-        $adduser->setFriend($user2)
-            ->setUser($users)
-            ->setIsAccepted(false);
-
-        $em->persist($adduser);
-        $em->flush();
-
-    }
-
-    public function isFrindWith($user) {
-
-        $em = $this->getDoctrine()->getManager();
-        $frinds = $em->getRepository('ConnexionBundle:Invitation')->find(['u']);
-
-
-
-    }
 }

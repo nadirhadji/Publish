@@ -49,7 +49,7 @@ class PublicationController extends Controller
      */
     public function editAction($id)
     {
-        if(isset($_POST['envoiNouveauPublication'])) {
+        if(isset($_POST['envoiNouvellePublication'])) {
             $em = $this->getDoctrine()->getManager();
             $publicationRepository = $em->getRepository('ConnexionBundle:Publication');
             $publication = $publicationRepository->find($id);

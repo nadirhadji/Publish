@@ -75,6 +75,7 @@ class User extends FosUser implements ParticipantInterface
      * @ORM\ManyToMany(targetEntity="ConnexionBundle\Entity\CentreInteret",cascade={"persist"})
      */
     private $centresInteret;
+
     /**
      * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\Document",cascade={"persist"})
      */
@@ -82,19 +83,15 @@ class User extends FosUser implements ParticipantInterface
 
     /**
      * Many Users have Many Users.
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="myFriends")
+     * @ORM\OneToMany(targetEntity="ConnexionBundle\Entity\Invitation", mappedBy="expediteur")
      */
-    private $friendsWithMe;
+    private $mesInvitationsEnvoyees;
 
     /**
      * Many Users have many Users.
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
-     * @ORM\JoinTable(name="friends",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="friend_user_id", referencedColumnName="id")}
-     *      )
+     * @ORM\OneToMany(targetEntity="ConnexionBundle\Entity\Invitation", mappedBy="destinataire")
      */
-    private $myFriends;
+    private $mesInvitationsRecues;
 
     /**
      * @ORM\OneToMany(targetEntity="ConnexionBundle\Entity\Commentaire", mappedBy="user")
@@ -106,15 +103,7 @@ class User extends FosUser implements ParticipantInterface
     */
         private $reactions;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
     /**
      * @param mixed $gender
      */
@@ -326,4 +315,174 @@ class User extends FosUser implements ParticipantInterface
     {
         return $this->commentaires;
     }
+
+    /**
+     * Add reaction.
+     *
+     * @param \ConnexionBundle\Entity\Reaction $reaction
+     *
+     * @return User
+     */
+    public function addReaction(\ConnexionBundle\Entity\Reaction $reaction)
+    {
+        $this->reactions[] = $reaction;
+
+        return $this;
+    }
+
+    /**
+     * Remove reaction.
+     *
+     * @param \ConnexionBundle\Entity\Reaction $reaction
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeReaction(\ConnexionBundle\Entity\Reaction $reaction)
+    {
+        return $this->reactions->removeElement($reaction);
+    }
+
+    /**
+     * Get reactions.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReactions()
+    {
+        return $this->reactions;
+    }
+
+    /**
+     * Add mesInvitationsEnvoyee.
+     *
+     * @param \ConnexionBundle\Entity\Invitation $mesInvitationsEnvoyee
+     *
+     * @return User
+     */
+    public function addMesInvitationsEnvoyee(\ConnexionBundle\Entity\Invitation $mesInvitationsEnvoyee)
+    {
+        $this->mesInvitationsEnvoyees[] = $mesInvitationsEnvoyee;
+
+        return $this;
+    }
+
+    /**
+     * Remove mesInvitationsEnvoyee.
+     *
+     * @param \ConnexionBundle\Entity\Invitation $mesInvitationsEnvoyee
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeMesInvitationsEnvoyee(\ConnexionBundle\Entity\Invitation $mesInvitationsEnvoyee)
+    {
+        return $this->mesInvitationsEnvoyees->removeElement($mesInvitationsEnvoyee);
+    }
+
+    /**
+     * Get mesInvitationsEnvoyees.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMesInvitationsEnvoyees()
+    {
+        return $this->mesInvitationsEnvoyees;
+    }
+
+    /**
+     * Add mesInvitationsRecue.
+     *
+     * @param \ConnexionBundle\Entity\Invitation $mesInvitationsRecue
+     *
+     * @return User
+     */
+    public function addMesInvitationsRecue(\ConnexionBundle\Entity\Invitation $mesInvitationsRecue)
+    {
+        $this->mesInvitationsRecues[] = $mesInvitationsRecue;
+
+        return $this;
+    }
+
+    /**
+     * Remove mesInvitationsRecue.
+     *
+     * @param \ConnexionBundle\Entity\Invitation $mesInvitationsRecue
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeMesInvitationsRecue(\ConnexionBundle\Entity\Invitation $mesInvitationsRecue)
+    {
+        return $this->mesInvitationsRecues->removeElement($mesInvitationsRecue);
+    }
+
+    /**
+     * Get mesInvitationsRecues.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMesInvitationsRecues()
+    {
+        return $this->mesInvitationsRecues;
+    }
+
+    /**
+     * Retoune vrai si j'ai invité $user
+     * @param User $user
+     * @return bool
+     */
+    public function hasBeenInvited(User $user)
+    {
+        //Si l'utilisateur a déja envoyé une demande à $user
+        foreach ($this->mesInvitationsEnvoyees as $invitation)
+        {
+            if ($invitation->getExpediteur()==$this && $invitation->getDestinataire()==$user)
+                return true;
+        }
+        return false;
+
+    }
+
+    /**
+     * Retourne vrai si $user est mon ami
+     * @param $user
+     * @return bool
+     */
+    public function isMyFriend ($user)
+    {
+        foreach ($this->getMesInvitationsRecues() as $invitation)
+        {
+            //On regarde la partie ou j'ai envoyé la demande
+            if ($invitation->getExpediteur() == $user && $invitation->getIsAccepted())
+                return true;
+            else
+            {
+                foreach ($this->getMesInvitationsEnvoyees() as $invitation)
+                {
+                    //On regarde la partie ou j'ai accepté la demande
+                    if ($invitation->getDestinataire() == $user && $invitation->getIsAccepted())
+                        return true;
+                }
+            }
+        }
+        return false;
+
+    }
+
+    /**
+     * Retourne vrai si $user m'a envoyé une demande
+     * @param User $user
+     * @return bool
+     */
+    public function waitForAcceptation(User $user)
+    {
+        //Si $user a envoyé une demande
+        foreach ($this->mesInvitationsRecues as $invitation)
+        {
+            if ($invitation->getExpediteur()==$user && $invitation->getDestinataire()==$this && !($invitation->getIsAccepted()))
+                return true;
+        }
+        return false;
+    }
+
+
+
 }
