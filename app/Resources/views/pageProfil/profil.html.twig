@@ -11,107 +11,170 @@
                 <center>
                     <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="{{ asset('uploads/photo/' ~ user.image.fichier|slice(27,37) ) }}" name="aboutme" width="140" height="140" class="img-circle"></a>
                     <h3>{{ user.firstname }} {{ user.lastname }}</h3>
-                    <em>click my face for more</em>
+                    <em>Appuyez sur mon profil pour plus d'information</em>
                 </center>
-            </div>
+
+                {# Si l'utilisateur est déja notre ami#}
+                {% if app.user.isMyFriend(user)%}
+
+                    <a href="#" class="btn btn-link">
+                        <i class="fas fa-check"></i>
+                        <span> Ami </span>
+                    </a>
+
+                {# Si l'utilisateur a déjà été invité  #}
+                {% elseif app.user.hasBeenInvited(user)  %}
+                    <a href="#" class="btn btn-link">
+                        <i class="fas fa-user-plus"></i>
+                        <span> Invitation envoyée</span>
+                    </a>
+
+                {# Si l'utilisateur nous a envoyé une invitation #}
+                {% elseif app.user.waitForAcceptation(user)  %}
+                    <a href="{{ path('accepter_ami' , {'id' : user.id}) }}" class="btn btn-link">
+                        <i class="fas fa-user-plus"></i>
+                        <span class="js-wait-friend"> Accepter la demande</span>
+                    </a>
+
+                {# Si on est sur notre propre profil #}
+                {% elseif app.user == user %}
+
+                {% else %}
+                <a href="{{ path('ajout_ami' , {'id' : user.id}) }}" class="btn btn-link">
+                    <i class="fas fa-user-plus"></i>
+                    <span class="js-add-friend"> Ajouter comme ami</span>
+                </a>
+                {% endif %}
+
+        </div>
 
 
-            {{ form(form, {'attr': {'class': 'class=btn js-add'}}) }}
 
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                            <h4 class="modal-title" id="myModalLabel">More About Joe</h4>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <img src="{{ asset('uploads/photo/' ~ user.image.fichier|slice(27,37) ) }}" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
-                                <h3 class="media-heading">{{ user.firstname }} {{ user.lastname }}<small> {{ user.city }}</small></h3>
-                                <span><strong>Skills: </strong></span>
-                                <span class="label label-warning">HTML5/CSS</span>
-                                <span class="label label-info">Adobe CS 5.5</span>
-                                <span class="label label-info">Microsoft Office</span>
-                                <span class="label label-success">Windows XP, Vista, 7</span>
-                            </center>
-                            <hr>
-                            <center>
-                                <p class="text-left"><strong>Bio: </strong><br>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem dui, tempor sit amet commodo a, vulputate vel tellus.</p>
-                                <br>
-                            </center>
-                        </div>
-                        <div class="modal-footer">
-                            <center>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">I've heard enough about {{ user.firstname }}</button>
-                            </center>
-                        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title" id="myModalLabel">En savoir plus sur {{ user.firstname }} {{ user.lastname }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <center>
+                            <img src="{{ asset('uploads/photo/' ~ user.image.fichier|slice(27,37) ) }}" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
+                            <h3 class="media-heading">{{ user.firstname }} {{ user.lastname }}<small> {{ user.city }}</small></h3>
+                        </center>
+
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <i class="fa fa-fw fa-user"></i> <span>{{ user.username }}</span></a>
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa fa-fw fa-home"></i> <span>Paris</span></a>
+                            </li>
+
+                        </ul>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <center>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer cette fenêtre</button>
+                        </center>
                     </div>
                 </div>
             </div>
+        </div>
 
-        </center>
-    </div>
+    </center>
+</div>
 
 
+<div class=' col-md-8 col-sm-push-2'>
 
-    <!-- Publication de l utilisateur -->
-
-    {# Boucle d'affichage des publications selon le contenu de la BDD#}
-    {% for publication in publications %}
-        {% if (publication.user == user) %}
-            <!-- Zone Publication-->
-            <div class="box box-widget">
-                <div class="box-header with-border">
-                    <div class="user-block">
-                        <!-- Zone Photo de profil-->
-                        <img class="img-circle" src="{{ asset('uploads/photo/' ~ publication.user.image.fichier|slice(27,37) )  }}" alt="User Image">
-                        <span class="username"><a href="#">{{ publication.user.username }}</a></span>
-                        <span class="description">Shared publicly - {{ publication.datePublication|date('d/m/Y h:m') }}</span>
+    {# Boucle d'affichage des publications selon le contenu de la BDD #}
+        {% for publication in publications %}
+            {% if publication.user == user %}
+                <!-- Zone Publication-->
+                <div class="box box-widget ">
+                    <div class="box-header with-border">
+                        <div class="user-block">
+                            <!-- Zone Photo de profil-->
+                            <img class="img-circle" src="{{ asset('uploads/photo/' ~ publication.user.image.fichier|slice(27,37) )  }}" alt="User Image">
+                            <span class="username"><a href="{{ path('profil', {'id' : publication.user.id}) }}">{{ publication.user.username }}</a></span>
+                            <span class="description">Shared publicly - {{ publication.datePublication|date('d/m/Y h:m') }}</span>
+                        </div>`
+                        <!-- Bouton pour fermer ou reduire une publication -->
+                        <div class="box-tools">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            {# Champs pour modifier ou supprimer un élément #}
+                            {% include 'modif_publication.html.twig' %}
+                        </div>
                     </div>
-                    <!-- Bouton pour fermer ou reduire une publication -->
-                    <div class="box-tools">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-                <!-- Contenu de la publication -->
-                <div class="box-body">
-                    <p>{{ publication.contenu }}</p>
-
+                    <!-- Contenu de la publication -->
+                    <div class="box-body">
+                        <p>{{ publication.contenu }} </p>
                         {#Affichage image si elle existe#}
-                      {% if publication.image is not null %}
-                          {{ publication.image.fichier|slice(12,23) }} Difference entre Mac et windows faire attention
-                         <img class="img-responsive" src="{{ asset('uploads/photo/' ~ publication.image.fichier|slice(27,37) )  }}" alt=" Image" height="100" width="200">
-                      {% endif %}
-                         <!-- Zone commentaire -->
-                         <div class="box-footer box-comments">
-                             {% for commentaire in commentaires %}
-                                 {% if commentaire.publication == publication %}
-                                     <div class="box-comment">
-                                         <!-- Photo de profil de l'utilisateur -->
-                                         <img class="img-circle img-sm" src="{{ asset('uploads/photo/' ~ commentaire.user.image.fichier|slice(27,37) )  }}" alt="User Image" >
-                                         <div class="comment-text">
-                                               <span class="username">
-                                                 {{ commentaire.user.username }}
-                                                 <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}</span>
-                                               </span><!-- /.username -->
-                                             {{ commentaire.text }}
-                                         </div>
-                                         <!-- /.comment-text -->
-                                     </div>
-                                 {% endif %}
-                             {% endfor %}
-                         </div>
-                        {% include 'commentaire.html.twig' %}
+                        {% if publication.image is not null %}
+                            {# {{ publication.image.fichier|slice(12,23) }} Difference entre Mac et windows faire attention#}
+                            <img class="img-responsive" src="{{ asset('uploads/photo/' ~ publication.image.fichier|slice(27,37) )  }}" alt=" Image" height="400" width="400">
+                        {% endif %}
+                        <!-- Bouton pour réagir -->
+                        <div class="col-3 mb-3">
+                            <div class="border border-dark rounder p-2">
+                                <a href="{{ path('post_like' , {'id' : publication.id}) }}" class="btn btn-link js-like">
+                                    {# Test si la personne a aimé #}
+                                    {% if publication.isLikedByUser(app.user) and app.user %}
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span class="js-likes">{{ publication.reactions | length }}</span>
+                                        <span class="js-label ">Je n'aime plus</span>
+                                    {% else %}
+                                        {# Test si la personne a aimé #}
+                                        <i class="far fa-thumbs-up"></i>
+                                        <span class="js-likes">{{ publication.reactions | length }}</span>
+                                        <span class="js-label ">J'aime </span>
+                                    {% endif %}
+                                </a>
+                                <span class="pull-right text-muted">{{ publication.commentaires | length }} commentaires</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Zone commentaire -->
+                    {% include 'commentaire.html.twig' %}
                 </div>
-            </div>
-        {% endif %}
-    {% endfor %}
-
-            <!-- User post -->
-
-    {% endblock %}
+            {% endif %}
+        {% endfor %}
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            {# Mis a jour ajax avec axios après un clic sur j aime #}
+            <script>
+                //Reaction publication
+                function onClickBtnReaction(event) {
+                    event.preventDefault();
+                    const url = this.href;
+                    const nbLike = this.querySelector('span.js-likes');
+                    const spanLike =this.querySelector('span.js-label');
+                    const icone = this.querySelector('i');
+                    //Adaptation affichage pouce et j'aime, je n aime pas
+                    axios.get(url).then(function(response) {
+                        nbLike.textContent = response.data.reactions;
+                        if (icone.classList.contains('fas'))
+                        {
+                            icone.classList.replace('fas','far');
+                            spanLike.textContent = "J'aime "
+                        }
+                        else
+                        {
+                            icone.classList.replace('far' , 'fas');
+                            spanLike.textContent = "Je n'aime plus"
+                        }
+                    })
+                }
+                //Selection bouton j aime et association avec fonction
+                document.querySelectorAll('a.js-like').forEach(function(link){
+                    link.addEventListener('click', onClickBtnReaction);
+                })
+            </script>
+    </div>
+</div>
+        {% endblock %}

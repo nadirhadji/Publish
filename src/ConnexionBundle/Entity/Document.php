@@ -26,9 +26,6 @@ class Document
      * @var string
      *
      * @ORM\Column(name="fichier", type="string", length=255)
-     * @Assert\File(
-     *     mimeTypes={"image/png" ,"image/jpg","image/jpeg"},
-     *     mimeTypesMessage = "Veuillez insérer un format valide (png,jpg,jpeg)")
      */
     private $fichier;
 
@@ -96,6 +93,7 @@ class Document
     {
         return $this->alt;
     }
+
     /**
     /**
      * Set fichier.
@@ -104,8 +102,6 @@ class Document
      *
      * @return Document
      */
-
-    /*
     public function setFichier(UploadedFile $fichier)
     {
         $this->fichier = $fichier;

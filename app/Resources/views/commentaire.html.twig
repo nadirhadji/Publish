@@ -7,10 +7,11 @@
                 <img class="img-circle img-sm" src="{{ asset('uploads/photo/' ~ commentaire.user.image.fichier|slice(27,37) )  }}" alt="User Image" >
                 <div class="comment-text">
                               <span class="username">
-                                {{ commentaire.user.username }}
-                                <span class="text-muted pull-right">{{ publication.datePublication|date('d-m-Y') }}
-                                    {% include 'modif_commentaire.html.twig' %}
-                                </span>
+                                  <a href="{{ path('profil', {'id' : commentaire.user.id}) }}">{{ commentaire.user.username }}</a>
+
+                                <!--span class="text-muted pull-right">{##}{ publication.datePublication|date('d-m-Y') }}
+                                    {##}% include 'modif_commentaire.html.twig' %}
+                                </--span-->
 
                               </span>
                     <!-- /.username -->
@@ -23,8 +24,8 @@
 
 {# Traitement d'un nouveau commentaire #}
 <form id="js-form" class="js-form" action=" {{ path('commentaire' , {'id' : publication.id}) }} " method="post">
-    <input class="form-control" type="text" name="commentaire" placeholder="Type a comment">
-    <input onclick="onClickBtnCommentaire(event)" class="js-button btn btn-primary btn-flat" type="submit" value="Commenter" name="envoiCommentaire" >
+    <input class="form-control" type="text" name="commentaire" placeholder="Ecrivez un commentaire">
+    <input class="js-button btn btn-primary btn-flat" type="submit" value="Commenter" name="envoiCommentaire" >
 </form>
 
 

@@ -81,13 +81,5 @@
         document.querySelectorAll('a.js-like').forEach(function(link){
             link.addEventListener('click', onClickBtnReaction);
         })
-        //Ajout commentaire
-        function onClickBtnCommentaire(event) {
-            //event.preventDefault();
-            const url = document.getElementById('js-form').action;
-            axios.post(url).then(function(response) {
-                console.log(response);
-            })
-        }
     </script>
 {% endblock %}
