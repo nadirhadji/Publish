@@ -3,12 +3,62 @@
 {% block content %}
 
     <div class="row">
-        <div class="col-lg-6">
-            <h3>Mes invitations en attente</h3>
+        <div align="center">
+            <h3>Mes demandes d'amis</h3>
+        </div>
+        {% if mesInvitations is empty %}
+            <h2>Ajouter des amis</h2>
+        {% else %}
             {% for invitation in mesInvitations %}
-                {{ invitation.username }}
+                <div class="col-md-4">
+                    <!-- Widget: user widget style 1 -->
+                    <div class="box box-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-yellow">
+                            <a href="{{ path('profil',{'id':invitation.id}, {'username': invitation.getUsername() }) }}"
+                               class="pull-left">
+                                <img src="{{ asset('uploads/photo/' ~ invitation.image.fichier|slice(27,37) ) }}"
+                                     alt="{{ invitation.getUsername() }}" class="media-object">
+                            </a>
+                            <h3 class="widget-user-username">{{ invitation.firstname }} {{ invitation.lastname }}</h3>
+                        </div>
+                        <div class="widget-user-username " align="center">
+                            <a href="{{ path('profil',{'id':invitation.id}) }}">Voir profil</a>
+                        </div>
+                        <div class="box-footer">
+                            <div class="row">
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">Pays</h5>
+                                        <span class="description-text">{{ invitation.country }}</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">Ville</h5>
+                                        <span class="description-text">{{ invitation.city }}</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4">
+                                    <div class="description-block">
+                                        <h5 class="description-header">Pseudo</h5>
+                                        <span class="description-text">{{ invitation.username }}</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </div>
+                    <!-- /.widget-user -->
+                </div>
             {% endfor %}
-
+        {% endif %}
 
           {#  {% if friends is empty %}
                 <p>Pas d'ami</p>
@@ -17,16 +67,73 @@
                     {{ user.username}}
                 {% endfor %}
             {% endif %}#}
-        </div>
+
     </div>
 
     <div class="row">
-        <div class="col-lg-6">
-            <h3>Leur invitations en attente</h3>
-
+            <div align="center">
+            <h3>Demande d'ami</h3>
+            </div>
+        {% if leurInvitations is empty %}
+            <h2>Aucune invitation en cours</h2>
+        {% else %}
             {% for invitation in leurInvitations %}
-            {{ invitation.username }}
+                <div class="col-md-4">
+                    <!-- Widget: user widget style 1 -->
+                    <div class="box box-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-red">
+                            <a href="{{ path('profil',{'id':invitation.id}, {'username': invitation.getUsername() }) }}"
+                               class="pull-left">
+                                <img src="{{ asset('uploads/photo/' ~ invitation.image.fichier|slice(27,37) ) }}"
+                                     alt="{{ invitation.getUsername() }}" class="media-object">
+                            </a>
+                            <h3 class="widget-user-username">{{ invitation.firstname }} {{ invitation.lastname }}</h3>
+                        </div>
+
+                        <div class="widget-user-username " align="center">
+                            <a href="{{ path('accepter_ami' , {'id' : invitation.id}) }}" class="btn btn-block btn-dropbox btn-xs">
+                                <i class="fas fa-user-plus"></i>
+                                <span class="js-wait-friend"> Accepter la demande</span>
+                            </a>
+                        </div>
+                        <div class="widget-user-username " align="center">
+                            <a href="{{ path('profil',{'id':invitation.id}) }}">Voir profil</a>
+                        </div>
+                        <div class="box-footer">
+                            <div class="row">
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">Pays</h5>
+                                        <span class="description-text">{{ invitation.country }}</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">Ville</h5>
+                                        <span class="description-text">{{ invitation.city }}</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4">
+                                    <div class="description-block">
+                                        <h5 class="description-header">Pseudo</h5>
+                                        <span class="description-text">{{ invitation.username }}</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </div>
+                    <!-- /.widget-user -->
+                </div>
             {% endfor %}
+        {% endif %}
 
             {#  {% if friends is empty %}
                   <p>Pas d'ami</p>

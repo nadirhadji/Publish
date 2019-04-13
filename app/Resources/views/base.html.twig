@@ -167,7 +167,7 @@ desired effect
                                 <img src="{{ asset('uploads/photo/' ~ app.user.image.fichier|slice(27,37) ) }}" class="img-circle" alt="User Image">
                                 <p>
                                     {{ app.user.firstname }} {{ app.user.lastname }}
-                                    <small>Membre depuis Nov. 2012</small>
+                                    <small></small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -194,7 +194,7 @@ desired effect
                                     <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-flat">Edit</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a  href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                                    <a  href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">Se déconnecter</a>
                                 </div>
                             </li>
                         </ul>
@@ -236,7 +236,7 @@ desired effect
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="{{ path('attente') }}">En attente</a></li>
-                            <li><a href="{{ path('mes_amis') }}">Liste</a></li>
+                            <li><a href="{{ path('mes_amis') }}">Liste d'ami</a></li>
                         </ul>
                 </li>
             </ul>
