@@ -9,6 +9,7 @@
 namespace ConnexionBundle\Controller;
 
 
+use ConnexionBundle\Entity\Document;
 use ConnexionBundle\Entity\User;
 use ConnexionBundle\Form\SearchType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -23,6 +24,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use ConnexionBundle\Repository\UserRepository;
 
 class SearchController extends Controller
 {
@@ -53,20 +55,33 @@ class SearchController extends Controller
      */
     public function searchFriend(Request $request)
     {
-        $term = $request->request->get('UserVal');
+        $term = $request->query->get('UserVal')['term'];
 
         $em = $this->getDoctrine()->getManager();
 
-        $MatchesUsers = $em->getRepository('ConnexionBundle:User')->findBy(['username' => $term]);
+        $repo = $em->getRepository('ConnexionBundle:User');
 
-        $data = [];
+        $result = $repo->findUser($term);
 
-        foreach ($MatchesUsers as $match) {
+        $resultat = array();
+        $i = 0;
 
-            array_push($data,$match->getUsername());
+        foreach ($result as $user) {
+
+            $obj = [];
+
+            $image = $user->getImage();
+            $image = $image->getFichier();
+
+            $obj[0] = $image;
+            $obj[1] = $user;
+
+            $resultat[$i] = $obj;
+
+            $i++;
+
         }
 
-
-        return  new JsonResponse($data,200);
+        return $this->render("search.json.twig", ['users' => $resultat ]);
     }
 }

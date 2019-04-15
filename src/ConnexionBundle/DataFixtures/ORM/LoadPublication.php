@@ -29,9 +29,10 @@ class LoadPublication implements FixtureInterface
         $user1->setPlainPassword("AAAaaa3***");$user2->setPlainPassword("AAAaaa3***");$user3->setPlainPassword("AAAaaa3***");$user4->setPlainPassword("AAAaaa3***");$user5->setPlainPassword("AAAaaa3***");
         $user1->setPassword("AAAaaa3***");$user2->setPassword("AAAaaa3***");$user3->setPassword("AAAaaa3***");$user4->setPassword("AAAaaa3***");$user5->setPassword("AAAaaa3***");
 
+
         //Création photo de profil
         $image1 = new Document();$image2 = new Document();$image3 = new Document();$image4 = new Document();$image5 = new Document();
-        $image1->setFichier("/Applications/MAMP/tmp/php/php6Cwldz");$image2->setFichier("/Applications/MAMP/tmp/php/php9xXbuO");$image3->setFichier("/Applications/MAMP/tmp/php/phpdaFHeY");$image4->setFichier("/Applications/MAMP/tmp/php/phpISx5p5");$image5->setFichier("/Applications/MAMP/tmp/php/phpRGGCJl");
+        $image1->setFichier("C:/wamp/tmp/php6Cwldz");$image2->setFichier("C:/wamp/tmp/php9xXbuO");$image3->setFichier("C:/wamp/tmp/phpdaFHeY");$image4->setFichier("C:/wamp/tmp/phpISx5p5");$image5->setFichier("C:/wamp/tmp/phpRGGCJl");
         $user1->setImage($image1);$user2->setImage($image2);$user3->setImage($image3);$user4->setImage($image4);$user5->setImage($image5);
 
         // Tableau contenant l'ensemble des utilisateurs crées

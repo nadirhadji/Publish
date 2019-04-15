@@ -8,6 +8,8 @@
 
 namespace ConnexionBundle\Form;
 
+use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -21,7 +23,15 @@ class SearchType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('label', TextType::class)
+        $builder->add('search', EntityType::class, array(
+            'attr'=>array('class'=>"user",),
+            'label'=>'Friend',
+
+            'choices_as_values' => true, //
+            'class' => 'ConnexionBundle\Entity\User',
+            'choice_label' => 'User_Name',
+
+        ))
                 ->add('Enregistrer',SubmitType::class);
     }
 

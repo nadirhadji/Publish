@@ -20,6 +20,7 @@ use ConnexionBundle\Entity\CentreInteret;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\Entity(repositoryClass="ConnexionBundle\Repository\UserRepository")
  */
 class User extends FosUser implements ParticipantInterface
 {
