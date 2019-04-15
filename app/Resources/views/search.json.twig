@@ -1,0 +1,8 @@
+[
+    {% for user in users -%}
+
+    {{ {value: user[1].id, label: user[1].username, firstname: user[1].firstName, lastname: user[1].lastName, img: user[0]|slice(12,21)}|json_encode|raw }}
+    {%- if not loop.last %} , {% endif -%}
+
+    {%- endfor %}
+]
