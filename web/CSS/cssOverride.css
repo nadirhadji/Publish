@@ -51,5 +51,10 @@
     color : red;
 }
 
+.search-bar{
+    position: relative;
+    padding-top: 10px;
+
+}
 
 
