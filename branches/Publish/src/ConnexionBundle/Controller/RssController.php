@@ -22,7 +22,7 @@ class RssController extends Controller
 
     public function rssLoader(string $url) {
 
-            $RSSItems = array();
+
 
             $em = $this->getDoctrine()->getManager();
 
@@ -30,6 +30,7 @@ class RssController extends Controller
 
             $rss = simplexml_load_file($url);
 
+            $RSSItems = array();
             $images = array();
             $item = array();
             $itemObj = array();
