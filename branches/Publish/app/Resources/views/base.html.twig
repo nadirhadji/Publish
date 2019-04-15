@@ -18,7 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('templates/bower_components/Ionicons/css/ionicons.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('templates/dist/css/AdminLTE.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('CS S/cssOverride.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/cssOverride.css') }}">
 
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -80,15 +80,16 @@ desired effect
                 <span class="sr-only">Toggle navigation</span>
             </a>
 
-            <div class="col-md-7">
+                <div class="col-md-2 search-bar">
+                    <select class="js-data-example-ajax" ></select>
+                </div>
 
-                <div class="form-group">
-                <select class="form-control js-data-example-ajax"></select>
-                <script>
+                    <script>
                     $('.js-data-example-ajax').select2({
+                        theme: "classic",
+                        width:"100%",
                         ajax: {
                             url: "http://localhost/2018-l3ac1/branches/Publish/web/app_dev.php/search",
-                            placeholder: 'Je sais tout !',
                             dataType: 'json',
                             delay: 250,
                             data: function (params) {
@@ -109,8 +110,7 @@ desired effect
                                 return {
 
                                     results: $.map(data, function(obj) {
-                                        console.log(obj);
-                                        return { text: obj , gender : obj};
+                                        return { value: obj.value , label: obj.label, img: obj.img, firstname: obj.firstname, lastname: obj.lastname};
                                     }),
 
                                     pagination: {
@@ -121,7 +121,7 @@ desired effect
                             cache: true
                         },
 
-
+                        placeholder: 'Je sais tout',
                         escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
                         minimumInputLength: 1,
                         templateResult: formatRepo,
@@ -133,21 +133,26 @@ desired effect
                             return repo.text;
                         }
 
+                        var url = '{{ path("profil", {'id': 'id'}) }}';
+                        url = url.replace("id", repo.id);
+
+                        var image = '{{ asset('uploads/photo/') }}';
+
                         var markup = "<div class='select2-result-repository clearfix'>" +
-                            "<div class='select2-result-repository__meta'>" +
-                            "<div class='select2-result-repository__title'>" + repo.text + "</div>" +
-                            "</div></div>";
+                            "<div class='select2-result-repository__avatar'>" +
+                            "<img width='60px' height='60px' src='" + image + repo.img + "' />" +
+                            "<a href='http://localhost/2018-l3ac1/branches/Publish/web/app_dev.php/user/" + repo.value + "/profil'>" + " "+ repo.firstname + " "+ repo.lastname + "</a>" +
+                            "<div class='select2-result-repository__meta'>" + "</div></div></div>";
 
                         return markup;
                     }
 
                     function formatRepoSelection (repo) {
-                        return repo.username;
+                        return repo.label;
                     }
 
                 </script>
-            </div>
-            </div>
+
 
             <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
@@ -157,14 +162,14 @@ desired effect
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="{{ asset('uploads/photo/' ~ app.user.image.fichier|slice(27,37) ) }}" class="user-image" alt="User Image">
+                            <img src="{{ asset('uploads/photo/' ~ app.user.image.fichier|slice(12,21) ) }}" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">{{ app.user.firstname }} {{ app.user.lastname }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="{{ asset('uploads/photo/' ~ app.user.image.fichier|slice(27,37) ) }}" class="img-circle" alt="User Image">
+                                <img src="{{ asset('uploads/photo/' ~ app.user.image.fichier|slice(12,21) ) }}" class="img-circle" alt="User Image">
                                 <p>
                                     {{ app.user.firstname }} {{ app.user.lastname }}
                                     <small></small>
@@ -214,7 +219,7 @@ desired effect
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{{asset('uploads/photo/' ~ app.user.image.fichier|slice(27,37) ) }}" class="img-circle" alt="User Image">
+                    <img src="{{asset('uploads/photo/' ~ app.user.image.fichier|slice(12,21) ) }}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{ app.user.firstname }} {{ app.user.lastname }}</p>
