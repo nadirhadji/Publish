@@ -461,15 +461,12 @@ class User extends FosUser implements ParticipantInterface
             //On regarde la partie ou j'ai envoyé la demande
             if ($invitation->getExpediteur() == $user && $invitation->getIsAccepted())
                 return true;
-            else
-            {
-                foreach ($this->getMesInvitationsEnvoyees() as $invitation)
-                {
-                    //On regarde la partie ou j'ai accepté la demande
-                    if ($invitation->getDestinataire() == $user && $invitation->getIsAccepted())
-                        return true;
-                }
-            }
+        }
+        foreach ($this->getMesInvitationsEnvoyees() as $invitation)
+        {
+            //On regarde la partie ou j'ai accepté la demande
+            if ($invitation->getDestinataire() == $user && $invitation->getIsAccepted())
+                return true;
         }
         return false;
 

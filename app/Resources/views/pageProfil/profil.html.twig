@@ -22,6 +22,38 @@
                         <span> Ami </span>
                     </a>
 
+                {# Option suppression de la liste d'ami #}
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-toggle="modal" data-target="#modal-suppresion_ami" >Retirer de la liste d'ami</a></li>
+                    </ul>
+                </div>
+
+                <div class="modal fade" id="modal-suppresion_ami">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Suppresion ami</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Voulez-vous retirer {{ user.username }} de votre liste d'ami ?</p>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                <a href="{{ path('supprimer_ami' , {'id' : user.id}) }}"> <button type="button" class="btn btn-primary"> Confirmer </button> </a>
+                            </div>
+
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+
                 {# Si l'utilisateur a déjà été invité  #}
                 {% elseif app.user.hasBeenInvited(user)  %}
                     <a href="#" class="btn btn-link">
@@ -29,7 +61,42 @@
                         <span> Invitation envoyée</span>
                     </a>
 
-                {# Si l'utilisateur nous a envoyé une invitation #}
+
+                    {# Option annulation de l'invitation #}
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" data-toggle="modal" data-target="#modal-annuler_demande" >Annuler la demande</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="modal fade" id="modal-annuler_demande">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">Annulation de la demande</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Voulez-vous annuler votre invitation pour {{ user.username }} ?</p>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                    <a href="{{ path('annuler_invitation' , {'id' : user.id}) }}"> <button type="button" class="btn btn-primary"> Confirmer </button> </a>
+                                </div>
+
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+
+
+
+                        {# Si l'utilisateur nous a envoyé une invitation #}
                 {% elseif app.user.waitForAcceptation(user)  %}
                     <a href="{{ path('accepter_ami' , {'id' : user.id}) }}" class="btn btn-link">
                         <i class="fas fa-user-plus"></i>
