@@ -5,12 +5,19 @@ namespace ConnexionBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use ConnexionBundle\Entity\Publication;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class PublicationController extends Controller
 {
+    /**
+     * Permet de recupérer les publications et les commentaires contenus dans la BDD
+     *
+     * @param $em le manager qui interragira avec la BDD
+     *
+     * @return array retourne un tableau contenant la liste de tous les commentaires et publications de la base
+     */
     public function indexAction($em)
     {
-        //Traitement publications et commentaires deja existants dans la base de données
         //Requete pour récupérer toutes les publications et commentaires contenus dans la BDD
         $listPublications = $em->getRepository('ConnexionBundle:Publication')->findBy([],array('datePublication'=>'desc'),null,null);
         $listCommentaires = $em->getRepository('ConnexionBundle:Commentaire')->findAll();
@@ -27,6 +34,13 @@ class PublicationController extends Controller
         return array($listCommentaires,$listPublications);
     }
 
+    /**
+     * Permet d'ajouter une publication
+     *
+     * @param $user l'auteur de la publication
+     *
+     * @return Publication la publication ajouté
+     */
     public function addAction($user)
     {
         //Traitement nouvelle publication
@@ -45,7 +59,9 @@ class PublicationController extends Controller
      *
      * @Route("/homepage/{id}/edit_publication",name="edit_publication")
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @param $id l'identifiant de la publication à modifier
+     *
+     * @return RedirectResponse redirection vers la page d'accueil
      */
     public function editAction($id)
     {
@@ -65,7 +81,9 @@ class PublicationController extends Controller
      *
      * @Route("/homepage/{id}/suppresion_publication",name="suppression_publication")
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @param $id l'identifiant de la publication à supprimer
+     *
+     * @return RedirectResponse redirection vers la page d'accueil
      */
     public function deleteAction($id)
     {

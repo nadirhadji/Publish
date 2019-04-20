@@ -1,6 +1,10 @@
 <?php
 namespace ConnexionBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use ConnexionBundle\Entity\Publication;
+use ConnexionBundle\Entity\Commentaire;
+use ConnexionBundle\Entity\User;
+
 /**
  * Reaction
  *
@@ -17,12 +21,6 @@ class Reaction
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255, nullable=true)
-     */
-    private $type;
 
     /**
      * @ORM\ManyToOne(targetEntity="ConnexionBundle\Entity\Publication",inversedBy="reactions",cascade={"persist"})
@@ -35,94 +33,81 @@ class Reaction
      * @ORM\JoinColumn(nullable=True)
      */
     private $user;
+
     /**
-     * Get id.
+     * Récupère l'identifiant de la réaction
      *
-     * @return int
+     * @return int l'identifiant de la réaction
      */
     public function getId()
     {
         return $this->id;
     }
+
+
     /**
-     * Set type.
+     * Associe à la réction une publication
      *
-     * @param string $type
+     * @param Publication $publication la publication propriétaire de la réaction
      *
      * @return Reaction
      */
-    public function setType($type)
-    {
-        $this->type = $type;
-        return $this;
-    }
-    /**
-     * Get type.
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-    /**
-     * Set publicationr.
-     *
-     * @param \ConnexionBundle\Entity\Publication $publicationr
-     *
-     * @return Reaction
-     */
-    public function setPublication(\ConnexionBundle\Entity\Publication $publication)
+    public function setPublication(Publication $publication)
     {
         $this->publication = $publication;
         return $this;
     }
+
     /**
-     * Get publicationr.
+     * Récupère la publication
      *
-     * @return \ConnexionBundle\Entity\Publication
+     * @return Publication la publication propriétaire de la réaction
      */
     public function getPublication()
     {
         return $this->publication;
     }
+
     /**
-     * Set commentaire.
+     * Associe la réaction à un commentaire
      *
-     * @param \ConnexionBundle\Entity\Commentaire $commentaire
+     * @param Commentaire $commentaire le commentaire propriétaire de la réaction
      *
      * @return Reaction
      */
-    public function setCommentaire(\ConnexionBundle\Entity\Commentaire $commentaire)
+    public function setCommentaire(Commentaire $commentaire)
     {
         $this->commentaire = $commentaire;
         return $this;
     }
+
     /**
-     * Get commentaire.
+     * Récupère le commentaire correspondant à la réaction
      *
-     * @return \ConnexionBundle\Entity\Commentaire
+     * @return Commentaire le commentaire propriétaire de la réaction
      */
     public function getCommentaire()
     {
         return $this->commentaire;
     }
+
     /**
-     * Set user.
+     * Associe la réaction à son auteur
      *
-     * @param \ConnexionBundle\Entity\User $user
+     * @param User $user l'auteur de la reaction
      *
      * @return Reaction
      */
-    public function setUser(\ConnexionBundle\Entity\User $user)
+    public function setUser(User $user)
     {
         $this->user = $user;
         return $this;
     }
+
     /**
-     * Get user.
+     * Récupère l'auteur de la reaction
      *
-     * @return \ConnexionBundle\Entity\User
+     * @return User l'auteur de la reaction
      */
     public function getUser()
     {

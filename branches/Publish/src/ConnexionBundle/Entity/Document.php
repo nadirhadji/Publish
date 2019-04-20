@@ -3,7 +3,6 @@ namespace ConnexionBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -42,19 +41,21 @@ class Document
     private $alt;
 
     private $tempFilename;
+
     /**
-     * Get id.
+     * Récupère l'id du document
      *
-     * @return int
+     * @return int l'identifiant du document
      */
     public function getId()
     {
         return $this->id;
     }
+
     /**
-     * Set url.
+     * affecte l'url du document
      *
-     * @param string $url
+     * @param string $url l'url du document
      *
      * @return Document
      */
@@ -64,18 +65,18 @@ class Document
         return $this;
     }
     /**
-     * Get url.
+     * Récupère l'url du document
      *
-     * @return string
+     * @return string l'url du document
      */
     public function getUrl()
     {
         return $this->url;
     }
     /**
-     * Set alt.
+     * affecte un texte alternatif au document
      *
-     * @param string $alt
+     * @param string $alt le texte alternatif du document
      *
      * @return Document
      */
@@ -85,9 +86,9 @@ class Document
         return $this;
     }
     /**
-     * Get alt.
+     * Récupère le texte alternatid du document
      *
-     * @return string
+     * @return string le texte alternatif du document
      */
     public function getAlt()
     {
@@ -96,9 +97,9 @@ class Document
 
     /**
     /**
-     * Set fichier.
+     * Permet de récupérer le document télchargé par l'utilisateur
      *
-     * @param string $fichier
+     * @param string $fichier le fichier téléchargé
      *
      * @return Document
      */
@@ -118,7 +119,7 @@ class Document
         return $this;
     }
 
-    /*
+    /* Pour charger du fixture
      public function setFichier($fichier)
     {
         $this->fichier = $fichier;
@@ -126,14 +127,10 @@ class Document
     }
     */
 
-
-
-
-
     /**
-     * Get fichier.
+     * Récupère le fichier
      *
-     * @return string
+     * @return string chemin vers le fichier
      */
     public function getFichier()
     {

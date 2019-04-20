@@ -5,7 +5,7 @@ namespace ConnexionBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use ConnexionBundle\Entity\Commentaire;
-use ConnexionBundle\Entity\Publication;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class CommentaireController extends Controller
 {
@@ -15,16 +15,21 @@ class CommentaireController extends Controller
      *
      * @Route("/homepage/{id}/commentaires",name="commentaire")
      *
+     * @param $id l'identifiant de la publication qu'on veut commenter
+     *
+     * @return RedirectResponse
+     *
      */
     public function addAction($id)
     {
+        //Si la personne soumet un commentaire
         if(isset($_POST['envoiCommentaire'])) {
-
+            //Préparation des attributs
             $em = $this->getDoctrine()->getManager();
             $publicationRepository = $em->getRepository('ConnexionBundle:Publication');
-            $commentaireRepository = $em->getRepository('ConnexionBundle:Commentaire');
             $user = $this->getUser();
             $publication = $publicationRepository->find($id);
+
             //Traitement nouveau commentaire
             //Création de l'objet $commentaire pour l' enregistrer dans dans la BDD
             $commentaire = new Commentaire();
@@ -35,18 +40,22 @@ class CommentaireController extends Controller
             $em->flush();
         }
 
-        return $this->redirect('homepage');
+        return $this->redirectToRoute('homepage');
     }
 
     /**
      * Permet de modifier un commentaire
-
+     *
      * @Route("/homepage/{id}/edit_commentaire",name="edit_commentaire")
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @param $id l'identifiant du commentaire à modifier
+     *
+     * @return RedirectResponse
+     *
      */
     public function editAction($id)
     {
+        //Si la personne soumet un commentaire modifié
         if(isset($_POST['envoiNouveauCommentaire'])) {
             $em = $this->getDoctrine()->getManager();
             $commentaireRepository = $em->getRepository('ConnexionBundle:Commentaire');
@@ -63,13 +72,17 @@ class CommentaireController extends Controller
      *
      * @Route("/homepage/{id}/suppresion_commentaire",name="suppression_commentaire")
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @param $id l'identifiant du commentaire à supprimer
+     *
+     * @return RedirectResponse
+     *
      */
     public function deleteAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $commentaireRepository = $em->getRepository('ConnexionBundle:Commentaire');
         $commentaire = $commentaireRepository->find($id);
+        //Suppression du commentaire dans la BDD
         $em->remove($commentaire);
         $em->flush();
 
