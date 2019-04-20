@@ -115,7 +115,7 @@ class Document
             $this->alt = null;
         }
         //$fichier->move('C:\wamp\www\2018-l3ac1\branches\Publish\web\uploads\photo');
-        $fichier->move('/Applications/MAMP/htdocs/projet/2018-l3ac1/branches/Publish/web/uploads/photo');
+        $fichier->move('/Applications/MAMP/htdocs/projet/L3AC1/branches/Publish/web/uploads/photo');
         return $this;
     }
 
