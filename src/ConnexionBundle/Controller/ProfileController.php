@@ -2,62 +2,35 @@
 
 namespace ConnexionBundle\Controller;
 
-use ConnexionBundle\Form\AddType;
-
-use ConnexionBundle\Entity\Invitation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
-use ConnexionBundle\Form\PublicationType;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProfileController extends Controller
 {
     /**
+     * Génère la page de profil d'un utilisateur avec toutes les informations qu'elle doit afficher
+     *
      * @Route("/user/{id}/profil", name="profil")
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @param $id l'identifiant de l'utilisateur propriétaire du profil
+     *
+     * @return Response retourne une page correspondant au profil de l'utilisateur d'identifiant $id
      */
-    public function showAction(Request $request,$id)
+    public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('ConnexionBundle:User')->find($id);
 
-        //Traitement nouvelle publication
-        $objet_publication = new PublicationController();
-        $publication=$objet_publication->addAction($user);
-
         //Affichage publication et commentaire
+        $objet_publication = new PublicationController();
         $données_BDD = $objet_publication->indexAction(($em));
         $listPublications=$données_BDD[1];
         $listCommentaires=$données_BDD[0];
 
-        //Nombre j aime et commentaire
-        $nbJAime = count ($em->getRepository('ConnexionBundle:Reaction')->findByPublication(226));
-
-        $formADD = $this->get('form.factory')->create(AddType::class);
-
-        if ($request->isMethod('POST')) {
-
-            // On fait le lien Requête <-> Formulaire
-
-            $formADD->handleRequest($request);
-
-            // On vérifie si les valeurs entrées sont correctes
-
-            if ( $formADD->isValid()) {
-
-                // On enregistre notre objet $publication dans la base de données
-                $this->addFriend($id);
-
-
-                // Redirection vers la page d'accueil
-            }
-        }
-
         return $this->render('pageProfil/profil.html.twig',array('commentaires' => $listCommentaires ,
             'publications' => $listPublications,
-            'nbJAime' => $nbJAime,
-            'user'=> $user,
-            'form' => $formADD->createView()
+            'user'=> $user
         ));
     }
 

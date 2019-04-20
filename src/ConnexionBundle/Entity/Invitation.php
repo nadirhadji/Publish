@@ -3,6 +3,7 @@
 namespace ConnexionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ConnexionBundle\Entity\User;
 
 /**
  * Invitation
@@ -40,14 +41,15 @@ class Invitation
      *
      * @ORM\Column(name="is_accepted", type="boolean")
      */
+
     private $isAccepted;
 
     /**
-     * Set isAccepted.
+     * affecte la valeur de is accepted
      *
-     * @param bool $isAccepted
+     * @param bool $isAccepted vrai si accepté, faux sinon
      *
-     * @return Friendship
+     * @return Invitation
      */
     public function setIsAccepted($isAccepted)
     {
@@ -57,9 +59,9 @@ class Invitation
     }
 
     /**
-     * Get isAccepted.
+     * Récupère l'etat de l'invitation
      *
-     * @return bool
+     * @return bool true si accepté, false sinon
      */
     public function getIsAccepted()
     {
@@ -68,13 +70,13 @@ class Invitation
 
 
     /**
-     * Set expediteur.
+     * Permet d'affecter l'expéditeur de l'invitation
      *
-     * @param \ConnexionBundle\Entity\User $expediteur
+     * @param User $expediteur l'expéditeur de l'invitation
      *
      * @return Invitation
      */
-    public function setExpediteur(\ConnexionBundle\Entity\User $expediteur)
+    public function setExpediteur(User $expediteur)
     {
         $this->expediteur = $expediteur;
 
@@ -82,9 +84,9 @@ class Invitation
     }
 
     /**
-     * Get expediteur.
+     * Permet de récupérer l'expéditeur de l'invitation
      *
-     * @return \ConnexionBundle\Entity\User
+     * @return User l'expéditeur de l'invitation
      */
     public function getExpediteur()
     {
@@ -92,13 +94,13 @@ class Invitation
     }
 
     /**
-     * Set destinataire.
+     * permet d'affecter le destinataire de l'invitation
      *
-     * @param \ConnexionBundle\Entity\User $destinataire
+     * @param User $destinataire le destinataire de l'invitation
      *
      * @return Invitation
      */
-    public function setDestinataire(\ConnexionBundle\Entity\User $destinataire)
+    public function setDestinataire(User $destinataire)
     {
         $this->destinataire = $destinataire;
 
@@ -106,9 +108,9 @@ class Invitation
     }
 
     /**
-     * Get destinataire.
+     * Permet de récuperer le destinataire de l'invitation
      *
-     * @return \ConnexionBundle\Entity\User
+     * @return User le destinataire de l'invitation
      */
     public function getDestinataire()
     {

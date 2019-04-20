@@ -2,10 +2,8 @@
 
 namespace ConnexionBundle\Controller;
 
-use ConnexionBundle\Entity\Friendship;
 use ConnexionBundle\Entity\Invitation;
 use ConnexionBundle\Entity\User;
-use ConnexionBundle\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Reponse;
@@ -15,20 +13,23 @@ class InvitationController extends Controller
 {
 
     /**
-     * Affichage de ma liste d'ami
+     * Permet d'afficher les utilisateurs qui sont dans ma liste d'ami
      *
      * @Route("/mes_amis",name="mes_amis")
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @return Response une page qui affiche la liste d'ami
+     *
      */
     public function indexAction()
-
     {
+        //Initialisation
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $invitationRepo = $em->getRepository('ConnexionBundle:Invitation');
         $listInvitation = $invitationRepo->findAll();
         $mesAmis = array();
 
+        //On parcours la liste des invitations et on ajoute au tableau les users qui sont dans la liste
         foreach ($listInvitation as $invitation)
         {
             if ($invitation->getExpediteur()==$user  && $invitation->getIsAccepted())
@@ -45,13 +46,15 @@ class InvitationController extends Controller
     }
 
     /**
-     * Permet d'ajouter un ami
+     * Permet d'ajouter un utilisateur dans sa liste d'ami
      *
      * @Route("/ajout_ami/{id}", name="ajout_ami")
-     * @param User $user
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @param $id l'identifiant de l'utilisateur qu'on veut ajouter
+     *
+     * @return Response retourne une redirection vers la même page de profil
+     *
      */
-
     public function addFriendAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -72,10 +75,11 @@ class InvitationController extends Controller
     }
 
     /**
-     * Permet d'afficher les demandes en attente
+     * Permet d'afficher les invitations en attente de confirmation
      *
      * @Route("/Attente", name="attente")
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @return Response retourne une redirection vers une page ou la liste d'attente s'affiche
      */
     public function attenteAction()
     {
@@ -89,8 +93,10 @@ class InvitationController extends Controller
     }
 
     /**
-     * Retourne un tableau avec la liste de mes invitations en attente de confirmation par les autres
-     * @return array
+     * Permet d'obtenir la liste des invitations qu'on a envoyé, en attente de confirmation
+     *
+     * @return array Un tableau contenant les utilisateurs destinataires des invitations
+     *
      */
     public function mesInvitationsEnAttente()
     {
@@ -100,6 +106,7 @@ class InvitationController extends Controller
         $listInvitation = $invitationRepo->findAll();
         $mesInvitation = array();
 
+        //On parcours la liste des invitations et enregistrement de ceux qui n'ont pas été accepté
         foreach ($listInvitation as $invitation)
         {
             if ($invitation->getExpediteur()==$user && !($invitation->getIsAccepted()))
@@ -109,8 +116,9 @@ class InvitationController extends Controller
     }
 
     /**
-     * Retourne un tableau avec la liste des invitations qu'on m'a envoyé
-     * @return array
+     * Permet d'obtenir la liste des invitations en attente de confirmation
+     *
+     * @return array un tableau avec les utilisateurs qui souhaitent m'ajouter comme ami
      */
     public function leurInvitationsEnAttente()
     {
@@ -120,6 +128,7 @@ class InvitationController extends Controller
         $listInvitation = $invitationRepo->findAll();
         $leurInvitation = array();
 
+        //On parcours la liste des invitations et enregistrement de ceux qui n'ont pas été accepté
         foreach ($listInvitation as $invitation)
         {
             if ($invitation->getDestinataire()==$user && !($invitation->getIsAccepted()))
@@ -130,8 +139,12 @@ class InvitationController extends Controller
 
     /**
      * Permet d'accepter une invitation
+     *
      * @Route("/accepter_ami/{id}", name="accepter_ami")
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @param $id l'identifiant de l'utilisateur dont on veut accepter la demande
+     *
+     * @return Response retourne une redirection vers le profil de cet utilisateur
      */
 
     public function accepterAction($id)
@@ -142,7 +155,7 @@ class InvitationController extends Controller
         $ami = $em->getRepository('ConnexionBundle:User')->find($id);
         $listInvitation = $invitationRepo->findAll();
 
-
+        //Recherche de l'invitation correspondant dans la BDD
         foreach ($listInvitation as $invitation)
         {
             if ($invitation->getExpediteur()==$ami && $invitation->getDestinataire()==$user)

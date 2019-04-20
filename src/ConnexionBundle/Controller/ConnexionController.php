@@ -1,15 +1,22 @@
 <?php
 namespace ConnexionBundle\Controller;
+
 use ConnexionBundle\Form\PublicationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ConnexionController extends Controller
 {
     /**
+     * Génère la page d'accueil avec toutes les informations qu'elle doit afficher: publication, commentaire, formulaire
+     *
      * @Route("/user/home", name="homepage")
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @param Request $request la requête correspondant
+     *
+     * @return Response la reponse retourné est la page d'accueil, prenant en paramètre les infos nécessaires à afficher
      */
     public function viewAccueilAction(Request $request)
     {
@@ -34,18 +41,16 @@ class ConnexionController extends Controller
                 return $this->redirectToRoute('homepage');
             }
         }
+
         //Affichage publication et commentaire
         $données_BDD = $objet_publication->indexAction(($em));
         $listPublications=$données_BDD[1];
         $listCommentaires=$données_BDD[0];
 
-        //Nombre j aime et commentaire
-        $nbJAime = count ($em->getRepository('ConnexionBundle:Reaction')->findByPublication(226));
 
         return $this->render('pageAccueil/home_page.html.twig',array('commentaires' => $listCommentaires ,
             'publications' => $listPublications,
             'form' => $form->createView(),
-            'nbJAime' => $nbJAime
         ));
     }
 }

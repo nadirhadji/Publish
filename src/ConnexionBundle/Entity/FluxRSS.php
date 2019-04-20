@@ -42,12 +42,12 @@ class FluxRSS
      */
     private $dateFluxRss;
 
-        /**
+    /**
      * @var string
      *
      * @ORM\Column(name="urlimage", type="string", length=255)
      */
-        private $URLImage;
+    private $URLImage;
 
 
     /**
@@ -67,9 +67,9 @@ class FluxRSS
 
 
     /**
-     * Get id.
+     * Récupère l'identifiant du flux
      *
-     * @return int
+     * @return int l'identifiant correspondant
      */
     public function getId()
     {
@@ -77,9 +77,9 @@ class FluxRSS
     }
 
     /**
-     * Set nom.
+     * Affecte un nom au flux
      *
-     * @param string $nom
+     * @param string $nom le nom du flux
      *
      * @return FluxRSS
      */
@@ -91,9 +91,9 @@ class FluxRSS
     }
 
     /**
-     * Get nom.
+     * Récupère le nom du flux
      *
-     * @return string
+     * @return string le nom du flux
      */
     public function getNom()
     {
@@ -101,9 +101,9 @@ class FluxRSS
     }
 
     /**
-     * Set dateFluxRss.
+     * Affecte la date du flux
      *
-     * @param \DateTime $dateFluxRss
+     * @param \DateTime $dateFluxRss la date du flux
      *
      * @return FluxRSS
      */
@@ -115,9 +115,9 @@ class FluxRSS
     }
 
     /**
-     * Get dateFluxRss.
+     * Récupère la date du flux
      *
-     * @return \DateTime
+     * @return \DateTime la date du flux
      */
     public function getDateFluxRss()
     {
@@ -125,9 +125,9 @@ class FluxRSS
     }
 
     /**
-     * Set ville.
+     * Affecte la ville du flux
      *
-     * @param string $ville
+     * @param string $ville la ville correspondant au flux
      *
      * @return FluxRSS
      */
@@ -139,9 +139,9 @@ class FluxRSS
     }
 
     /**
-     * Get ville.
+     * Récupère la ville correspondant au flux
      *
-     * @return string
+     * @return string la ville correspondant au flux
      */
     public function getVille()
     {
@@ -149,9 +149,9 @@ class FluxRSS
     }
 
     /**
-     * Set uRLImage.
+     * Affecte l'url de l'image rattaché au flux
      *
-     * @param string $uRLImage
+     * @param string $uRLImage l'url de l'image rattaché au flux
      *
      * @return FluxRSS
      */
@@ -163,9 +163,9 @@ class FluxRSS
     }
 
     /**
-     * Get uRLImage.
+     * Récupère l url de l'image du flux
      *
-     * @return string
+     * @return string l'url de l'image du flux
      */
     public function getURLImage()
     {
@@ -173,9 +173,9 @@ class FluxRSS
     }
 
     /**
-     * Set description.
+     * Ajoute une description au flux
      *
-     * @param string $description
+     * @param string $description la description du flux
      *
      * @return FluxRSS
      */
@@ -187,9 +187,9 @@ class FluxRSS
     }
 
     /**
-     * Get description.
+     * Récupère la description du flux
      *
-     * @return string
+     * @return string la description du flux
      */
     public function getDescription()
     {
@@ -197,9 +197,9 @@ class FluxRSS
     }
 
     /**
-     * Set url.
+     * Ajoute l'url du flux
      *
-     * @param string $url
+     * @param string $url l'url du flux
      *
      * @return FluxRSS
      */
@@ -211,9 +211,9 @@ class FluxRSS
     }
 
     /**
-     * Get url.
+     * Récupère l'url du flux
      *
-     * @return string
+     * @return string l'url du flux
      */
     public function getUrl()
     {

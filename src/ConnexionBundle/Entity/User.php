@@ -7,7 +7,6 @@
  */
 namespace ConnexionBundle\Entity;
 use FOS\UserBundle\Model\User as FosUser;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use FOS\MessageBundle\Model\ParticipantInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -16,6 +15,8 @@ use ConnexionBundle\Entity\Document;
 use ConnexionBundle\Entity\Reaction;
 use ConnexionBundle\Entity\Commentaire;
 use ConnexionBundle\Entity\CentreInteret;
+use ConnexionBundle\Entity\Invitation;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity
@@ -27,6 +28,7 @@ class User extends FosUser implements ParticipantInterface
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
     const ROLE_ADMIN = 'ROLE_ADMIN';
     const ROLE_USER = 'ROLE_USER';
+
     /**
      * @var integer
      *
@@ -35,12 +37,14 @@ class User extends FosUser implements ParticipantInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
     /**
      * @var
      *
      * @ORM\Column(name="gender", type="string", length=255, nullable=true)
      */
     protected $gender;
+
     /**
      * @var
      *
@@ -48,34 +52,34 @@ class User extends FosUser implements ParticipantInterface
      * @Assert\NotBlank(message="Ajouter un nom")
      */
     protected $firstName;
+
     /**
      * @var
      *
      * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
      */
     protected $lastName;
+
     /**
      * @var
      *
      * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     protected $city;
+
     /**
      * @var
      *
      * @ORM\Column(name="zip_code", type="string", length=255, nullable=true)
      */
     protected $country;
+
     /**
      * @var
      *
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     protected $phone;
-    /**
-     * @ORM\ManyToMany(targetEntity="ConnexionBundle\Entity\CentreInteret",cascade={"persist"})
-     */
-    private $centresInteret;
 
     /**
      * @ORM\OneToOne(targetEntity="ConnexionBundle\Entity\Document",cascade={"persist"})
@@ -100,157 +104,145 @@ class User extends FosUser implements ParticipantInterface
     private $commentaires;
 
     /**
-    * @ORM\OneToMany(targetEntity="ConnexionBundle\Entity\Reaction", mappedBy="user")
-    */
-        private $reactions;
+     * @ORM\OneToMany(targetEntity="ConnexionBundle\Entity\Reaction", mappedBy="user")
+     */
+    private $reactions;
 
 
     /**
-     * @param mixed $gender
+     * Ajoute le genre de l'utilisateur
+     * @param string $gender le genre de l'utilisateur (homme ou femme)
      */
     public function setGender($gender)
     {
         $this->gender = $gender;
     }
+
     /**
-     * @return mixed
+     * Récupère le genre de l'utilisateur
+     *
+     * @return string retourne le genre de l'utilisateur
      */
     public function getGender()
     {
         return $this->gender;
     }
+
     /**
-     * @param mixed $firstname
+     * Ajoute le nom de famille de l'utilisateur
+     *
+     * @param string $firstname le nom de famille de l'utilisateur
      */
     public function setFirstname($firstName)
     {
         $this->firstName = $firstName;
     }
+
     /**
-     * @return mixed
+     * Récupère le nom de famille de l'utilisateur
+     *
+     * @return string le nom de famille de l'utilisateur
      */
     public function getFirstname()
     {
         return $this->firstName;
     }
+
     /**
-     * @param mixed $lastname
+     * Ajoute le prénom de l'utilisateur
+     *
+     * @param string $lastname le prénom de l'utilisateur
      */
     public function setLastname($lastName)
     {
         $this->lastName = $lastName;
     }
+
     /**
-     * @return mixed
+     * Récupère le prénom de l'utilisateur
+     *
+     * @return string le prénom de l'utilisateur
      */
     public function getLastname()
     {
         return $this->lastName;
     }
+
+    /**
+     * Ajoute la ville de l'utilisateur
+     *
+     * @param $city la ville de l'utilisateur
+     */
     public function setCity($city)
     {
         $this->city = $city;
     }
+
     /**
-     * @return mixed
+     * Récupère la ville de l'utilisateur
+     *
+     * @return string la ville de l'utilisateur
      */
     public function getCity()
     {
         return $this->city;
     }
+
     /**
-     * @param mixed $country
+     * Ajoute le pays de l'utilisateur
+     *
+     * @param string $country le pays de l'utilisateur
      */
     public function setCountry($country)
     {
         $this->country = $country;
     }
+
     /**
-     * @return mixed
+     * Récupère le pays de l'utilisateur
+     *
+     * @return string le pays de l'utilisateur
      */
     public function getCountry()
     {
         return $this->country;
     }
+
     /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-    /**
-     * @return int
+     * Récupère l'identifiant de l'utilisateur
+     *
+     * @return int l'identifiant de l'utilisateur
      */
     public function getId()
     {
         return $this->id;
     }
+
+
     /**
-     * @param mixed $zipCode
-     */
-    /**
-     * @param mixed $phone
+     * Ajoute le numero de télephone de l'utilisateur
+     *
+     * @param string $phone le numero de télephone de l'utilisateur
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
     }
+
     /**
-     * @return mixed
+     * Récupère le numero de télephone de l'utilisateur
+     *
+     * @return string le numero de télephone de l'utilisateur
      */
     public function getPhone()
     {
         return $this->phone;
     }
+
     /**
-     * Set centresInteret.
+     * Ajoute une photo de profil à l'utilisateur
      *
-     * @param \ConnexionBundle\Entity\CentreInteret|null $centresInteret
-     *
-     * @return User
-     */
-    public function setCentresInteret(CentreInteret $centresInteret = null)
-    {
-        $this->centresInteret = $centresInteret;
-        return $this;
-    }
-    /**
-     * Get centresInteret.
-     *
-     * @return \ConnexionBundle\Entity\CentreInteret|null
-     */
-    public function getCentresInteret()
-    {
-        return $this->centresInteret;
-    }
-    /**
-     * Add centresInteret.
-     *
-     * @param \ConnexionBundle\Entity\CentreInteret $centresInteret
-     *
-     * @return User
-     */
-    public function addCentresInteret(CentreInteret $centresInteret)
-    {
-        $this->centresInteret[] = $centresInteret;
-        return $this;
-    }
-    /**
-     * Remove centresInteret.
-     *
-     * @param \ConnexionBundle\Entity\CentreInteret $centresInteret
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeCentresInteret(CentreInteret $centresInteret)
-    {
-        return $this->centresInteret->removeElement($centresInteret);
-    }
-    /**
-     * Set image.
-     *
-     * @param \ConnexionBundle\Entity\Document|null $image
+     * @param Document $image une photo de profil à l'utilisateur
      *
      * @return User
      */
@@ -259,22 +251,33 @@ class User extends FosUser implements ParticipantInterface
         $this->image = $image;
         return $this;
     }
+
     /**
-     * Get image.
+     * Récupère la photo de profil à l'utilisateur
      *
-     * @return \ConnexionBundle\Entity\Document|null
+     * @return Document la photo de profil à l'utilisateur
      */
     public function getImage()
     {
         return $this->image;
     }
 
+    /**
+     * Traduit l'objet User en string, en lui retournant son nom de famille
+     *
+     * @return string le string representant l'objet User
+     */
     public function __toString()
     {
 
         return $this->getFirstname();
     }
 
+    /**
+     * Permet de retourner un reponse JSON
+     *
+     * @return JsonResponse
+     */
     public function getJSON()
     {
         $data = ['text' => $this->getUsername() , 'gender' => $this->getGender()];
@@ -282,9 +285,9 @@ class User extends FosUser implements ParticipantInterface
     }
 
     /**
-     * Add commentaire.
+     * Permat d'ajouter un commentaire
      *
-     * @param \ConnexionBundle\Entity\Commentaire $commentaire
+     * @param Commentaire $commentaire le commentaire à ajouter
      *
      * @return User
      */
@@ -296,11 +299,11 @@ class User extends FosUser implements ParticipantInterface
     }
 
     /**
-     * Remove commentaire.
+     * Permet de supprimer un commentaire
      *
-     * @param \ConnexionBundle\Entity\Commentaire $commentaire
+     * @param Commentaire $commentaire le commentaire à supprimer
      *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     * @return boolean Vrai si commentaire existe dans la collection , Faux sinon.
      */
     public function removeCommentaire(Commentaire $commentaire)
     {
@@ -308,9 +311,9 @@ class User extends FosUser implements ParticipantInterface
     }
 
     /**
-     * Get commentaires.
+     * Permet de récupérer les commentaires propres à un utilisateur
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection la liste des commentaires
      */
     public function getCommentaires()
     {
@@ -318,9 +321,9 @@ class User extends FosUser implements ParticipantInterface
     }
 
     /**
-     * Add reaction.
+     * Permet d'ajouter des réactions
      *
-     * @param \ConnexionBundle\Entity\Reaction $reaction
+     * @param Reaction $reaction les réactions correspondantes
      *
      * @return User
      */
@@ -332,11 +335,11 @@ class User extends FosUser implements ParticipantInterface
     }
 
     /**
-     * Remove reaction.
+     * Permet de supprimer une reaction
      *
-     * @param \ConnexionBundle\Entity\Reaction $reaction
+     * @param Reaction $reaction la réaction à supprimer
      *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     * @return boolean Vrai si commentaire existe dans la collection , Faux sinon.
      */
     public function removeReaction(\ConnexionBundle\Entity\Reaction $reaction)
     {
@@ -344,9 +347,9 @@ class User extends FosUser implements ParticipantInterface
     }
 
     /**
-     * Get reactions.
+     * Permet de récupérer les réactions
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection collection contenant les reactions propres à un utilisateur
      */
     public function getReactions()
     {
@@ -354,13 +357,13 @@ class User extends FosUser implements ParticipantInterface
     }
 
     /**
-     * Add mesInvitationsEnvoyee.
+     * Permet d'ajouter des invitations d'amitié
      *
-     * @param \ConnexionBundle\Entity\Invitation $mesInvitationsEnvoyee
+     * @param Invitation $mesInvitationsEnvoyee les invitations envoyées
      *
      * @return User
      */
-    public function addMesInvitationsEnvoyee(\ConnexionBundle\Entity\Invitation $mesInvitationsEnvoyee)
+    public function addMesInvitationsEnvoyee(Invitation $mesInvitationsEnvoyee)
     {
         $this->mesInvitationsEnvoyees[] = $mesInvitationsEnvoyee;
 
@@ -368,21 +371,21 @@ class User extends FosUser implements ParticipantInterface
     }
 
     /**
-     * Remove mesInvitationsEnvoyee.
+     * Supprime les invitations envoyées
      *
-     * @param \ConnexionBundle\Entity\Invitation $mesInvitationsEnvoyee
+     * @param Invitation $mesInvitationsEnvoyee les invitations envoyées
      *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     * @return boolean Vrai si commentaire existe dans la collection , Faux sinon.
      */
-    public function removeMesInvitationsEnvoyee(\ConnexionBundle\Entity\Invitation $mesInvitationsEnvoyee)
+    public function removeMesInvitationsEnvoyee(Invitation $mesInvitationsEnvoyee)
     {
         return $this->mesInvitationsEnvoyees->removeElement($mesInvitationsEnvoyee);
     }
 
     /**
-     * Get mesInvitationsEnvoyees.
+     * Permet de récupérer les invitations envoyées
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection collections avec la liste des invitations envoyées
      */
     public function getMesInvitationsEnvoyees()
     {
@@ -390,35 +393,35 @@ class User extends FosUser implements ParticipantInterface
     }
 
     /**
-     * Add mesInvitationsRecue.
+     * permet d'ajouter les invitations recues
      *
-     * @param \ConnexionBundle\Entity\Invitation $mesInvitationsRecue
+     * @param Invitation $mesInvitationsRecue les invitations recues
      *
      * @return User
      */
-    public function addMesInvitationsRecue(\ConnexionBundle\Entity\Invitation $mesInvitationsRecue)
+    public function addMesInvitationsRecues(Invitation $mesInvitationsRecues)
     {
-        $this->mesInvitationsRecues[] = $mesInvitationsRecue;
+        $this->mesInvitationsRecues[] = $mesInvitationsRecues;
 
         return $this;
     }
 
     /**
-     * Remove mesInvitationsRecue.
+     * Supprime une invitation recue
      *
-     * @param \ConnexionBundle\Entity\Invitation $mesInvitationsRecue
+     * @param Invitation $mesInvitationsRecues les invitations recues
      *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     * @return boolean Vrai si commentaire existe dans la collection , Faux sinon.
      */
-    public function removeMesInvitationsRecue(\ConnexionBundle\Entity\Invitation $mesInvitationsRecue)
+    public function removeMesInvitationsRecues(Invitation $mesInvitationsRecues)
     {
-        return $this->mesInvitationsRecues->removeElement($mesInvitationsRecue);
+        return $this->mesInvitationsRecues->removeElement($mesInvitationsRecues);
     }
 
     /**
-     * Get mesInvitationsRecues.
+     * Permet de récupérer les invitations recues
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection une collection contenant la liste des invitations recues
      */
     public function getMesInvitationsRecues()
     {
@@ -426,9 +429,11 @@ class User extends FosUser implements ParticipantInterface
     }
 
     /**
-     * Retoune vrai si j'ai invité $user
-     * @param User $user
-     * @return bool
+     * Retoune vrai si l'utilisateur courant a invité $user
+     *
+     * @param User $user l'utilisateur dont on veut connaitre l'invitation
+     *
+     * @return bool vrai si la l'utilisateur courant a une invitation envoyée à $usern faux sinon
      */
     public function hasBeenInvited(User $user)
     {
@@ -443,9 +448,11 @@ class User extends FosUser implements ParticipantInterface
     }
 
     /**
-     * Retourne vrai si $user est mon ami
-     * @param $user
-     * @return bool
+     * Test si un utilisateur est un ami
+     *
+     * @param $user l'utilisateur à demandr
+     *
+     * @return bool vrai si $user est l'ami de l'utilisateur courant, faux sinon
      */
     public function isMyFriend ($user)
     {
@@ -470,8 +477,10 @@ class User extends FosUser implements ParticipantInterface
 
     /**
      * Retourne vrai si $user m'a envoyé une demande
-     * @param User $user
-     * @return bool
+     *
+     * @param User $user l'utilisateur à demander
+     *
+     * @return bool vrai si $user attend une confirmation de la part de l'utilisateur courant, faux sinon
      */
     public function waitForAcceptation(User $user)
     {

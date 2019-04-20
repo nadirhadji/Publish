@@ -57,9 +57,9 @@ class CentreInteret
 
 
     /**
-     * Get id.
+     * Permet de récupérer l'identifiant du Centre d'interet de l'utilisateur
      *
-     * @return int
+     * @return int l'identifiant du centre intérêt
      */
     public function getId()
     {
@@ -67,9 +67,9 @@ class CentreInteret
     }
 
     /**
-     * Set user.
+     * associe le Centre d'intéret à un utilisateur
      *
-     * @param string $nom
+     * @param string $user l'utilisateur en question
      *
      * @return CentreInteret
      */
@@ -81,9 +81,9 @@ class CentreInteret
     }
 
     /**
-     * Get user.
+     * Permet de récupérer l'utilisateur correspindant au centre d'intérêt
      *
-     * @return User
+     * @return User l'utilisateur correspondant
      */
     public function getUser()
     {
@@ -91,9 +91,9 @@ class CentreInteret
     }
 
     /**
-     * Set isMusic.
+     * Permet de selectionner le champs Musique du centre d'intérêt
      *
-     * @param boolean $nom
+     * @param boolean $isMusic un booléen, true si music est coché, false sinon
      *
      * @return CentreInteret
      */
@@ -105,9 +105,9 @@ class CentreInteret
     }
 
     /**
-     * Get IsMusic.
+     * Permet de récuperer le choix pour music
      *
-     * @return boolean
+     * @return boolean true si music est coché, false sinon
      */
     public function getIsMusic()
     {
@@ -115,9 +115,9 @@ class CentreInteret
     }
 
     /**
-     * Set IsSport.
+     * Permet de selectionner le champs Sport du centre d'intérêt
      *
-     * @param boolean $IsMusic
+     * @param boolean $IsSport un booléen, true si sport est coché, false sinon
      *
      * @return CentreInteret
      */
@@ -129,9 +129,9 @@ class CentreInteret
     }
 
     /**
-     * Get IsSport.
+     * Permet de récuperer le choix pour sport
      *
-     * @return boolean
+     * @return boolean true si sport est coché, false sinon
      */
     public function getIsSport()
     {
@@ -139,9 +139,9 @@ class CentreInteret
     }
 
     /**
-     * Set IsNews.
+     * Permet de selectionner le champs Actualité du centre d'intérêt
      *
-     * @param boolean $IsSport
+     * @param boolean $IsNews un booléen, true si sport est coché, false sinon
      *
      * @return CentreInteret
      */
@@ -153,9 +153,10 @@ class CentreInteret
     }
 
     /**
-     * Get IsNews.
+     * Permet de récuperer le choix pour news
      *
-     * @return boolean
+     * @return boolean true si news est coché, false sinon
+     *
      */
     public function getIsNews()
     {
@@ -163,9 +164,9 @@ class CentreInteret
     }
 
     /**
-     * Set IsTravel.
+     * Permet de selectionner le champs Voyage du centre d'intérêt
      *
-     * @param boolean $IsTravel
+     * @param boolean $IsTravel un booléen, true si travel est coché, false sinon
      *
      * @return CentreInteret
      */
@@ -177,9 +178,9 @@ class CentreInteret
     }
 
     /**²
-     * Get IsTravel.
+     * Permet de récuperer le choix pour travel
      *
-     * @return boolean
+     * @return boolean true si travel est coché, false sinon
      */
     public function getIsTravel()
     {

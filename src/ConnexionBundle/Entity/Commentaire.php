@@ -3,6 +3,8 @@
 namespace ConnexionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ConnexionBundle\Entity\Publication;
+use ConnexionBundle\Entity\User;
 
 /**
  * Commentaire
@@ -42,9 +44,8 @@ class Commentaire
 
 
     /**
-     * Get id.
+     * Permet de récupérer l'idenfiant du commentaire
      *
-     * @return int
      */
     public function getId()
     {
@@ -52,9 +53,9 @@ class Commentaire
     }
 
     /**
-     * Set text.
+     * Permet d'éditer un commentaire
      *
-     * @param string $text
+     * @param string $text le texte correspondant au commentaire
      *
      * @return Commentaire
      */
@@ -66,9 +67,9 @@ class Commentaire
     }
 
     /**
-     * Get text.
+     * Permet de récuperer le contenu du commentaire
      *
-     * @return string
+     * @return string  qui est le contenu du commentaire
      */
     public function getText()
     {
@@ -76,13 +77,13 @@ class Commentaire
     }
 
     /**
-     * Set publication.
+     * Affecte le commentaire à la publication correspondante
      *
-     * @param \ConnexionBundle\Entity\Publication $publication
+     * @param Publication $publication la publication propriétaire du commentaire
      *
      * @return Commentaire
      */
-    public function setPublication(\ConnexionBundle\Entity\Publication $publication)
+    public function setPublication(Publication $publication)
     {
         $this->publication = $publication;
 
@@ -90,9 +91,9 @@ class Commentaire
     }
 
     /**
-     * Get publication.
+     * Permet de récuperer la publication propriétaire du commentaire
      *
-     * @return \ConnexionBundle\Entity\Publication
+     * @return Publication la publication propriétaire du commentaire
      */
     public function getPublication()
     {
@@ -100,13 +101,13 @@ class Commentaire
     }
 
     /**
-     * Set user.
+     * Associe le commentaire à son auteur
      *
-     * @param \ConnexionBundle\Entity\User $user
+     * @param User $user l'utilisateur qui a édité le commentaire
      *
      * @return Commentaire
      */
-    public function setUser(\ConnexionBundle\Entity\User $user)
+    public function setUser(User $user)
     {
         $this->user = $user;
 
@@ -114,9 +115,9 @@ class Commentaire
     }
 
     /**
-     * Get user.
+     * Permet de récupérer l'auteur du commentaire
      *
-     * @return \ConnexionBundle\Entity\User
+     * @return User l'auteur du commentaire
      */
     public function getUser()
     {

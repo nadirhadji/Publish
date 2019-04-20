@@ -5,6 +5,8 @@ use ConnexionBundle\Entity\User;
 use ConnexionBundle\Entity\Document;
 use ConnexionBundle\Entity\Reaction;
 use ConnexionBundle\Entity\Commentaire;
+use \Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Publication
@@ -58,14 +60,21 @@ class Publication
      */
     private $reactions;
 
+
+    /**
+     * Récupère l'identifiant de la publication
+     *
+     * @return int retourne l'identifiant de la publication
+     */
     public function getId()
     {
         return $this->id;
     }
+
     /**
-     * Set contenu.
+     * Complète le contenu de la publication
      *
-     * @param string $contenu
+     * @param string $contenu le contenu de la publication
      *
      * @return Publication
      */
@@ -74,19 +83,21 @@ class Publication
         $this->contenu = $contenu;
         return $this;
     }
+
     /**
-     * Get contenu.
+     * récupère le contenu de la publication
      *
-     * @return string
+     * @return string le contenu de la publication
      */
     public function getContenu()
     {
         return $this->contenu;
     }
+
     /**
-     * Set datePublication.
+     * Met la date de la création de la publication
      *
-     * @param \DateTime $datePublication
+     * @param \DateTime $datePublication la date de création de la publication
      *
      * @return Publication
      */
@@ -95,19 +106,21 @@ class Publication
         $this->datePublication = $datePublication;
         return $this;
     }
+
     /**
-     * Get datePublication.
+     * Récupère la date de la publication
      *
-     * @return \DateTime
+     * @return \DateTime la date de la publication
      */
     public function getDatePublication()
     {
         return $this->datePublication;
     }
+
     /**
-     * Set user.
+     * Définit l'auteur de la publication
      *
-     * @param \ConnexionBundle\Entity\User
+     * @param User l'auteur de la publication
      *
      * @return Publication
      */
@@ -116,19 +129,21 @@ class Publication
         $this->user = $user;
         return $this;
     }
+
     /**
-     * Get user.
+     * Récupère l'auteur de la publication
      *
-     * @return \ConnexionBundle\Entity\User
+     * @return User l'auteur de la publication
      */
     public function getUser()
     {
         return $this->user;
     }
+
     /**
-     * Set image.
+     * Permet d'ajouter/joindre un image avec une publication
      *
-     * @param \ConnexionBundle\Entity\Document|null $image
+     * @param Document $image l'image correspondant à la publication
      *
      * @return Publication
      */
@@ -137,27 +152,29 @@ class Publication
         $this->image = $image;
         return $this;
     }
+
     /**
-     * Get image.
+     * Permet de récupérer l'image joint à une publication
      *
-     * @return \ConnexionBundle\Entity\Document|null
+     * @returnDocument
      */
     public function getImage()
     {
         return $this->image;
     }
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->reactions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reactions = new ArrayCollection();
     }
 
     /**
-     * Add reaction.
+     * Associe les réactions correspondantes à la publication.
      *
-     * @param \ConnexionBundle\Entity\Reaction $reaction
+     * @param Reaction $reaction les reactions concernant la publication
      *
      * @return Publication
      */
@@ -169,11 +186,11 @@ class Publication
     }
 
     /**
-     * Remove reaction.
+     * Supprime la réaction
      *
-     * @param \ConnexionBundle\Entity\Reaction $reaction
+     * @param Reaction $reaction la reaction à supprimer
      *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     * @return boolean VRAI si la collection contient l'element, FAUX sinon.
      */
     public function removeReaction(Reaction $reaction)
     {
@@ -181,9 +198,9 @@ class Publication
     }
 
     /**
-     * Get reactions.
+     * Récupère les réactions concernant la publication
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection les réactions dans une Collection
      */
     public function getReactions()
     {
@@ -192,9 +209,9 @@ class Publication
 
 
     /**
-     * Add commentaire.
+     * Ajoute un commentaire à la publication
      *
-     * @param \ConnexionBundle\Entity\Commentaire $commentaire
+     * @param Commentaire $commentaire le commentaire correspondant
      *
      * @return Publication
      */
@@ -206,11 +223,11 @@ class Publication
     }
 
     /**
-     * Remove commentaire.
+     * Supprime un commentaire sur la publication
      *
-     * @param \ConnexionBundle\Entity\Commentaire $commentaire
+     * @param Commentaire $commentaire le commentaire correspondant
      *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     * @return boolean VRAI si la collection contient l'element, FAUX sinon.
      */
     public function removeCommentaire(Commentaire $commentaire)
     {
@@ -218,9 +235,9 @@ class Publication
     }
 
     /**
-     * Get commentaires.
+     * Récupère tous les commentaires d'une publication dans une Collection
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection la liste des commentaires sur la publication
      */
     public function getCommentaires()
     {
@@ -228,6 +245,13 @@ class Publication
     }
 
 
+    /**
+     * Permet de savoir si la publication est aimé par un utilisateur en particulier
+     *
+     * @param User $user l'utilisateur dont on veut connaitre si il a aimé la publication ou non
+     *
+     * @return bool vrai si l'utilisateur $user aime la publication, faux sinon
+     */
     public function isLikedByUser(User $user)
     {
         foreach ($this->reactions as $reaction)
